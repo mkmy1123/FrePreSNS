@@ -1,7 +1,7 @@
 <br>
 <br>
 
-# FrePreSNS
+# FrePreSNS( フリプレッション )
 
 <br>
 
@@ -46,8 +46,30 @@ SNSですのでおヒマな時間に気軽に触っていただきたいです�
 ## 設計書
 
 
+### データベース定義書
+<br>
+随時更新中です。<br>
+
+[Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1LJDf-PTz2rxxBPnCHkduCCveFnAMm-yxTkbmD6VxaNY/edit#gid=484817952)
+
+<br>
+
+### 詳細設計書
+<br>
+こちらに基づいて更新中です。<br>
+
+[Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1ELdvGt2tc8qumAhRqrdeybJLEICKoSfhN-yjP-pc4kQ/edit#gid=2019313919)
+<br>
+
 ### 機能一覧
 <br>
 こちらからご覧ください。<br>
 
 [Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1-G0ooqs94KSpr2QMj2FbsxY0Ie-k0rswbSFvwwAepUI/edit#gid=0)
+<br>
+
+### 参考までに
+<br>
+スケジュール（WBS）です。<br>
+
+[Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1tgcUZLeBETO5J1ap4PkeI7nnB0Fe5afuVtAP8pvLnDw/edit#gid=1773513600)
