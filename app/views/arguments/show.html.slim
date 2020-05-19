@@ -1,0 +1,10 @@
+.hr-container
+  h1 ARGUMENT 
+  h3 = "『 #{@argument.topic} 』 >>> #{@argument.target} "
+
+  = form_with model: @expression do |f|
+    =f.select :is_argument ,[['POSITIVE', true], ['NEGATIVE', false]],{include_blank: 'NUETRAL'}
+    =f.text_field :statement
+    =f.text_area :detail
+    =f.hidden_field :argument_id ,value: @argument.id
+    =f.submit

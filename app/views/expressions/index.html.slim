@@ -1,2 +1,53 @@
+- if params[:argument_id].present? == true
+  - argument = Argument.find(params[:argument_id])
+  h1.headline = argument.topic
+- else
+  h1.headline ALL ARGUMENT
+.content-box
+  = form_with method: :get,local: true do|f|
+    = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic),include_blank: true)
+    = f.submit "GO"
+
+h1.headline EXPRESSION
 .container
-  h1 HELLO!! HERE IS EXPEWSSION INDEX PAGE
+  .content-box.positive
+    h3.headline POSITIVE
+    - if params[:argument_id].present? == true
+      - expressions = argument.expressions
+      - positive_expressions = expressions.where(is_argument: true)
+      - positive_expressions.each do|exp|
+        = exp.statement
+    - else 
+      - @positive_expressions.each do|exp|
+        - argument = Argument.find(exp.argument_id)
+        p.argument-title =" >> #{argument.topic}"
+        p = link_to exp.statement, expression_path(exp)
+        br
+
+  .content-box.negative
+    h3.headline NEGATIVE
+    - if params[:argument_id].present? == true
+      - expressions = argument.expressions
+      - positive_expressions = expressions.where(is_argument: false)
+      - positive_expressions.each do|exp|
+        = exp.statement
+    - else
+      - @negative_expressions.each do|exp|
+        - argument = Argument.find(exp.argument_id)
+        p.argument-title =" >> #{argument.topic}"
+        p = link_to exp.statement, expression_path(exp)
+        br
+
+  .content-box.neutral
+    h3.headline NEUTRAL
+    - if params[:argument_id].present? == true
+      - expressions = argument.expressions
+      - positive_expressions = expressions.where(is_argument: nil)
+      - positive_expressions.each do|exp|
+        = exp.statement
+    - else
+      - @neutral_expressions.each do|exp|
+        - argument = Argument.find(exp.argument_id)
+        p.argument-title =" >> #{argument.topic}"
+        p = link_to exp.statement, expression_path(exp)
+        br

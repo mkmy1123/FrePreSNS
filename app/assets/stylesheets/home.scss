@@ -1,3 +1,52 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* --- TOP PAGE --- */
+
+.content-smallbox{
+  width: 50%;
+  padding: 15px;
+}
+
+.argument{
+  height: 300px;
+  width: 90%;
+  margin: 15px auto 45px;
+}
+
+.expression{
+  width: 30%;
+  height: auto;
+}
+
+.user{
+  height: 300px;
+  margin: 20px 0;
+}
+
+.column{
+  width: 65%;
+  height: auto;
+  display: column;
+}
+
+.row{
+  width: 100%;
+  height: 200px;
+  display: flex;
+}
+
+/* --- ABOUT --- */
+.about{
+  margin-bottom: 10px;
+}
+
+.question{
+  color: #7F6C68;
+  padding: 10px;
+}
+
+.answer{
+  border-top: dashed 2px rgba(197, 201, 196, 0.3);
+}

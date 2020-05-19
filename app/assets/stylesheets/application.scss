@@ -1,0 +1,197 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* --- HEADER --- */ 
+
+header{
+  background-color: rgba(197, 201, 196, 0.3);
+  height: 100px;
+  display: flex;
+  padding: 40px 10px;
+  .left{
+    flex-grow: 1;
+    .logo{
+      line-height: 50px;
+      margin-left: 5%;
+      a{
+        text-decoration: none;
+        color: black;
+      }
+      a:hover{
+        color: #BB0009;
+      }
+    }
+  }
+  .center{
+    flex-grow: 1;
+    .theme{
+      text-align: right;
+      font-size: 23px;
+      line-height: 50px;
+      margin-right: 5%;
+    }
+  }
+}
+
+/* --- COMMON BOX AND STYLE --- */
+.container{
+  height: 100vh;
+  margin: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.short{
+  height: 200px;
+}
+
+.hr-container{
+  height: 100vh;
+  margin: 5%;
+  display: column;
+  justify-content: space-between;
+}
+
+.content-box{
+  border: 2px solid rgba(197, 201, 196, 0.3);
+  padding: 25px;
+  margin-bottom: 15px;
+}
+
+.headline{
+  text-align: center;
+  padding: 30px;
+}
+
+/* --- HAMBURGER ICON --- */
+
+#hm-icon{
+  position: fixed;
+  right: 30px;
+  top: 20px;
+  z-index: 10;
+  flex-grow: 1;
+}
+
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+
+.menu-trigger {
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #000;
+  border-radius: 4px;
+}
+
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
+}
+
+.menu-trigger span:nth-of-type(2) {
+  top: 13px;
+}
+
+.menu-trigger span:nth-of-type(3) {
+  bottom: 0;
+}
+
+.menu-trigger.active span:nth-of-type(1) {
+  -webkit-transform: translateY(13px) rotate(-45deg);
+  transform: translateY(13px) rotate(-45deg);
+  background-color: #fff;
+}
+
+.menu-trigger.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.menu-trigger.active span:nth-of-type(3) {
+  -webkit-transform: translateY(-13px) rotate(45deg);
+  transform: translateY(-13px) rotate(45deg);
+  background-color: #fff;
+}
+
+/* ------ MENU ------ */
+
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgb(78, 66, 81);
+  color: #fff;
+  width: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 9;
+  li{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
+
+/* --- FOOTER --- */
+
+footer{
+  height: 300px;
+  background-color: rgb(134, 110, 117);
+  display: flex;
+  justify-content: center;
+  padding: 5% 10%;
+  a{
+    color: #C5C8C4;
+    text-decoration: none;
+  }
+  a:hover{
+    color: #C5C8C4;
+    text-decoration: underline;
+  }
+}
+
+.box{
+  flex: 1;
+  ul{
+    padding-left: 40px;
+    li{
+      padding: 1px 10px;
+    }
+  }
+}
