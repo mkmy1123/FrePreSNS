@@ -9,4 +9,7 @@ class HomeController < ApplicationController
   def howto
   end
 
+  def word
+  end
+
 end

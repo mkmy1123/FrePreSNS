@@ -1,3 +1,22 @@
 // Place all the styles related to the Expressions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.argument-title{
+  border-bottom: 1px dashed;
+}
+
+.positive{
+  width: 30%;
+  overflow: auto;
+}
+
+.negative{
+  width: 30%;
+  overflow: auto;
+}
+
+.neutral{
+  width: 30%;
+  overflow: auto;
+}

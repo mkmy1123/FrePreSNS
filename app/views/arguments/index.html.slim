@@ -1,2 +1,18 @@
-.container
-  h1 HELLO!! HERE IS ARGUMNET INDEX PAGE
+.hr-container
+  h1 ARGUMNET
+  table
+    tr
+      th DATE
+      th TARGET
+      th TOPIC
+    - @arguments.each do|arg|
+      tr
+        td == arg.created_at
+        td == arg.target
+        td == arg.topic
+
+
+  = form_with model: @argument do |f|
+    =f.select :target, Argument.targets.keys.to_a
+    =f.text_field :topic
+    =f.submit

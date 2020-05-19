@@ -38,11 +38,11 @@ ActiveRecord::Schema.define(version: 2020_05_18_080653) do
   end
 
   create_table "expressions", force: :cascade do |t|
-    t.integer "argumnet_id", null: false
+    t.integer "argument_id", null: false
     t.integer "user_id", null: false
     t.boolean "is_argument"
     t.string "statement", null: false
-    t.string "detial"
+    t.string "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

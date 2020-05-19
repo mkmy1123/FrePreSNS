@@ -14,6 +14,9 @@
  *= require_self
  */
 
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
 * {
   margin: 0;
   padding: 0;
@@ -53,7 +56,7 @@ header{
   }
 }
 
-/* --- COMMON BOX --- */
+/* --- COMMON BOX AND STYLE --- */
 .container{
   height: 100vh;
   margin: 5%;
@@ -64,7 +67,25 @@ header{
   height: 200px;
 }
 
-  /* --- HAMBURGER ICON --- */
+.hr-container{
+  height: 100vh;
+  margin: 5%;
+  display: column;
+  justify-content: space-between;
+}
+
+.content-box{
+  border: 2px solid rgba(197, 201, 196, 0.3);
+  padding: 25px;
+  margin-bottom: 15px;
+}
+
+.headline{
+  text-align: center;
+  padding: 30px;
+}
+
+/* --- HAMBURGER ICON --- */
 
 #hm-icon{
   position: fixed;
