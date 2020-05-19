@@ -1,15 +1,29 @@
 .container
-  h1 HELLO!! HERE IS TOP PAGE
-  == link_to "about", about_path
-  br/
-  == link_to "howto", howto_path
-  br/
-  == link_to "arguments", arguments_path
-  br/
-  == link_to "componemts", components_path
-  br/
-  == link_to "expressions", expressions_path
-  br/
-  == link_to "sign_in", new_user_session_path
-  br/
-  == link_to "sign_up", new_user_registration_path
+  .column
+    .content-box.argument
+      h1 
+        | PICK UP!
+          ARGUMENT
+      p 現在人気の議論 << テーマ >>
+      == link_to "xxxxxxxxxxxxxx", ''
+      br
+      == link_to "xxxxxxxxxxxxxx", ''
+      br
+      == link_to "xxxxxxxxxxxxxx", ''
+      br
+      == link_to "xxxxxxxxxxxxxx", ''
+
+    .content-box.user
+      h1 RISING USER ->
+      p みんなが関心を寄せているユーザー<< 会員 >>
+  
+  .content-box.expression
+    h1 \ HOT / EXPRESSION
+    p 話題になっている表現<< 投稿 >>
+
+.container.short
+  .content-box.row
+    .content-smallbox
+      h3 REVIEW ★★★
+    .content-smallbox
+      h3 # CHECK
