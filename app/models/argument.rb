@@ -13,6 +13,7 @@ class Argument < ApplicationRecord
     芸術: 6,
     学術: 7,
     娯楽: 8,
-    嗜好: 9
+    嗜好: 9,
+    その他: 10
   }
 end

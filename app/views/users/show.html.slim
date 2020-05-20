@@ -1,2 +1,38 @@
-.container
-  h1 HELLO!! HERE IS USERS SHOW PAGE
+.hr-container
+  h3 = "ID => #{@user.optional_id}"
+  h1 = "#{@user.name} さん" 
+  - if @user == current_user
+    h4 = link_to "編集", edit_user_path(current_user)
+  - if @user.avatar? 
+    = image_tag @user.avatar.thumb.url
+  - else
+    = image_tag "/assets/default.jpg", :size => '80x80'
+  h4.headline.left INTRODUCTION
+  p = @user.introduction
+  br
+  br
+  - if @components.present?
+    p.center \ 箱の中、スクロールできますよ /
+    h4.center =" #{@user.optional_id} OF COMPONENTS "
+    - if @user == current_user
+      .component-form
+        = form_with model: @component ,local: true do |f|
+          = f.select :kind_of, Component.kind_ofs.keys.to_a
+          = f.label :title
+          = f.text_field :title
+          = f.label :description
+          = f.text_area :description
+          = f.hidden_field :user_id, value: current_user.id
+          = f.submit '追加する', class: 'btn'
+    .component-wrap
+      - @components.each do|com|
+        .content-box.mini
+          = link_to '編集', edit_component_path(com.id),class: 'edit-btn'
+          strong KIND_OF
+          p.left == com.kind_of
+          strong TITLE
+          p.left == com.title
+          strong  DETAIL
+          p.left == com.description
+  - else
+    h4.center =" #{@user.optional_id} OF COMPONENTS は まだ登録されていません"

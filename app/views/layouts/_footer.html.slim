@@ -7,14 +7,14 @@ footer
       li = link_to "WORDS 用語説明", ''
       li = link_to "REPORT  不審人物の報告", ''
       li = link_to "CONTACT お問い合わせ", ''
-  .box.center
+  .box.left
     p REGISTRATION
     ul
       li = link_to "REGISTRATION 新規登録"
       li = link_to "LOGIN ログイン"
       li = link_to "DELETE USER アカウントの削除"
       li = link_to "PASSWORD パスワード変更"
-  .box.right
+  .box.left
     p FUNCTION ONLY LOGIN USER
     - if user_signed_in?
       ul

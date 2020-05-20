@@ -22,6 +22,8 @@ class ExpressionsController < ApplicationController
   end
 
   def show
+    @expression = Expression.find(params[:id])
+    @argument = Argument.find(@expression.argument_id)
   end
 
   def update
