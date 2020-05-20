@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_080653) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.string "optional_id", default: "", null: false
-    t.string "avator"
+    t.string "avatar"
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

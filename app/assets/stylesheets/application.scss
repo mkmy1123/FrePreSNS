@@ -57,18 +57,24 @@ header{
 }
 
 /* --- COMMON BOX AND STYLE --- */
+
 .container{
-  height: 100vh;
+  min-height: 100vh;
   margin: 5%;
+  margin-bottom: 0;
   display: flex;
   justify-content: space-between;
 }
 .short{
   height: 200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 5%;
+  margin-top: 0;
 }
 
 .hr-container{
-  height: 100vh;
+  min-height: 100vh;
   margin: 5%;
   display: column;
   justify-content: space-between;
@@ -82,7 +88,20 @@ header{
 
 .headline{
   text-align: center;
-  padding: 30px;
+  padding: 15px;
+}
+
+.table-h{
+  text-align: left;
+  padding: 5px 15px;
+}
+
+.center{
+  text-align: center;
+}
+
+.left{
+  text-align: left;
 }
 
 /* --- HAMBURGER ICON --- */
@@ -194,4 +213,37 @@ footer{
       padding: 1px 10px;
     }
   }
+}
+
+/* --- FORM ---  */
+select{
+  font-size: 15px;
+  margin-right: 15px;
+}
+
+input{
+  font-size: 15px;
+  vertical-align: middle;
+  margin: 15px;
+}
+
+textarea{
+  vertical-align: middle;
+  margin-right: 15px;
+  width: 300px;
+}
+/* --- btn --- */
+.btn {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #739488;
+  margin: 15px;
+}
+
+.btn:hover {
+  background: #AACBC1;
 }

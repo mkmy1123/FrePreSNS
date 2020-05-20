@@ -1,2 +1,21 @@
-.container
-  h1 HELLO!! HERE IS USERS EDIT PAGE
+.hr-container
+  h1 EDIT PAGE
+  = form_for(@user) do |f|
+    - if @user.avatar? 
+      = image_tag @user.avatar.thumb.url
+    - else
+      = image_tag "/assets/default.jpg", :size => '100x100'
+    br
+    = f.file_field :avatar
+    br
+    = f.label :name
+    = f.text_field :name
+    br
+    = f.label 'ID'
+    = f.text_field :optional_id
+    br
+    = f.label :introduction
+    br
+    = f.text_area :introduction ,class: 'big'
+    br
+    = f.submit '編集する', class: 'btn'

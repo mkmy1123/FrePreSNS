@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'word' => 'home#word'
 
   resources :users, only: [:show, :edit, :update]
-  resources :components, only: [:index, :update, :create, :destroy]
+  resources :components, only: [:index, :update, :create, :destroy, :edit]
   resources :expressions, except: [:new] do
     resources :reviews, only: [:create, :destroy]
   end

@@ -1,1 +1,9 @@
-h1 Heeloooo
+.hr-container
+  h3 =">> ARGUMENT is #{@argument.topic}"
+  h1 = @expression.statement
+  p = @expression.created_at.to_s(:datetime_jp)
+  p = @expression.detail
+
+  .content-box.window
+    h3 WRITER / 書いたひと
+    = link_to ">> #{@expression.user.name}", user_path(@expression.user)

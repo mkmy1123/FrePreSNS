@@ -1,18 +1,22 @@
 .hr-container
-  h1 ARGUMNET
-  table
+  h1.center ARGUMNET
+  br
+  table.arg-table
     tr
-      th DATE
-      th TARGET
-      th TOPIC
+      th.table-h DATE
+      th.table-h TARGET
+      th.table-h TOPIC
+      th.table-h EXPRESSIONS
     - @arguments.each do|arg|
       tr
-        td == arg.created_at
-        td == arg.target
-        td == arg.topic
+        td.center == arg.created_at.to_s(:datetime_jp)
+        td.center == arg.target
+        td.left == arg.topic
+        td.center == link_to arg.expressions.length, expressions_path(argument_id: arg.id)
 
-
-  = form_with model: @argument do |f|
-    =f.select :target, Argument.targets.keys.to_a
-    =f.text_field :topic
-    =f.submit
+  .content-box.arg-form.center
+    = form_with model: @argument do |f|
+      =f.select :target, Argument.targets.keys.to_a
+      =f.label '議論したい論点 => '
+      =f.text_field :topic
+      =f.submit '送信', class: 'btn'
