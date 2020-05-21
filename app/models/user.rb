@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # frendly_id のための 設定項目
+  include FriendlyId
+  friendly_id :optional_id
   # carrierwave のため 設定項目
   mount_uploader :avatar, AvatarUploader
 

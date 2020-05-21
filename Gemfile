@@ -63,14 +63,23 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
+# devise関連 -日本語化-
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+# IDに任意の文字列を採用する
+gem 'friendly_id'
+# ページネーション
 gem 'kaminari'
+# アイコンの引用
 gem 'font-awesome-sass', '~> 5.4.1'
+# jQueryの環境構築
 gem 'jquery-rails'
-# エラー文の日本語化
+# エラー文の日本語化のため
 gem 'rails-i18n'
+# テンプレートエンジン
 gem 'slim-rails'
+# 機密情報の保持
 gem 'dotenv-rails'
 # タグの作成
 gem 'acts-as-taggable-on'

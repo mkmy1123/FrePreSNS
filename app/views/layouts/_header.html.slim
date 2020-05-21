@@ -24,13 +24,27 @@ header
               p << 現在のUSERをログアウト >>
         - else
           ul
-            li = link_to "about", about_path
-            li = link_to "howto", howto_path
-            li = link_to "arguments", arguments_path
-            li = link_to "componemts", components_path
-            li = link_to "expressions", expressions_path
-            li = link_to "sign_in", new_user_session_path
-            li = link_to "sign_up", new_user_registration_path
+            li = link_to about_path
+              h2  ABOUT
+              p << FrePreについて >>
+            li = link_to howto_path
+              h2 HOWTO
+              p << 使い方解説 >>
+            li = link_to arguments_path
+              h2 ARGUMENT
+              p << 議論テーマ >>
+            li = link_to expressions_path
+              h2 EXPRESSION
+              p << 議論に対しての投稿 >>
+            li = link_to components_path
+              h2 COMPONENT
+              p << 自己紹介ツール >>
+            li = link_to new_user_session_path
+              h2 LOG IN
+              p << ログインページ >>
+            li = link_to new_user_registration_path
+              h2 SIGN UP
+              p << 新規USER登録 >>
       #hm-icon
         a.menu-trigger href="#"
           span

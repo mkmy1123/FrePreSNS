@@ -1,5 +1,6 @@
 .hr-container
-  .container
+  .min-container
+    / サイドバー
     .sidebar
       h3 = "ID => #{@user.optional_id}"
       h1 = "#{@user.name} さん" 
@@ -12,6 +13,7 @@
       h4.headline.left INTRODUCTION
       p = @user.introduction
       br
+    / 投稿一覧
     .expressions
       h3 = "#{@user.optional_id}'s EXPRESSIONS"
       .content-box.exp-wrap
@@ -48,4 +50,4 @@
           strong  DETAIL
           p.left = com.description
   - else
-    h4.center =" #{@user.optional_id} OF COMPONENTS は まだ登録されていません"
+    h4.center =" #{@user.optional_id} 's COMPONENTS は まだ登録されていません"
