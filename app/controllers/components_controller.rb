@@ -1,5 +1,4 @@
 class ComponentsController < ApplicationController
-
   def index
     @components = Component.all
   end
@@ -33,8 +32,8 @@ class ComponentsController < ApplicationController
   end
 
   private
-    def component_params
-      params.require(:component).permit(:kind_of, :title, :description, :user_id)
-    end
 
+  def component_params
+    params.require(:component).permit(:kind_of, :title, :description, :user_id)
+  end
 end

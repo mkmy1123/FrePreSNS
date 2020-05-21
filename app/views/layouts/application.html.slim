@@ -7,6 +7,10 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    - if notice
+      = notice
+    - if alert
+      = alert
     = render 'layouts/header'
     = yield
     = render 'layouts/footer'

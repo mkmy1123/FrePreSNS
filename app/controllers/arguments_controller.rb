@@ -1,11 +1,10 @@
 class ArgumentsController < ApplicationController
-
   def index
     @argument = Argument.new
     @arguments = Argument.all
   end
 
-  def create 
+  def create
     argument = Argument.new(argument_params)
     if argument.save
       redirect_to '/arguments'
@@ -20,8 +19,8 @@ class ArgumentsController < ApplicationController
   end
 
   private
-    def argument_params
-      params.require(:argument).permit(:topic, :target)
-    end
 
+  def argument_params
+    params.require(:argument).permit(:topic, :target)
+  end
 end

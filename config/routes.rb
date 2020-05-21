@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-
   devise_for :users, controllers: {
-        sessions:      'users/sessions',
-        passwords:     'users/passwords',
-        registrations: 'users/registrations'
-      }
-  root 'home#top' 
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+  }
+  root 'home#top'
   get 'about' => 'home#about'
   get 'howto' => 'home#howto'
   get 'word' => 'home#word'
@@ -19,5 +18,4 @@ Rails.application.routes.draw do
     resources :checks, only: [:create, :destroy]
   end
   resources :relationships, only: [:create, :destroy]
-
 end
