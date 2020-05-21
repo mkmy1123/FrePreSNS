@@ -1,3 +1,4 @@
+- provide(:title, 'Arguments')
 .hr-container
   h1.center ARGUMNET
   br
@@ -9,10 +10,10 @@
       th.table-h EXPRESSIONS
     - @arguments.each do|arg|
       tr
-        td.center == arg.created_at.to_s(:datetime_jp)
-        td.center == arg.target
-        td.left == arg.topic
-        td.center == link_to arg.expressions.length, expressions_path(argument_id: arg.id)
+        td.center = arg.created_at.to_s(:datetime_jp)
+        td.center = arg.target
+        td.left = link_to arg.topic, argument_path(arg)
+        td.center = link_to arg.expressions.length, expressions_path(argument_id: arg.id)
 
   .content-box.arg-form.center
     = form_with model: @argument do |f|

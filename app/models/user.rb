@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # frendly_id のための 設定項目
+  include FriendlyId
+  friendly_id :optional_id
+
   # carrierwave のため 設定項目
   mount_uploader :avatar, AvatarUploader
 
@@ -22,22 +26,21 @@ class User < ApplicationRecord
   # フォロー関連のメソッド
   def trust(other_user)
     unless self == other_user
-      self.relationships.find_or_create_by(trust_id: other_user.id)
+      relationships.find_or_create_by(trust_id: other_user.id)
     end
   end
 
   def untrust(other_user)
-    relationship = self.relationships.find_by(trust_id: other_user.id)
+    relationship = relationships.find_by(trust_id: other_user.id)
     relationship.destroy if relationship
   end
 
   def trusting?(other_user)
-    self.trustings.include?(other_user)
+    trustings.include?(other_user)
   end
 
   # チェック機能の有無を確認する
   def checked?(argument)
-    self.checks.exists?(argument_id: argument.id)
+    checks.exists?(argument_id: argument.id)
   end
-
 end

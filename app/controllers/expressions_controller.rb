@@ -1,5 +1,4 @@
 class ExpressionsController < ApplicationController
-
   def index
     @expressions = Expression.all
     @positive_expressions = Expression.where(is_argument: true)
@@ -33,8 +32,8 @@ class ExpressionsController < ApplicationController
   end
 
   private
-    def expression_params
-      params.require(:expression).permit(:is_argument, :statement, :detail, :argument_id)
-    end
 
+  def expression_params
+    params.require(:expression).permit(:is_argument, :statement, :detail, :argument_id)
+  end
 end
