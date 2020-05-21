@@ -16,4 +16,5 @@ class Argument < ApplicationRecord
     嗜好: 9,
     その他: 10
   }
+
 end

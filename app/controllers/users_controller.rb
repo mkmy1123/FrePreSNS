@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @component = Component.new
     @components = Component.where(user_id: @user.id)
+    @expressions = Expression.where(user_id: @user.id)
   end
 
   def edit

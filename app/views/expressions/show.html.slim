@@ -1,4 +1,4 @@
-.hr-container
+.hr-container.center
   h3 =">> ARGUMENT is #{@argument.topic}"
   h1 = @expression.statement
   p = @expression.created_at.to_s(:datetime_jp)
@@ -6,4 +6,9 @@
 
   .content-box.window
     h3 WRITER / 書いたひと
+    - if @expression.user.avatar? 
+      = image_tag @expression.user.avatar.thumb_half.url
+    - else
+      = image_tag "/assets/default.jpg", :size => '50x50'
+    br
     = link_to ">> #{@expression.user.name}", user_path(@expression.user)

@@ -9,4 +9,7 @@ module ApplicationHelper
 		end
   end
 
+  def find_argument(argument_id)
+    Argument.find(argument_id)
+  end
 end

@@ -24,6 +24,14 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+a{
+  color: rgb(128, 108, 104);
+  text-decoration: none;
+}
+
+a:hover{
+  color: rgb(196, 179, 157);
+}
 /* --- HEADER --- */ 
 
 header{
@@ -231,6 +239,17 @@ textarea{
   vertical-align: middle;
   margin-right: 15px;
   width: 300px;
+}
+
+.argument-title{
+  border-bottom: 1px dashed;
+}
+
+.label{
+  background-color: rgb(78, 66, 81);
+  border-radius: 2px;
+  color: white;
+  padding: 2px;
 }
 /* --- btn --- */
 .btn {
