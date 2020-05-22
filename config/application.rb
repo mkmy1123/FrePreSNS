@@ -15,5 +15,12 @@ module FrePreSNS
     Time::DATE_FORMATS[:datetime_jp] = '%Y/%m/%d %H:%M:%S'
     Time::DATE_FORMATS[:date_jp] = '%Y/%m/%d'
     Time::DATE_FORMATS[:dateweek_jp] = '%Y/%m/%d %a %H:%M'
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+    end
   end
 end
