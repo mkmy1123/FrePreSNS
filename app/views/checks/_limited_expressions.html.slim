@@ -1,0 +1,10 @@
+- expressions.each do|exp|
+  .content-box.mini
+    = exp.created_at.to_s(:datetime_jp)
+    br
+    = link_to "ID >> #{exp.user.optional_id}", user_path(exp.user)
+    h4 = "要点 : #{exp.statement}"
+    = position(exp)
+    br
+    = exp.detail
+    br

@@ -4,15 +4,13 @@
   = position(@expression)
   h1 = @expression.statement
   p = @expression.created_at.to_s(:datetime_jp)
-  br
+  - if @expression.user == current_user
+    = link_to "EDIT", edit_expression_path(@expression)
+    span  | 
+    = link_to "DELETE", expression_path(@expression), method: :delete, data:{confirm: "本当に削除してもよろしいですか？"}
+    br
   p = simple_format(@expression.detail)
   br
-
-  .content-box.window
-    h3 WRITER / 書いたひと
-    - if @expression.user.avatar? 
-      = image_tag @expression.user.avatar.thumb_half.url
-    - else
-      = image_tag "/assets/default.jpg", :size => '50x50'
-    br
-    = link_to ">> #{@expression.user.name}", user_path(@expression.user)
+  h3 WRITTEN BY
+  .content-box.expression-userinfo
+    = render "layouts/user_information", user: @expression.user

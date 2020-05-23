@@ -12,6 +12,10 @@ module ApplicationHelper
     Argument.find(argument_id)
   end
 
+  def get_expressions(argument)
+    Expression.where(argument_id: argument)
+  end
+
   def position(expression)
     if expression.is_argument == true
       tag.span "肯定 / POSITIVE", class:'label positive'
@@ -20,5 +24,17 @@ module ApplicationHelper
     else
       tag.span "中立 / NEUTRAL", class:'label neutral'
     end
+  end
+  
+  def positive(expressions)
+    expressions.where(is_argument: true)
+  end
+
+  def negative(expressions)
+    expressions.where(is_argument: false)
+  end
+
+  def neutral(expressions)
+    expressions.where(is_argument: nil)
   end
 end

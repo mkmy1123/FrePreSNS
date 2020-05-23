@@ -1,22 +1,24 @@
 class ExpressionsController < ApplicationController
   def index
     @expressions = Expression.all
-    @positive_expressions = Expression.where(is_argument: true)
-    @negative_expressions = Expression.where(is_argument: false)
-    @neutral_expressions = Expression.where(is_argument: nil)
     @arguments = Argument.all
   end
 
   def edit
+    @expression = Expression.find(params[:id])
+    @argument = Argument.find(@expression.argument_id)
   end
 
   def create
-    expression = Expression.new(expression_params)
-    expression.user_id = current_user.id
-    if expression.save
-      redirect_to expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
+    new_expression = Expression.new(expression_params)
+    new_expression.user_id = current_user.id
+    @argument = Argument.find(new_expression.argument_id)
+    @expression = Expression.new
+    if new_expression.save
+      redirect_to new_expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
     else
-      render 'arguments/index'
+      flash[:alert] = "EXPRESSIONの作成に失敗しました。要点の文字数を確認してください..."
+      render "arguments/show"
     end
   end
 
@@ -26,9 +28,19 @@ class ExpressionsController < ApplicationController
   end
 
   def update
+    @expression = Expression.find(params[:id])
+    if @expression.update(expression_params)
+      redirect_to @expression, notice: "ありがとうございます！EXPRESSION を更新しました！"
+    else
+      flash[:alert] = "EXPRESSIONの更新に失敗しました。内容を確認してください..."
+      render 'edit'
+    end
   end
 
   def destroy
+    expression = Expression.find(params[:id])
+    expression.destroy
+    redirect_to expressions_path, notice: "綺麗さっぱり EXPRESSION はなかったことになりました！"
   end
 
   private
