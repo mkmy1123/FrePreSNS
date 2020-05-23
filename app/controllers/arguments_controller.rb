@@ -7,7 +7,7 @@ class ArgumentsController < ApplicationController
   def create
     argument = Argument.new(argument_params)
     if argument.save
-      redirect_to '/arguments'
+      redirect_to argument, notice: "ARGUMENTが投稿できました！早速EXPRESSIONを書きましょう！"
     else
       render 'index'
     end

@@ -9,14 +9,16 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super
+    flash[:notice] = "ログイン成功です。FrePreの世界へようこそ！"
+  end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+    flash[:notice] = "ログアウトしました。またFrePreの世界で会いましょう！"
+  end
 
   protected
 

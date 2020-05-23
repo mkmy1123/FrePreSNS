@@ -1,11 +1,12 @@
-.hr-container
-  h2.center SIGN UP
-  br
-  p.center 新規USER登録ページです。
-  p.center 下記項目をご入力いただくとすぐに会員登録は完了します。
-  p.center お手数ですが、空欄を作らずぜひご入力ください。
-  .center= render "users/shared/links"
-  br
+.container
+  .hr-container
+    h2 SIGN UP
+    br
+    p 新規USER登録ページです。
+    p 下記項目をご入力いただくとすぐに会員登録は完了します。
+    p お手数ですが、空欄を作らずぜひご入力ください。
+    = render "users/shared/links"
+    br
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     = render "devise/shared/error_messages", resource: resource
 

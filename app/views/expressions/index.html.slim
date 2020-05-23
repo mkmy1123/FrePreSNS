@@ -3,7 +3,8 @@ br
 
 - if params[:argument_id].present? == true
   - argument = Argument.find(params[:argument_id])
-  h1.headline = "ARGUMENT is 『#{argument.topic}』"
+  h1.headline Argument is
+  h1.center = link_to argument.topic,argument_path(argument)
 - else
   h1.headline ALL EXPRESSIONS
 .content-box.window
@@ -13,8 +14,8 @@ br
     = f.submit "GO" ,class: 'btn'
 
 .container
-  .content-box.positive
-    h3.headline POSITIVE EXPRESSION
+  .expression-box.positive-box
+    h3.label.positive.center POSITIVE EXPRESSION
     h4.center << 肯定的 >>
     br
     - if params[:argument_id].present? == true
@@ -31,8 +32,8 @@ br
         p = link_to exp.statement, expression_path(exp)
         br
 
-  .content-box.neutral
-    h3.headline NEUTRAL EXPRESSION
+  .expression-box.neutral-box
+    h3.label.neutral.center NEUTRAL EXPRESSION
     h4.center << 中立 >>
     br
     - if params[:argument_id].present? == true
@@ -49,8 +50,8 @@ br
         p = link_to exp.statement, expression_path(exp)
         br
 
-  .content-box.negative
-    h3.headline NEGATIVE EXPRESSION
+  .expression-box.negative-box
+    h3.label.negative.center NEGATIVE EXPRESSION
     h4.center << 否定的 >>
     br
     - if params[:argument_id].present? == true

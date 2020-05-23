@@ -17,6 +17,11 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+$positive: rgb(115, 148, 136);
+$negative: rgb(118, 0, 10);
+$neutral: rgb(196, 179, 157);
+
+
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +35,7 @@ a{
 }
 
 a:hover{
-  color: rgb(196, 179, 157);
+  color: rgb(198, 178, 174);
 }
 /* --- HEADER --- */ 
 
@@ -112,6 +117,26 @@ header{
   text-align: left;
 }
 
+.label{
+  border-radius: 2px;
+  color: white;
+  padding: 2px;
+  background-color: rgb(78, 66, 81);
+}
+.arg{
+  background-color: rgb(128, 108, 104);
+}
+.positive{
+  background-color: $positive;
+}
+
+.negative{
+  background-color: $negative;
+}
+
+.neutral{
+  background-color: $neutral;
+}
 /* --- HAMBURGER ICON --- */
 
 #hm-icon{
@@ -245,12 +270,6 @@ textarea{
   border-bottom: 1px dashed;
 }
 
-.label{
-  background-color: rgb(78, 66, 81);
-  border-radius: 2px;
-  color: white;
-  padding: 2px;
-}
 /* --- btn --- */
 .btn {
   position: relative;
@@ -259,10 +278,39 @@ textarea{
   padding: 0.25em 0.5em;
   text-decoration: none;
   color: #FFF;
-  background: #739488;
+  background: rgb(78, 66, 81);
   margin: 15px;
 }
 
 .btn:hover {
-  background: #AACBC1;
+  background: rgb(88, 77, 91);
+}
+
+.trust-btn{
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: rgb(78, 66, 81);
+  margin: 5px 10px;
+}
+
+.trust-btn:hover{
+  background: rgb(88, 76, 91);
+}
+
+/* --- FLASH --- */
+.alert{
+  background: rgba(232, 56, 37, 0.8);
+}
+
+.notice{
+  background: rgba(115, 148, 136, 0.5);
+  border: rgb(115, 148, 136);
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
 }

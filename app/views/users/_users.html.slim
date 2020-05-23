@@ -1,0 +1,17 @@
+.container
+  - users.each do|user|
+    .content-box.user-wrap
+      h3 = "ID => #{user.optional_id}"
+      - if user.avatar? 
+        = image_tag user.avatar.thumb.url
+      - else
+        = image_tag "/assets/default.jpg", :size => '50x50'
+      = " #{user.name} さん"
+      p = "TRUSTING #{user.trustings.length} / TRUSTED #{user.trusteds.length}"
+      - if user.introduction?
+        p.label 自己紹介
+        = user.introduction
+      - else
+        p.label 自己紹介
+        p 自己紹介をまだ投稿していません
+      p = "<< EXPRESSION #{user.expressions.length} 件 投稿済 >>"
