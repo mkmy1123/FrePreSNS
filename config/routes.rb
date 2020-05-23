@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'howto' => 'home#howto'
   get 'word' => 'home#word'
 
+  get 'users/trust' => 'users#trust_user',as: :trust_user
+
   resources :users, only: [:show, :edit, :update]
   resources :components, only: [:index, :update, :create, :destroy, :edit]
   resources :expressions, except: [:new] do
@@ -17,5 +19,5 @@ Rails.application.routes.draw do
   resources :arguments, only: [:index, :create, :show] do
     resources :checks, only: [:create, :destroy]
   end
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: [:index, :create, :destroy]
 end

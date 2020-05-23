@@ -16,8 +16,9 @@
         td.center = link_to arg.expressions.length, expressions_path(argument_id: arg.id)
 
   .content-box.arg-form.center
-    = form_with model: @argument do |f|
+    p \ 論点は簡潔に！20字以内でお願いします！ /
+    = form_with model: @argument, local: true do |f|
       =f.select :target, Argument.targets.keys.to_a
-      =f.label '議論したい論点 => '
+      =f.label '議論したい論点 : '
       =f.text_field :topic
       =f.submit '送信', class: 'btn'

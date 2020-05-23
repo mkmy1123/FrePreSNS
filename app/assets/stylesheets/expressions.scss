@@ -2,19 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.positive{
+$positive: rgb(115, 148, 136);
+$negative: rgb(118, 0, 10);
+$neutral: rgb(196, 179, 157);
+
+.expression-box{
   width: 30%;
   overflow: auto;
+  padding: 30px 15px;
+  margin-bottom: 50px;
+}
+.positive-box{
+  border: solid 5px $positive;
 }
 
-.negative{
-  width: 30%;
-  overflow: auto;
+.negative-box{
+  border: solid 5px $negative;
 }
 
-.neutral{
-  width: 30%;
-  overflow: auto;
+.neutral-box{
+  border: solid 5px $neutral;
 }
 
 .window{

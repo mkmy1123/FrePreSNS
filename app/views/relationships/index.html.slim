@@ -1,0 +1,13 @@
+.hr-container
+  h1 BY TRUST USER
+  - @expressions.each do|exp|
+    .content-box
+      = exp.created_at.to_s(:datetime_jp)
+      br
+      = link_to "ID >> #{exp.user.optional_id}", user_path(exp.user)
+      br
+      h3 = "論点 : #{find_argument(exp.argument_id).topic}"
+      = position(exp)
+      h4 = "要点 : #{exp.statement}"
+      = exp.detail
+      br

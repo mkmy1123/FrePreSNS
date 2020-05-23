@@ -1,8 +1,12 @@
 .hr-container.center
-  h3 =">> ARGUMENT is #{@argument.topic}"
+  h2 =">> ARGUMENT is 『#{@argument.topic}』"
+  br
+  = position(@expression)
   h1 = @expression.statement
   p = @expression.created_at.to_s(:datetime_jp)
-  p = @expression.detail
+  br
+  p = simple_format(@expression.detail)
+  br
 
   .content-box.window
     h3 WRITER / 書いたひと

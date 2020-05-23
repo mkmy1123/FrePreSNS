@@ -19,6 +19,9 @@ header
             li = link_to user_path(current_user)
               h2 MY PAGE
               p << 現在のUSER専用ページ >>
+            li = link_to relationships_path
+              h2 TRUST TIMELINE
+              p << TRUST USERのみの投稿を表示 >>
             li = link_to destroy_user_session_path ,method: :delete
               h2 LOG OUT
               p << 現在のUSERをログアウト >>

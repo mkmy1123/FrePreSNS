@@ -14,6 +14,16 @@ class UsersController < ApplicationController
     @user.update(user_params)
   end
 
+  def trust_user
+    if params[:trusting]
+      @user = User.friendly.find(params[:trusting])
+      @users = @user.trustings
+    else
+      @user = User.friendly.find(params[:trusted])
+      @users = @user.trusteds
+    end
+  end
+
   private
 
   def set_user

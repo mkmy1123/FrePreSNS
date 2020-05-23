@@ -14,7 +14,7 @@ class ExpressionsController < ApplicationController
     expression = Expression.new(expression_params)
     expression.user_id = current_user.id
     if expression.save
-      redirect_to '/expressions'
+      redirect_to expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
     else
       render 'arguments/index'
     end
