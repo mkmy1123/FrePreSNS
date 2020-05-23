@@ -8,17 +8,30 @@
       th.table-h TARGET
       th.table-h TOPIC
       th.table-h EXPRESSIONS
+      - if user_signed_in?
+        th.table-h CHECKS
     - @arguments.each do|arg|
       tr
         td.center = arg.created_at.to_s(:datetime_jp)
         td.center = arg.target
         td.left = link_to arg.topic, argument_path(arg)
         td.center = link_to arg.expressions.length, expressions_path(argument_id: arg.id)
+        - if user_signed_in?
+          td.center 
+            - if current_user.checked?(arg)
+              = link_to argument_check_path(arg), method: :delete do
+                i.fas.fa-ban
+            - else
+              = link_to argument_check_path(arg), method: :post do
+                i.fas.fa-check-circle
 
   .content-box.arg-form.center
-    p \ 論点は簡潔に！20字以内でお願いします！ /
+    p \ 論点は簡潔に！5字以上20字以内でお願いします！ /
     = form_with model: @argument, local: true do |f|
       =f.select :target, Argument.targets.keys.to_a
       =f.label '議論したい論点 : '
       =f.text_field :topic
-      =f.submit '送信', class: 'btn'
+      - if user_signed_in?
+        = f.submit '送信', class: 'btn'
+      - else
+        h3 ログインすると投稿できるようになります

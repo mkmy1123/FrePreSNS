@@ -1,0 +1,15 @@
+.hr-container
+  h1.center CHECKED ARGUMENT's EXPRESSIONS
+  .content-box.window
+    p \さらに CHECK済みARGUMENT を限定できます /
+    = form_with method: :get,local: true do |f|
+      = f.label "論点 : "
+      = f.select(:argument_id, options_from_collection_for_select(current_user.checked_arguments, :id, :topic),include_blank: true,class: "window")
+      = f.submit "GO" ,class: 'btn'
+  - if params[:argument_id]
+      h3.center = "ARGUMENT is 『#{find_argument(params[:argument_id]).topic}』"
+      p.center = link_to ">> 一覧に戻す", checks_path
+      .limited-wrap
+        = render "limited_expressions", expressions: get_expressions(params[:argument_id])
+  - else
+    = render "check_expressions", expressions: get_expressions(current_user.checked_arguments)

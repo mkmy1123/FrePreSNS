@@ -2,35 +2,10 @@
   .min-container
     / サイドバー
     .sidebar
-      - if @user == current_user
-        = link_to "編集", edit_user_path(current_user), class: 'trust-btn'
-      = render "trust",user: @user
-      h3 = "ID => #{@user.optional_id}"
-      h1 = "#{@user.name} さん" 
-      br
-      - if @user.avatar? 
-        .center= image_tag @user.avatar.thumb.url
-      - else
-        .center= image_tag "/assets/default.jpg", :size => '80x80'
-      .center.window
-        br
-        span TRUSTING | 
-        span = link_to @user.trustings.length, trust_user_path(trusting: @user)
-        span  USERS
-        br
-        span TRUSTED | 
-        span = link_to @user.trusteds.length, trust_user_path(trusted: @user)
-        span  USERS
-        br
-        br
-      h3.left >> INTRODUCTION
-      - if @user.introduction.present?
-        p = @user.introduction
-      - else
-        p まだ自己紹介を投稿していません
+      = render "layouts/user_information", user: @user
     / 投稿一覧
     .expressions
-      - if @expressons.present? 
+      - if @expressions.present? 
         h3 = "#{@user.optional_id}'s EXPRESSIONS"
         .content-box.exp-wrap
           - @expressions.each do |exp|
@@ -71,4 +46,8 @@
           strong  DETAIL
           p.left = com.description
   - else
+    br
+    br
     h4.center =" #{@user.optional_id} 's COMPONENTS は まだ登録されていません"
+    br
+    br

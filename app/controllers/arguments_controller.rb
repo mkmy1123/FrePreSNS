@@ -2,6 +2,7 @@ class ArgumentsController < ApplicationController
   def index
     @argument = Argument.new
     @arguments = Argument.all
+    @check = Check.new
   end
 
   def create
@@ -9,7 +10,7 @@ class ArgumentsController < ApplicationController
     if argument.save
       redirect_to argument, notice: "ARGUMENTが投稿できました！早速EXPRESSIONを書きましょう！"
     else
-      render 'index'
+      redirect_to arguments_path, alert: "ARGUMENTが投稿できませんでした！文字数を確認してください..."
     end
   end
 

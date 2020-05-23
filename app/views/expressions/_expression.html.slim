@@ -1,0 +1,4 @@
+- expressions.each do|exp|
+  p.argument-title = link_to " >> #{exp.user.name} さん", user_path(exp.user)
+  p = link_to exp.statement,expression_path(exp)
+  br

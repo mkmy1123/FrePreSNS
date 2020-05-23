@@ -1,2 +1,17 @@
-.container
-  h1 HELLO!! HERE IS EXPRESSION EDIT PAGE
+.hr-container.center
+  h2 =">> ARGUMENT is 『#{@argument.topic}』"
+  br
+  = form_with model: @expression, local: true do |f|
+      = f.label :is_argument, 'あなたの考えは？'
+      br
+      = f.select :is_argument ,[['肯定的 < POSITIVE >', true], ['否定的 < NEGATIVE >', false]],{include_blank: '中立 < NUETRAL >'}
+      br
+      = f.label :statement, '簡単にいうと :'
+      = f.text_field :statement,placeholder: "20字以内でどうぞ"
+      br
+      = f.label :detail, '\ あなたの思いの丈をいくらでも叫んでください /'
+      br
+      = f.text_area :detail, class: 'big'
+      br
+      = f.hidden_field :argument_id ,value: @argument.id
+      = f.submit '表現を改める', class: 'btn'

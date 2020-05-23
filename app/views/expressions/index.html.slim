@@ -1,70 +1,58 @@
 br
 br
 
-- if params[:argument_id].present? == true
-  - argument = Argument.find(params[:argument_id])
+- if params[:argument_id].present?
+  - argument = find_argument(params[:argument_id])
   h1.headline Argument is
   h1.center = link_to argument.topic,argument_path(argument)
+- elsif params[:check].present?
+  h1.headline CHECK済み ARGUMENT
 - else
   h1.headline ALL EXPRESSIONS
 .content-box.window
-  p \ こちらから議論を限定できます /
-  = form_with method: :get,local: true do |f|
-    = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic),include_blank: true,class: "window")
-    = f.submit "GO" ,class: 'btn'
+    p \ こちらから議論を限定できます /
+    = form_with method: :get,local: true do |f|
+      = f.label "論点 : "
+      = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic),include_blank: true,class: "window")
+      = f.submit "GO" ,class: 'btn'
+    - if user_signed_in?
+      = form_with method: :get,local: true do |f|
+        span CHECK済みのARGUMENTに限定する
+        = f.hidden_field :check, value: current_user.id
+        = f.submit "GO" ,class: 'btn'
 
 .container
   .expression-box.positive-box
     h3.label.positive.center POSITIVE EXPRESSION
     h4.center << 肯定的 >>
     br
-    - if params[:argument_id].present? == true
-      - expressions = argument.expressions
-      - positive_expressions = expressions.where(is_argument: true)
-      - positive_expressions.each do|exp|
-        p.argument-title = link_to " >> #{exp.user.name}", user_path(exp.user)
-        p = link_to exp.statement,expression_path(exp)
-        br
-    - else 
-      - @positive_expressions.each do|exp|
-        - argument = Argument.find(exp.argument_id)
-        p.argument-title =" >> #{argument.topic}"
-        p = link_to exp.statement, expression_path(exp)
-        br
+    - if params[:argument_id].present?
+      = render "expression", expressions: positive(argument.expressions)
+    - elsif params[:check].present?
+      = render "moreexpression", expressions: positive(get_expressions(current_user.checked_arguments))
+    - else
+      = render "moreexpression", expressions: positive(@expressions)
 
   .expression-box.neutral-box
     h3.label.neutral.center NEUTRAL EXPRESSION
     h4.center << 中立 >>
     br
-    - if params[:argument_id].present? == true
-      - expressions = argument.expressions
-      - positive_expressions = expressions.where(is_argument: nil)
-      - positive_expressions.each do|exp|
-        p.argument-title = link_to " >> #{exp.user.name}", user_path(exp.user)
-        p = link_to exp.statement,expression_path(exp)
-        br
+    - if params[:argument_id].present?
+      = render "expression", expressions: neutral(argument.expressions)
+    - elsif params[:check].present?
+      = render "moreexpression", expressions: neutral(get_expressions(current_user.checked_arguments))
     - else
-      - @neutral_expressions.each do|exp|
-        - argument = Argument.find(exp.argument_id)
-        p.argument-title =" >> #{argument.topic}"
-        p = link_to exp.statement, expression_path(exp)
-        br
+      = render "moreexpression", expressions: neutral(@expressions)
 
   .expression-box.negative-box
     h3.label.negative.center NEGATIVE EXPRESSION
     h4.center << 否定的 >>
     br
-    - if params[:argument_id].present? == true
-      - expressions = argument.expressions
-      - positive_expressions = expressions.where(is_argument: false)
-      - positive_expressions.each do|exp|
-        p.argument-title = link_to " >> #{exp.user.name}", user_path(exp.user)
-        p = link_to exp.statement,expression_path(exp)
-        br
+    - if params[:argument_id].present?
+      = render "expression", expressions: negative(argument.expressions)
+    - elsif params[:check].present?
+      = render "moreexpression", expressions: negative(get_expressions(current_user.checked_arguments))
     - else
-      - @negative_expressions.each do|exp|
-        - argument = Argument.find(exp.argument_id)
-        p.argument-title =" >> #{argument.topic}"
-        p = link_to exp.statement, expression_path(exp)
-        br
+      = render "moreexpression", expressions: negative(@expressions)
+
 

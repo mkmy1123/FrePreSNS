@@ -72,7 +72,7 @@ header{
 /* --- COMMON BOX AND STYLE --- */
 
 .container{
-  min-height: 100vh;
+  min-height: 70%;
   margin: 5%;
   margin-bottom: 0;
   display: flex;
@@ -87,7 +87,7 @@ header{
 }
 
 .hr-container{
-  min-height: 100vh;
+  min-height: 70%;
   margin: 5%;
   display: column;
   justify-content: space-between;
@@ -136,6 +136,11 @@ header{
 
 .neutral{
   background-color: $neutral;
+}
+
+.user_info{
+  padding: 30px 0;
+  width: 100%;
 }
 /* --- HAMBURGER ICON --- */
 
@@ -304,6 +309,11 @@ textarea{
 /* --- FLASH --- */
 .alert{
   background: rgba(232, 56, 37, 0.8);
+  border: rgb(232, 56, 37);
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .notice{

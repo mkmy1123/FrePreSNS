@@ -1,6 +1,6 @@
 header
       .left
-        h1.logo == link_to "FrePreSNS", root_path
+        h1.logo = link_to "FrePreSNS", root_path
       .center
         h1.theme 誰にでも、表現に圧倒的な自由を。
       #menu.menu
@@ -22,6 +22,9 @@ header
             li = link_to relationships_path
               h2 TRUST TIMELINE
               p << TRUST USERのみの投稿を表示 >>
+            li = link_to checks_path
+              h2 CHECKED ARGUMENT
+              p << CHECKした論点に関する投稿を表示 >>
             li = link_to destroy_user_session_path ,method: :delete
               h2 LOG OUT
               p << 現在のUSERをログアウト >>
