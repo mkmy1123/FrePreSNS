@@ -47,6 +47,6 @@ class ExpressionsController < ApplicationController
   private
 
   def expression_params
-    params.require(:expression).permit(:is_argument, :statement, :detail, :argument_id)
+    params.require(:expression).permit(:style, :statement, :detail, :argument_id)
   end
 end

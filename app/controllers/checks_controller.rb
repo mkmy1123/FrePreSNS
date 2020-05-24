@@ -1,8 +1,7 @@
 class ChecksController < ApplicationController
-
   def index
   end
-  
+
   def create
     @check = current_user.checks.create(argument_id: params[:argument_id])
     redirect_back(fallback_location: root_path)

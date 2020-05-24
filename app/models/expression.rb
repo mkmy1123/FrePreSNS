@@ -3,9 +3,9 @@ class Expression < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   validates :statement, presence: true, uniqueness: { scope: :user_id }
-  enum argument_is: {
-    0: 中立,
-    1: 肯定,
-    2: 反対
+  enum style: {
+    中立: 0,
+    肯定的: 1,
+    否定的: 2,
   }
 end

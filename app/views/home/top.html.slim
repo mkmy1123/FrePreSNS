@@ -4,7 +4,7 @@
       h1 
         | PICK UP! EXPRESSION
       p 現在人気の表現<< 投稿 >>
-      = bar_chart Expression.group(:is_argument).count, width: "100%", height: "70%"
+      = bar_chart Expression.group(:style).count, width: "100%", height: "70%"
     .content-box.user
       h1 RISING USER ->
       p みんなが関心を寄せているユーザー<< 会員 >>

@@ -2,9 +2,9 @@
   h2 =">> ARGUMENT is 『#{@argument.topic}』"
   br
   = form_with model: @expression, local: true do |f|
-      = f.label :is_argument, 'あなたの考えは？'
+      = f.label :style, 'あなたの考えは？'
       br
-      = f.select :is_argument ,[['肯定的 < POSITIVE >', true], ['否定的 < NEGATIVE >', false]],{include_blank: '中立 < NUETRAL >'}
+      = f.select :style, Expression.styles.keys.to_a
       br
       = f.label :statement, '簡単にいうと :'
       = f.text_field :statement,placeholder: "20字以内でどうぞ"

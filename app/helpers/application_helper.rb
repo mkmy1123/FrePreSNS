@@ -17,24 +17,24 @@ module ApplicationHelper
   end
 
   def position(expression)
-    if expression.is_argument == true
-      tag.span "肯定 / POSITIVE", class:'label positive'
-    elsif expression.is_argument == false
-      tag.span "否定 / NEGATIVE", class:'label negative'
+    if expression.style == '中立'
+      tag.span "中立 / NEUTRAL", class: 'label neutral'
+    elsif expression.style == '肯定的'
+      tag.span "肯定 / POSITIVE", class: 'label positive'
     else
-      tag.span "中立 / NEUTRAL", class:'label neutral'
+      tag.span "否定 / NEGATIVE", class: 'label negative'
     end
-  end
-  
-  def positive(expressions)
-    expressions.where(is_argument: true)
-  end
-
-  def negative(expressions)
-    expressions.where(is_argument: false)
   end
 
   def neutral(expressions)
-    expressions.where(is_argument: nil)
+    expressions.where(style: 0)
+  end
+
+  def positive(expressions)
+    expressions.where(style: 1)
+  end
+
+  def negative(expressions)
+    expressions.where(style: 2)
   end
 end

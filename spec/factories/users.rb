@@ -1,9 +1,13 @@
 FactoryBot.define do
   factory :user do
-    sequence(:name) { |n| "TEST#{n}"}
-    sequence(:email) { |n| "TEST#{n}@example.com"}
-    sequence(:optional_id) { |n| "TEST000#{n}"}
-    sequence(:password) { |n| "TEST000#{n}"}
-    sequence(:password_confirmation) { |n| "TEST000#{n}"}
+    sequence(:name) { |n| "User#{n}" }
+    sequence(:email) { |n| "tester#{n}@example.com" }
+    sequence(:optional_id) { |n| "test000#{n}" }
+    password { "testtest" }
+    password_confirmation { "testtest" }
+
+    factory :intrpduction_user do
+      introduction { "hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellphello" }
+    end
   end
 end
