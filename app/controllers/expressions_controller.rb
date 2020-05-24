@@ -25,6 +25,7 @@ class ExpressionsController < ApplicationController
   def show
     @expression = Expression.find(params[:id])
     @argument = Argument.find(@expression.argument_id)
+    @review = Review.find_or_initialize_by(user_id: current_user.id, expression_id: @expression.id)
   end
 
   def update

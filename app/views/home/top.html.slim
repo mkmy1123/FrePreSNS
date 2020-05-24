@@ -4,13 +4,7 @@
       h1 
         | PICK UP! EXPRESSION
       p 現在人気の表現<< 投稿 >>
-      = link_to "xxxxxxxxxxxxxx", ''
-      br
-      = link_to "xxxxxxxxxxxxxx", ''
-      br
-      = link_to "xxxxxxxxxxxxxx", ''
-      br
-      = link_to "xxxxxxxxxxxxxx", ''
+      = bar_chart Expression.group(:is_argument).count, width: "100%", height: "70%"
     .content-box.user
       h1 RISING USER ->
       p みんなが関心を寄せているユーザー<< 会員 >>
@@ -18,6 +12,7 @@
   .content-box.argument
     h1 \ HOT / ARGUMENT
     p 話題になっている議論 << テーマ >>
+    = pie_chart Argument.group(:target).count, width: "100%", height: "50%" 
 .short
   .content-box.row
     .content-smallbox

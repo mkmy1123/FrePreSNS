@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require raty-js/lib/jquery.raty.css
  *= require_tree .
  *= require_self
  */
@@ -323,4 +324,12 @@ textarea{
   line-height: 50px;
   text-align: center;
   font-weight: bold;
+}
+
+.login-notice{
+  background: rgba(197, 201, 196, 0.8);
+  border: rgb(197, 201, 196);
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
 }

@@ -33,7 +33,7 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'trust_id'
   has_many :trusteds, through: :reverse_of_relationships, source: :user
 
-  # フォロー関連のメソッド
+  # フォロー機能 (トラスト機能)関連のメソッド
   def trust(other_user)
     unless self == other_user
       relationships.find_or_create_by(trust_id: other_user.id)

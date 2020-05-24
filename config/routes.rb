@@ -14,9 +14,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
   resources :components, only: [:index, :update, :create, :destroy, :edit]
-  resources :expressions, except: [:new] do
-    resources :reviews, only: [:create, :destroy]
-  end
+  resources :expressions, except: [:new]
+  resources :reviews, only: [:create, :update]
   resources :arguments, only: [:index, :create, :show] do
     resource :check, only: [:create, :destroy]
   end
