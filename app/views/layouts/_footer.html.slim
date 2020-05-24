@@ -18,10 +18,15 @@ footer
     p FUNCTION ONLY LOGIN USER
     - if user_signed_in?
       ul
-        li REVIEW
-        li CHECK
-        li TRUST RELATION
-        li ONLY YOURSELF TIMELINE
+        li = link_to "REVIEW", expressions_path
+        span: i.far.fa-lightbulb
+        span   REVIEWしたい投稿をCLICK!!
+        li = link_to "CHECK", arguments_path
+        span: i.far.fa-lightbulb
+        span   気になる論点をCHECK!!
+        li = link_to "TRUST USER", components_path
+        span: i.far.fa-lightbulb
+        span   素敵なUSERをTRUST!!
     - else
       = link_to new_user_session_path do
         p >> ログイン後、

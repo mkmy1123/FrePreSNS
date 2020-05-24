@@ -3,8 +3,13 @@
     = exp.created_at.to_s(:datetime_jp)
     br
     = link_to "ID >> #{exp.user.optional_id}", user_path(exp.user)
-    h4 = "要点 : #{exp.statement}"
+    br
     = position(exp)
+    h4 = "要点 : #{exp.statement}"
+    - if exp.reviews.present?
+      span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
+    - else
+      span.label = "NO YET REVIEW"
     br
     = exp.detail
     br

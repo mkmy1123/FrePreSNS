@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require raty-js
+//= require chartkick
+//= require Chart.bundle
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
@@ -22,5 +25,7 @@ $(function () {
     $('#menu').fadeToggle();
     return false;
   });
+
+  $('.raty').raty({ starType: 'i'});
 
 });

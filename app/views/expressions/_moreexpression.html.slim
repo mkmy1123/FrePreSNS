@@ -1,5 +1,11 @@
 - expressions.each do|exp|
   p = link_to " >> #{exp.user.name} さん", user_path(exp.user)
   p.argument-title = find_argument(exp.argument_id).topic
+  - if exp.reviews.present?
+    span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
+  - else
+    span.label = "NO YET REVIEW"
+  br
   p = link_to exp.statement,expression_path(exp)
   br
+  

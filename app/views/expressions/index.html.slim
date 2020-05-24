@@ -5,8 +5,10 @@ br
   - argument = find_argument(params[:argument_id])
   h1.headline Argument is
   h1.center = link_to argument.topic,argument_path(argument)
+  .center= link_to ">> 一覧に戻す", expressions_path
 - elsif params[:check].present?
   h1.headline CHECK済み ARGUMENT
+  .center= link_to ">> 一覧に戻す", expressions_path
 - else
   h1.headline ALL EXPRESSIONS
 .content-box.window

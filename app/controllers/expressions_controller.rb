@@ -25,6 +25,7 @@ class ExpressionsController < ApplicationController
   def show
     @expression = Expression.find(params[:id])
     @argument = Argument.find(@expression.argument_id)
+    @review = Review.find_or_initialize_by(user_id: current_user.id, expression_id: @expression.id)
   end
 
   def update
@@ -46,6 +47,6 @@ class ExpressionsController < ApplicationController
   private
 
   def expression_params
-    params.require(:expression).permit(:is_argument, :statement, :detail, :argument_id)
+    params.require(:expression).permit(:style, :statement, :detail, :argument_id)
   end
 end

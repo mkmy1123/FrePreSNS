@@ -3,7 +3,7 @@ class CreateExpressions < ActiveRecord::Migration[5.2]
     create_table :expressions do |t|
       t.integer :argument_id, null: false
       t.integer :user_id, null: false
-      t.boolean :is_argument
+      t.integer :style, default: 0
       t.string :statement, null: false
       t.string :detail
 
