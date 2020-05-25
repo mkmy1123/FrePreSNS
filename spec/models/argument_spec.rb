@@ -23,7 +23,7 @@ RSpec.describe Argument, type: :model do
     expect(argument.errors[:topic]).to include("は5文字以上で入力してください")
   end
 
-  it "is invalid more than 5" do
+  it "is invalid more than 20" do
     argument = FactoryBot.build(:argument, topic: "hellohellohellohellohello")
     argument.valid?
     expect(argument.errors[:topic]).to include("は20文字以内で入力してください")
