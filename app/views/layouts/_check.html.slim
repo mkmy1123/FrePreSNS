@@ -1,0 +1,10 @@
+- if user_signed_in?
+  - if current_user.checked?(argument)
+    span CHECK済 | 
+    = link_to argument_check_path(argument), method: :delete do
+      i.fas.fa-ban
+  - else
+    span CHECK |
+    = link_to argument_check_path(argument), method: :post do
+      i.fas.fa-check-circle
+br

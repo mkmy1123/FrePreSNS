@@ -1,8 +1,9 @@
 - expressions.each do|exp|
-  p.argument-title = link_to " >> #{exp.user.name} さん", user_path(exp.user)
-  - if exp.reviews.present?
-    span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
-  - else
-    span.label = "NO YET REVIEW"
-  p = link_to exp.statement,expression_path(exp)
-  br
+  .expression-detail
+    p.argument-title = link_to " >> #{exp.user.name} さん", user_path(exp.user)
+    strong 要点 : 
+    span = exp.statement
+    p \ CHECK MORE /
+    = link_to expression_path(exp) do
+      span = render "layouts/review", reviews: exp.reviews
+    br

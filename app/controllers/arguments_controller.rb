@@ -1,7 +1,11 @@
 class ArgumentsController < ApplicationController
   def index
     @argument = Argument.new
-    @arguments = Argument.all
+    if params[:tag]
+      @arguments = Argument.tagged_with(params[:tag])
+    else
+      @arguments = Argument.all
+    end
     @check = Check.new
   end
 
@@ -22,6 +26,6 @@ class ArgumentsController < ApplicationController
   private
 
   def argument_params
-    params.require(:argument).permit(:topic, :target)
+    params.require(:argument).permit(:topic, :target, :tag_list)
   end
 end

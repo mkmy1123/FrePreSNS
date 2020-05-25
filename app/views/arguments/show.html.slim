@@ -2,6 +2,7 @@
   h1 ARGUMENT
   br
   h3 = " #{@argument.target} >>> 『 #{@argument.topic} 』 "
+  = render "layouts/check", argument: @argument
   br
 
   .content-box.window

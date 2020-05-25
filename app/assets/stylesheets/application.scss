@@ -110,6 +110,10 @@ header{
   padding: 5px 15px;
 }
 
+.right{
+  text-align: right;
+}
+
 .center{
   text-align: center;
 }
@@ -137,6 +141,10 @@ header{
 
 .neutral{
   background-color: $neutral;
+}
+
+.tag{
+  background-color: rgb(128, 108, 104);
 }
 
 .user_info{
@@ -236,11 +244,9 @@ footer{
   padding: 5% 10%;
   a{
     color: #C5C8C4;
-    text-decoration: none;
   }
   a:hover{
-    color: #C5C8C4;
-    text-decoration: underline;
+    color: rgb(78, 66, 81);
   }
 }
 
@@ -248,6 +254,7 @@ footer{
   flex: 1;
   ul{
     padding-left: 40px;
+    list-style: none;
     li{
       padding: 1px 10px;
     }
@@ -266,7 +273,12 @@ input{
   margin: 15px;
 }
 
+.long-form{
+  width: 60%;
+}
+
 textarea{
+  font-size: 15px;
   vertical-align: middle;
   margin: 15px;
   width: 300px;
@@ -274,6 +286,7 @@ textarea{
 
 .argument-title{
   border-bottom: 1px dashed;
+  font-size: 13px;
 }
 
 /* --- btn --- */

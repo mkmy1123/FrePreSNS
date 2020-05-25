@@ -1,20 +1,20 @@
 footer
-  .box.left
+  .box
     p WHAT IS FrePre?
     ul
       li = link_to "ABOUT サイト紹介", about_path
       li = link_to "HOWTO 使い方の説明", howto_path
-      li = link_to "WORDS 用語説明", ''
+      li = link_to "WORDS 用語説明", word_path
       li = link_to "REPORT  不審人物の報告", ''
       li = link_to "CONTACT お問い合わせ", ''
-  .box.left
+  .box
     p REGISTRATION
     ul
       li = link_to "REGISTRATION 新規登録"
       li = link_to "LOGIN ログイン"
       li = link_to "DELETE USER アカウントの削除"
       li = link_to "PASSWORD パスワード変更"
-  .box.left
+  .box
     p FUNCTION ONLY LOGIN USER
     - if user_signed_in?
       ul
@@ -32,7 +32,6 @@ footer
         p >> ログイン後、
         p  追加機能が使用できます
       ul
-        li REVIEW
-        li CHECK
-        li TRUST RELATION
-        li ONLY YOURSELF TIMELINE
+        li - REVIEW
+        li - CHECK
+        li - TRUST
