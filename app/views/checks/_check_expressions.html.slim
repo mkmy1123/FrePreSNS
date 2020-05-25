@@ -1,15 +1,14 @@
 - expressions.each do|exp|
-  .content-box
+  .content-box.half
     = exp.created_at.to_s(:datetime_jp)
     br
     = link_to "ID >> #{exp.user.optional_id}", user_path(exp.user)
-    br
-    h3 = "論点 : #{find_argument(exp.argument_id).topic}"
+    h3 = link_to find_argument(exp.argument_id).topic, argument_path(find_argument(exp.argument_id))
     = position(exp)
     h4 = "要点 : #{exp.statement}"
-    - if exp.reviews.present?
-      span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
-    - else
-      span.label = "NO YET REVIEW"
-    = " >> #{exp.detail}"
+    = exp.detail
     br
+    br
+    p \ GO TO REVIEW /
+    = link_to expression_path(exp)
+      span = render "layouts/review", reviews: exp.reviews

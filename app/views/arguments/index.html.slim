@@ -1,37 +1,40 @@
 - provide(:title, 'Arguments')
-.hr-container
+br
+br
+- if params[:tag]
   h1.center ARGUMNET
-  br
-  table.arg-table
-    tr
-      th.table-h DATE
-      th.table-h TARGET
-      th.table-h TOPIC
-      th.table-h EXPRESSIONS
-      - if user_signed_in?
-        th.table-h CHECKS
-    - @arguments.each do|arg|
-      tr
-        td.center = arg.created_at.to_s(:datetime_jp)
-        td.center = arg.target
-        td.left = link_to arg.topic, argument_path(arg)
-        td.center = link_to arg.expressions.length, expressions_path(argument_id: arg.id)
-        - if user_signed_in?
-          td.center 
-            - if current_user.checked?(arg)
-              = link_to argument_check_path(arg), method: :delete do
-                i.fas.fa-ban
-            - else
-              = link_to argument_check_path(arg), method: :post do
-                i.fas.fa-check-circle
-
-  .content-box.arg-form.center
+  h3.center = "##{params[:tag]}"
+  p.center = link_to ">> 一覧に戻す",arguments_path
+- else
+  h1.center ARGUMNET
+.content-box.arg-form.center
     p \ 論点は簡潔に！5字以上20字以内でお願いします！ /
     = form_with model: @argument, local: true do |f|
-      =f.select :target, Argument.targets.keys.to_a
-      =f.label '議論したい論点 : '
-      =f.text_field :topic
+      br
+      = f.label :target, '対象となるものを選んでください : '
+      = f.select :target, Argument.targets.keys.to_a
+      br
+      = f.label '議論したい論点 : '
+      = f.text_field :topic, class: "long-form"
+      br
+      = f.label :tag_list ,'タグ : '
+      = f.text_field :tag_list, value: @argument.tag_list.split(','),placeholder: "複数は , で区切れます", class: "long-form"
       - if user_signed_in?
-        = f.submit '送信', class: 'btn'
+        = f.submit '送信', class: 'btn',data: {confirm: "一度登録すると、ご自身での削除はできません、内容に問題はないですか？他者が不快に感じる内容はお控えください。"}
       - else
         h3 ログインすると投稿できるようになります
+.arg-container
+  - @arguments.each do|arg|
+    .content-box.half
+      h3 = arg.created_at.to_s(:datetime_jp)
+      h4 = "TARGET #{arg.target}"
+      p = render "layouts/tag", objects: arg
+      h3 = link_to arg.topic, argument_path(arg)
+      = render "layouts/check", argument: arg
+      span.label.neutral 中立
+      span = " #{neutral(get_expressions(arg)).length} "
+      span.label.positive 肯定
+      span = " #{positive(get_expressions(arg)).length} "
+      span.label.negative 否定
+      span = " #{negative(get_expressions(arg)).length} "
+      span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)

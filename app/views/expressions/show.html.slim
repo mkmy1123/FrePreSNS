@@ -1,30 +1,33 @@
-.hr-container.center
-  h2 =">> ARGUMENT is 『#{@argument.topic}』"
-  br
-  h3 THIS EXPRESSION
-  = position(@expression)
-  h2 = @expression.statement
-  p = @expression.created_at.to_s(:datetime_jp)
-  - if @expression.user == current_user
-    = link_to "EDIT", edit_expression_path(@expression)
-    span  | 
-    = link_to "DELETE", expression_path(@expression), method: :delete, data:{confirm: "本当に削除してもよろしいですか？"}
+.container
+  .exp-sidebar
+    h3 WRITTEN BY
     br
-  p = simple_format(@expression.detail)
-  br
-  .window
-    br
-    h3 \ REVIEW として、情報の信憑性 を投稿できます /
-    br
-    - if @review.rate.present?
-      = "現在、星#{@review.rate}をつけています"
-    - else
-      p レビューをまだ投稿していません
-    = form_for @review do |f|
-      .raty
-      = f.hidden_field :user_id, value: current_user.id
-      = f.hidden_field :expression_id, value: @expression.id
-      = f.submit 'REVIEW', class: 'btn'
-  h3 WRITTEN BY
-  .content-box.expression-userinfo
     = render "layouts/user_information", user: @expression.user
+  .exp-container
+    .argument-head
+      h2 ARGUMENT is 
+      h2 = link_to @argument.topic, argument_path(@argument)
+    - if @expression.user == current_user
+      = link_to "EDIT", edit_expression_path(@expression)
+      span  | 
+      = link_to "DELETE", expression_path(@expression), method: :delete, data:{confirm: "本当に削除してもよろしいですか？"}
+      br
+    h2 = @expression.created_at.to_s(:datetime_jp)
+    .position-box
+      h3 THIS EXPRESSION
+      = position(@expression)
+    h2 = @expression.statement
+    h4 = simple_format(@expression.detail)
+    br
+    .review-form
+      br
+      h3 \ REVIEW として、情報の信憑性 を投稿できます /
+      - if @review.rate.present?
+        = "現在、星#{@review.rate}をつけています"
+      - else
+        p レビューをまだ投稿していません
+      = form_for @review do |f|
+        .raty
+        = f.hidden_field :user_id, value: current_user.id
+        = f.hidden_field :expression_id, value: @expression.id
+        = f.submit 'REVIEW', class: 'btn'
