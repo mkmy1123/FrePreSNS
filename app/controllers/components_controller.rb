@@ -1,6 +1,10 @@
 class ComponentsController < ApplicationController
   def index
-    @components = Component.all
+    if params[:tag]
+      @components = Component.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(12)
+    else
+      @components = Component.all.order(created_at: :desc).page(params[:page]).per(12)
+    end
   end
 
   def create
@@ -34,6 +38,6 @@ class ComponentsController < ApplicationController
   private
 
   def component_params
-    params.require(:component).permit(:kind_of, :title, :description, :user_id)
+    params.require(:component).permit(:kind_of, :title, :description, :user_id, :tag_list)
   end
 end

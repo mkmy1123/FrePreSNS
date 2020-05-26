@@ -29,32 +29,30 @@ br
     h4.center << 肯定的 >>
     br
     - if params[:argument_id].present?
-      = render "expression", expressions: positive(argument.expressions)
+      = render "expression", expressions: positive(argument.expressions).page(params[:page]).per(5)
     - elsif params[:check].present?
-      = render "moreexpression", expressions: positive(get_expressions(current_user.checked_arguments))
+      = render "moreexpression", expressions: positive(get_expressions(current_user.checked_arguments)).page(params[:page]).per(5)
     - else
-      = render "moreexpression", expressions: positive(@expressions)
+      = render "moreexpression", expressions: positive(@expressions).page(params[:page]).per(5)
 
   .expression-box.neutral-box
     h3.label.neutral.center NEUTRAL EXPRESSION
     h4.center << 中立 >>
     br
     - if params[:argument_id].present?
-      = render "expression", expressions: neutral(argument.expressions)
+      = render "expression", expressions: neutral(argument.expressions).page(params[:page]).per(5)
     - elsif params[:check].present?
-      = render "moreexpression", expressions: neutral(get_expressions(current_user.checked_arguments))
+      = render "moreexpression", expressions: neutral(get_expressions(current_user.checked_arguments)).page(params[:page]).per(5)
     - else
-      = render "moreexpression", expressions: neutral(@expressions)
+      = render "moreexpression", expressions: neutral(@expressions).page(params[:page]).per(5)
 
   .expression-box.negative-box
     h3.label.negative.center NEGATIVE EXPRESSION
     h4.center << 否定的 >>
     br
     - if params[:argument_id].present?
-      = render "expression", expressions: negative(argument.expressions)
+      = render "expression", expressions: negative(argument.expressions).page(params[:page]).per(5)
     - elsif params[:check].present?
-      = render "moreexpression", expressions: negative(get_expressions(current_user.checked_arguments))
+      = render "moreexpression", expressions: negative(get_expressions(current_user.checked_arguments)).page(params[:page]).per(5)
     - else
-      = render "moreexpression", expressions: negative(@expressions)
-
-
+      = render "moreexpression", expressions: negative(@expressions).page(params[:page]).per(5)

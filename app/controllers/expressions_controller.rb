@@ -1,7 +1,6 @@
 class ExpressionsController < ApplicationController
   def index
-    @expressions = Expression.all
-    @arguments = Argument.all
+    @expressions = Expression.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def edit
