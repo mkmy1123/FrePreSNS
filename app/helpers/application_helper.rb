@@ -12,6 +12,10 @@ module ApplicationHelper
     Argument.find(argument_id)
   end
 
+  def find_arg_topic(argument_id)
+    Argument.find(argument_id).topic
+  end
+
   def get_expressions(argument)
     Expression.where(argument_id: argument)
   end
@@ -27,14 +31,14 @@ module ApplicationHelper
   end
 
   def neutral(expressions)
-    expressions.where(style: 0)
+    expressions.where(style: 0).order(id: "DESC")
   end
 
   def positive(expressions)
-    expressions.where(style: 1)
+    expressions.where(style: 1).order(id: "DESC")
   end
 
   def negative(expressions)
-    expressions.where(style: 2)
+    expressions.where(style: 2).order(id: "DESC")
   end
 end

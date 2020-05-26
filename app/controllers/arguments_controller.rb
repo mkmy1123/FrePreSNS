@@ -2,9 +2,9 @@ class ArgumentsController < ApplicationController
   def index
     @argument = Argument.new
     if params[:tag]
-      @arguments = Argument.tagged_with(params[:tag])
+      @arguments = Argument.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(10)
     else
-      @arguments = Argument.all
+      @arguments = Argument.all.order(created_at: :desc).order(created_at: :desc).page(params[:page]).per(10)
     end
     @check = Check.new
   end

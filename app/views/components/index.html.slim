@@ -1,5 +1,10 @@
 .hr-container
-  h1.center COMPONENTS
+  - if params[:tag]
+    h1.center COMPONENTS
+    h3.center = "##{params[:tag]}"
+    p.center = link_to ">> 一覧に戻す",components_path
+  - else
+    h1.center COMPONENTS
   .content-box.window
     p \ こちらから種類を限定できます /
     = form_with method: :get,local: true do |f|
@@ -8,22 +13,6 @@
   .component-wrap
     - if params[:kind_of].present?
       - components = Component.where(kind_of: params[:kind_of])
-      - components.each do|com|
-        .content-box.mini
-          = link_to 'USERを見る', user_path(com.user),class: 'edit-btn'
-          strong KIND_OF
-          p.left = com.kind_of
-          strong TITLE
-          p.left = com.title
-          strong  DETAIL
-          p.left = com.description
+      = render "components/com_box", components: components
     - else
-      - @components.each do|com|
-        .content-box.mini
-          = link_to 'USERを見る', user_path(com.user),class: 'edit-btn'
-          strong KIND_OF
-          p.left = com.kind_of
-          strong TITLE
-          p.left = com.title
-          strong  DETAIL
-          p.left = com.description
+      = render "components/com_box", components: @components

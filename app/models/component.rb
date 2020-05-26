@@ -1,4 +1,5 @@
 class Component < ApplicationRecord
+  acts_as_taggable_on :tags
   belongs_to :user
 
   enum kind_of: {
@@ -13,4 +14,5 @@ class Component < ApplicationRecord
     嗜好: 8,
     その他: 20,
   }
+
 end

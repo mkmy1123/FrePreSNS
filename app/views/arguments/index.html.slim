@@ -18,7 +18,7 @@ br
       = f.text_field :topic, class: "long-form"
       br
       = f.label :tag_list ,'タグ : '
-      = f.text_field :tag_list, value: @argument.tag_list.split(','),placeholder: "複数は , で区切れます", class: "long-form"
+      = f.text_field :tag_list, value: @argument.tag_list.split(','),placeholder: "複数は , で区切れます / #は自動でつきます", class: "long-form"
       - if user_signed_in?
         = f.submit '送信', class: 'btn',data: {confirm: "一度登録すると、ご自身での削除はできません、内容に問題はないですか？他者が不快に感じる内容はお控えください。"}
       - else
@@ -38,3 +38,6 @@ br
       span.label.negative 否定
       span = " #{negative(get_expressions(arg)).length} "
       span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)
+.center = paginate @arguments
+br
+br

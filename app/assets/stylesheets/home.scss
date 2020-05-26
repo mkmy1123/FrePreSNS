@@ -13,16 +13,37 @@
   height: 300px;
   width: 90%;
   margin: 15px auto 45px;
+  overflow: hidden;
 }
 
 .argument{
   width: 30%;
   height: 700px;
+  overflow: hidden;
+}
+
+.content-wrap{
+  height: 350px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .user{
-  height: 350px;
-  margin: 20px 0;
+  text-align: center;
+  width: 40%;
+  overflow: hidden;
+  a{
+    color: #000;
+  }
+  a:hover{
+    color: rgb(197, 201, 196);
+  }
+}
+
+.random-exp{
+  text-align: center;
+  width: 50%;
 }
 
 .column{
@@ -40,6 +61,29 @@
 .sidebar{
   width: 30%;
   float: left;
+}
+
+.ranking{
+  margin: 10px 0 10px;
+}
+
+.rank-title{
+  margin-bottom: 10px;
+}
+
+.rank-box{
+  margin-bottom: 10px;
+}
+
+.rank{
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.rank_argument{
+  font-size: 15px;
+  display: block;
+  font-weight: bold;
 }
 
 /* --- ABOUT --- */

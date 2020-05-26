@@ -1,5 +1,6 @@
 h3 = "ID => #{user.optional_id}"
-h2 = "#{user.name} さん" 
+= link_to user_path(user)
+  h2 = "#{user.name} さん" 
 - if user == current_user
   = link_to "編集", edit_user_path(current_user), class: 'trust-btn'
 - if user_signed_in?

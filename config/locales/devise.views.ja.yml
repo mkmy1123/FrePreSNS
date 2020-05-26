@@ -5,6 +5,7 @@ ja:
         current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
+        optional_id: "ID"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
     models:
