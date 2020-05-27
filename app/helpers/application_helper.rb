@@ -29,4 +29,16 @@ module ApplicationHelper
       tag.span "否定 / NEGATIVE", class: 'label negative'
     end
   end
+
+  def neutral_count(expressions)
+    expressions.where(style: 0).length
+  end
+
+  def positive_count(expressions)
+    expressions.where(style: 1).length
+  end
+
+  def negative_count(expressions)
+    expressions.where(style: 2).length
+  end
 end

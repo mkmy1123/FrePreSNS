@@ -34,11 +34,11 @@ br
       h3 = link_to arg.topic, argument_path(arg)
       = render "layouts/check", argument: arg
       span.label.neutral 中立
-      span = " #{neutral(get_expressions(arg)).length} "
+      span = " #{neutral_count(get_expressions(arg))} "
       span.label.positive 肯定
-      span = " #{positive(get_expressions(arg)).length} "
+      span = " #{positive_count(get_expressions(arg))} "
       span.label.negative 否定
-      span = " #{negative(get_expressions(arg)).length} "
+      span = " #{negative_count(get_expressions(arg))} "
       span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)
 .center = paginate @arguments
 br
