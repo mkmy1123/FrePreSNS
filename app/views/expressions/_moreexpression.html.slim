@@ -1,0 +1,10 @@
+- expressions.each do|exp|
+  .expression-detail
+    p = link_to " >> #{exp.user.name} さん", user_path(exp.user)
+    p.argument-title = find_argument(exp.argument_id).topic
+    strong 要点 : 
+    span = exp.statement
+    p \ CHECK MORE /
+    = link_to expression_path(exp) do
+      span = render "layouts/review", reviews: exp.reviews
+/ .center = paginate expressions

@@ -1,5 +1,10 @@
 {
   "name": "FrePreSNS",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "chartkick": "^3.2.0",
+    "jquery": "^3.5.1",
+    "raty-js": "^2.9.0"
+  }
 }

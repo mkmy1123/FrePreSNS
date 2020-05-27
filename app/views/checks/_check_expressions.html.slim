@@ -1,0 +1,15 @@
+- expressions.each do|exp|
+  .content-box.half
+    = exp.created_at.to_s(:datetime_jp)
+    br
+    = link_to "ID >> #{exp.user.optional_id}", user_path(exp.user)
+    h3 = link_to find_arg_topic(exp.argument_id), argument_path(find_argument(exp.argument_id))
+    = position(exp)
+    h4 = "要点 : #{exp.statement}"
+    = exp.detail
+    br
+    br
+    p \ GO TO REVIEW /
+    = link_to expression_path(exp)
+      span = render "layouts/review", reviews: exp.reviews
+.center = paginate expressions

@@ -1,0 +1,12 @@
+.hr-container
+  h1 BY TRUST USER
+  - if params[:check]
+    = link_to "全てに戻す",relationships_path
+  = form_with method: :get,local: true do |f|
+    span CHECK済みのARGUMENTに限定する
+    = f.hidden_field :check, value: current_user.id
+    = f.submit "GO" ,class: 'btn'
+  - if params[:check]
+    = render "trust_expression", expressions: @expressions.where(argument_id: current_user.checked_arguments)
+  - else
+    = render "trust_expression", expressions: @expressions

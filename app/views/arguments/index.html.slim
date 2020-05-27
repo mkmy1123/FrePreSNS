@@ -1,0 +1,45 @@
+- provide(:title, 'Arguments')
+br
+br
+- if params[:tag]
+  .center
+    h1 ARGUMNET
+    h3 = "##{params[:tag]}"
+    p = link_to ">> 一覧に戻す",arguments_path
+- else
+  .center
+    h1 ARGUMNET
+.center.content-box.arg-form
+    p \ 論点は簡潔に！5字以上20字以内でお願いします！ /
+    = form_with model: @argument, local: true do |f|
+      br
+      = f.label :target, '対象となるものを選んでください : '
+      = f.select :target, Argument.targets.keys.to_a
+      br
+      = f.label '議論したい論点 : '
+      = f.text_field :topic, class: "long-form"
+      br
+      = f.label :tag_list ,'タグ : '
+      = f.text_field :tag_list, value: @argument.tag_list.split(','),placeholder: "複数は , で区切れます / #は自動でつきます", class: "long-form"
+      - if user_signed_in?
+        = f.submit '送信', class: 'btn',data: {confirm: "一度登録すると、ご自身での削除はできません、内容に問題はないですか？他者が不快に感じる内容はお控えください。"}
+      - else
+        h3 ログインすると投稿できるようになります
+.arg-container
+  - @arguments.each do|arg|
+    .content-box.half
+      h3 = arg.created_at.to_s(:datetime_jp)
+      h4 = "TARGET #{arg.target}"
+      p = render "layouts/tag", objects: arg
+      h3 = link_to arg.topic, argument_path(arg)
+      = render "layouts/check", argument: arg
+      span.label.neutral 中立
+      span = " #{neutral(get_expressions(arg)).length} "
+      span.label.positive 肯定
+      span = " #{positive(get_expressions(arg)).length} "
+      span.label.negative 否定
+      span = " #{negative(get_expressions(arg)).length} "
+      span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)
+.center = paginate @arguments
+br
+br

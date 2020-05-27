@@ -1,0 +1,25 @@
+.hr-container.center
+  h1 ARGUMENT
+  br
+  h3 = " #{@argument.target} >>> 『 #{@argument.topic} 』 "
+  = render "layouts/check", argument: @argument
+  br
+
+  .content-box.window
+    = form_with model: @expression, local: true do |f|
+      = f.label :style, 'あなたの考えは？'
+      br
+      = f.select :style, Expression.styles.keys.to_a
+      br
+      = f.label :statement, '簡単にいうと :'
+      = f.text_field :statement,placeholder: "20字以内でどうぞ"
+      br
+      = f.label :detail, '\ あなたの思いの丈をいくらでも叫んでください /'
+      br
+      = f.text_area :detail, class: 'big'
+      br
+      = f.hidden_field :argument_id ,value: @argument.id
+      - if user_signed_in?
+        = f.submit 'みんなに伝える', class: 'btn'
+      - else
+        h3 ログインすると投稿できるようになります

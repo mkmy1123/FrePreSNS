@@ -1,0 +1,25 @@
+.trust-user
+  - users.each do|user|
+    .content-box.user-wrap
+      h3 = "ID => #{user.optional_id}"
+      - if user.avatar? 
+        = image_tag user.avatar.thumb.url
+      - else
+        = image_tag "/assets/default.jpg", :size => '50x50'
+      = " #{user.name} さん"
+      .answer
+      br
+      - if user.introduction?
+        span.label INTRODUCTION
+        = user.introduction
+        br
+      - else
+        span.label INTRODUCTION
+        p 自己紹介をまだ投稿していません
+        br
+      .answer
+      br
+      span.label USER DATA
+      p = "EXPRESSION #{user.expressions.length} 件"
+      p = "REVIEW #{user.reviews.length} 件"
+      p = "TRUSTING #{user.trustings.length} 人 / TRUSTED #{user.trusteds.length} 人"

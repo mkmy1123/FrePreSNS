@@ -1,0 +1,27 @@
+h3 = "ID => #{user.optional_id}"
+= link_to user_path(user)
+  h2 = "#{user.name} さん" 
+- if user == current_user
+  = link_to "編集", edit_user_path(current_user), class: 'trust-btn'
+- if user_signed_in?
+  = render "users/trust_btn",user: user
+  br
+.window.user_info
+  - if user.avatar? 
+    = image_tag @user.avatar.thumb.url
+  - else
+    = image_tag "/assets/default.jpg", :size => '80x80'
+  br
+  span TRUSTING | 
+  = link_to user.trustings.length, trust_user_path(trusting: user)
+  span  USERS
+  br
+  span TRUSTED | 
+  = link_to user.trusteds.length, trust_user_path(trusted: user)
+  span  USERS
+
+h3 >> INTRODUCTION
+- if user.introduction.present?
+  p = user.introduction
+- else
+  p まだ自己紹介を投稿していません

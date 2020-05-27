@@ -1,0 +1,20 @@
+.hr-container
+  - if params[:tag]
+    .center
+      h1 COMPONENTS
+      h3 = "##{params[:tag]}"
+      p = link_to ">> 一覧に戻す",components_path
+  - else
+    .center
+      h1 COMPONENTS
+  .content-box.window
+    p \ こちらから種類を限定できます /
+    = form_with method: :get,local: true do |f|
+      = f.select :kind_of, Component.kind_ofs.keys.to_a,include_blank: true
+      = f.submit "GO" ,class: 'btn'
+  .component-wrap
+    - if params[:kind_of].present?
+      - components = Component.where(kind_of: params[:kind_of])
+      = render "components/com_box", components: components
+    - else
+      = render "components/com_box", components: @components

@@ -1,0 +1,123 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* --- TOP PAGE --- */
+
+.content-smallbox{
+  width: 50%;
+  padding: 15px;
+}
+
+.expression{
+  height: 300px;
+  width: 90%;
+  margin: 15px auto 45px;
+  overflow: hidden;
+}
+
+.argument{
+  width: 30%;
+  height: 700px;
+  overflow: hidden;
+}
+
+.content-wrap{
+  height: 350px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user{
+  text-align: center;
+  width: 40%;
+  overflow: hidden;
+  a{
+    color: #000;
+  }
+  a:hover{
+    color: rgb(197, 201, 196);
+  }
+}
+
+.random-exp{
+  text-align: center;
+  width: 50%;
+}
+
+.column{
+  width: 65%;
+  height: auto;
+  display: column;
+}
+
+.row{
+  width: 100%;
+  height: 200px;
+  display: flex;
+}
+
+.sidebar{
+  width: 30%;
+  float: left;
+}
+
+.ranking{
+  margin: 10px 0 10px;
+}
+
+.rank-title{
+  margin-bottom: 10px;
+}
+
+.rank-box{
+  margin-bottom: 10px;
+}
+
+.rank{
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.rank_argument{
+  font-size: 15px;
+  display: block;
+  font-weight: bold;
+}
+
+/* --- ABOUT --- */
+.about{
+  margin-bottom: 10px;
+}
+
+.question{
+  color: #7F6C68;
+  padding: 10px;
+}
+
+.answer{
+  border-top: dashed 2px rgba(197, 201, 196, 0.3);
+}
+
+/* -- HOW TO -- */
+.howto{
+  width: 60%;
+  margin: 20px auto 50px;
+  a {
+    color: #AACBC1;
+  }
+}
+
+/* -- WORD -- */
+.word-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.word{
+  width: 300px;
+  height: 250px;
+  margin: 50px 25px;
+}
