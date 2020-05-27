@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+
   before_action :set_user, only: [:create, :destroy]
 
   def index

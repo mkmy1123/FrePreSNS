@@ -1,18 +1,30 @@
 class ExpressionsController < ApplicationController
+
+  before_action :set_expression, only: [:edit, :show, :update, :destroy]
+  before_action :set_argument, only: [:edit, :show]
+  before_action :new_expression, only: [:create]
+
   def index
-    @expressions = Expression.order(created_at: :desc).page(params[:page]).per(5)
+    if params[:argument_id]
+      find_argument(params[:argument_id])
+      set_style(@argument.expressions)
+    elsif params[:check]
+      @arguments = current_user.checked_arguments
+      set_style(@arguments.expressions)
+    else
+      expressions = Expression.all
+      set_style(expressions)
+    end
   end
 
   def edit
-    @expression = Expression.find(params[:id])
-    @argument = Argument.find(@expression.argument_id)
   end
 
   def create
     new_expression = Expression.new(expression_params)
     new_expression.user_id = current_user.id
-    @argument = Argument.find(new_expression.argument_id)
-    @expression = Expression.new
+    # render用の読み込み
+    find_argument(new_expression.argument_id)
     if new_expression.save
       redirect_to new_expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
     else
@@ -22,13 +34,10 @@ class ExpressionsController < ApplicationController
   end
 
   def show
-    @expression = Expression.find(params[:id])
-    @argument = Argument.find(@expression.argument_id)
     @review = Review.find_or_initialize_by(user_id: current_user.id, expression_id: @expression.id)
   end
 
   def update
-    @expression = Expression.find(params[:id])
     if @expression.update(expression_params)
       redirect_to @expression, notice: "ありがとうございます！EXPRESSION を更新しました！"
     else
@@ -38,8 +47,7 @@ class ExpressionsController < ApplicationController
   end
 
   def destroy
-    expression = Expression.find(params[:id])
-    expression.destroy
+    @expression.destroy
     redirect_to expressions_path, notice: "綺麗さっぱり EXPRESSION はなかったことになりました！"
   end
 
@@ -47,5 +55,31 @@ class ExpressionsController < ApplicationController
 
   def expression_params
     params.require(:expression).permit(:style, :statement, :detail, :argument_id)
+  end
+
+  def set_expression
+    @expression = Expression.find(params[:id])
+  end
+
+  def neutral(expressions)
+    expressions.where(style: 0).order(created_at: "DESC")
+  end
+
+  def positive(expressions)
+    expressions.where(style: 1).order(created_at: "DESC")
+  end
+
+  def negative(expressions)
+    expressions.where(style: 2).order(created_at: "DESC")
+  end
+
+  def set_style(expressions)
+    @neutral_expressions = neutral(expressions)
+    @positive_expressions = positive(expressions)
+    @negative_expressions = negative(expressions)
+  end
+
+  def set_argument
+    find_argument(@expression.argument_id)
   end
 end

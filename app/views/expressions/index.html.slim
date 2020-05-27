@@ -2,15 +2,17 @@ br
 br
 
 - if params[:argument_id].present?
-  - argument = find_argument(params[:argument_id])
-  h1.headline Argument is
-  h1.center = link_to argument.topic,argument_path(argument)
-  .center= link_to ">> 一覧に戻す", expressions_path
+  .center
+    h1.headline Argument is
+    h1 = link_to @argument.topic,argument_path(@argument)
+    = link_to ">> 一覧に戻す", expressions_path
 - elsif params[:check].present?
-  h1.headline CHECK済み ARGUMENT
-  .center= link_to ">> 一覧に戻す", expressions_path
+  .center
+    h1.headline CHECK済み ARGUMENT
+    = link_to ">> 一覧に戻す", expressions_path
 - else
-  h1.headline ALL EXPRESSIONS
+  .center
+    h1.headline ALL EXPRESSIONS
 .content-box.window
     p \ こちらから議論を限定できます /
     = form_with method: :get,local: true do |f|
@@ -24,35 +26,29 @@ br
         = f.submit "GO" ,class: 'btn'
 
 .container
-  .expression-box.positive-box
-    h3.label.positive.center POSITIVE EXPRESSION
-    h4.center << 肯定的 >>
+  .expression-box.positive-box.center
+    h3.label.positive POSITIVE EXPRESSION
+    h4 << 肯定的 >>
     br
-    - if params[:argument_id].present?
-      = render "expression", expressions: positive(argument.expressions).page(params[:page]).per(5)
-    - elsif params[:check].present?
-      = render "moreexpression", expressions: positive(get_expressions(current_user.checked_arguments)).page(params[:page]).per(5)
+    - if params[:argument_id]
+      = render "expression", expressions: @positive_expressions
     - else
-      = render "moreexpression", expressions: positive(@expressions).page(params[:page]).per(5)
+      = render "moreexpression", expressions: @positive_expressions
 
-  .expression-box.neutral-box
-    h3.label.neutral.center NEUTRAL EXPRESSION
-    h4.center << 中立 >>
+  .expression-box.neutral-box.center
+    h3.label.neutral NEUTRAL EXPRESSION
+    h4 << 中立 >>
     br
-    - if params[:argument_id].present?
-      = render "expression", expressions: neutral(argument.expressions).page(params[:page]).per(5)
-    - elsif params[:check].present?
-      = render "moreexpression", expressions: neutral(get_expressions(current_user.checked_arguments)).page(params[:page]).per(5)
+    - if params[:argument_id]
+      = render "expression", expressions: @neutral_expressions
     - else
-      = render "moreexpression", expressions: neutral(@expressions).page(params[:page]).per(5)
+      = render "moreexpression", expressions: @neutral_expressions
 
-  .expression-box.negative-box
-    h3.label.negative.center NEGATIVE EXPRESSION
-    h4.center << 否定的 >>
+  .expression-box.negative-box.center
+    h3.label.negative NEGATIVE EXPRESSION
+    h4 << 否定的 >>
     br
-    - if params[:argument_id].present?
-      = render "expression", expressions: negative(argument.expressions).page(params[:page]).per(5)
-    - elsif params[:check].present?
-      = render "moreexpression", expressions: negative(get_expressions(current_user.checked_arguments)).page(params[:page]).per(5)
+    - if params[:argument_id]
+      = render "expression", expressions: @negative_expressions
     - else
-      = render "moreexpression", expressions: negative(@expressions).page(params[:page]).per(5)
+      = render "moreexpression", expressions: @negative_expressions

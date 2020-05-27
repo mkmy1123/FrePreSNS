@@ -2,12 +2,14 @@
 br
 br
 - if params[:tag]
-  h1.center ARGUMNET
-  h3.center = "##{params[:tag]}"
-  p.center = link_to ">> 一覧に戻す",arguments_path
+  .center
+    h1 ARGUMNET
+    h3 = "##{params[:tag]}"
+    p = link_to ">> 一覧に戻す",arguments_path
 - else
-  h1.center ARGUMNET
-.content-box.arg-form.center
+  .center
+    h1 ARGUMNET
+.center.content-box.arg-form
     p \ 論点は簡潔に！5字以上20字以内でお願いします！ /
     = form_with model: @argument, local: true do |f|
       br

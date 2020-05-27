@@ -2,9 +2,9 @@
   .content-box.mini
     = link_to 'USERを見る', user_path(com.user),class: 'edit-btn'
     strong KIND_OF
-    p.left = com.kind_of
+    p = com.kind_of
     strong TITLE
-    p.left = com.title
+    p = com.title
     strong  DETAIL
-    p.left = com.description
+    p = com.description
     = render "components/com_tag", objects: com

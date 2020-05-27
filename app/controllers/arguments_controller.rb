@@ -1,12 +1,15 @@
 class ArgumentsController < ApplicationController
+
+  before_action :new_expression, only: [:show]
+
   def index
     @argument = Argument.new
+    @check = Check.new
     if params[:tag]
       @arguments = Argument.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(10)
     else
-      @arguments = Argument.all.order(created_at: :desc).order(created_at: :desc).page(params[:page]).per(10)
+      @arguments = Argument.all.order(created_at: :desc).page(params[:page]).per(10)
     end
-    @check = Check.new
   end
 
   def create
@@ -20,7 +23,6 @@ class ArgumentsController < ApplicationController
 
   def show
     @argument = Argument.find(params[:id])
-    @expression = Expression.new
   end
 
   private
