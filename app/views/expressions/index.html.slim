@@ -1,3 +1,4 @@
+- provide(:title, "EXPRESSIONS")
 br
 br
 
@@ -31,24 +32,24 @@ br
     h4 << 肯定的 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @positive_expressions
+      = render "expression", expressions: @positive_expressions, style: "positive"
     - else
-      = render "moreexpression", expressions: @positive_expressions
+      = render "moreexpression", expressions: @positive_expressions, style: "positive"
 
   .expression-box.neutral-box.center
     h3.label.neutral NEUTRAL EXPRESSION
     h4 << 中立 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @neutral_expressions
+      = render "expression", expressions: @neutral_expressions, style: "neutral"
     - else
-      = render "moreexpression", expressions: @neutral_expressions
+      = render "moreexpression", expressions: @neutral_expressions, style: "neutral"
 
   .expression-box.negative-box.center
     h3.label.negative NEGATIVE EXPRESSION
     h4 << 否定的 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @negative_expressions
+      = render "expression", expressions: @negative_expressions, style: "negative"
     - else
-      = render "moreexpression", expressions: @negative_expressions
+      = render "moreexpression", expressions: @negative_expressions, style: "negative"

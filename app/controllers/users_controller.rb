@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :authenticate_user, only: [:edit, :update]
 
   def show
     @component = Component.new
@@ -9,10 +10,18 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if current_user != @user
+      redirect_to @user
+    end
   end
 
   def update
-    @user.update(user_params)
+    if @user.update(user_params)
+      redirect_to @user, notice: "USER情報が更新されました！"
+    else
+      flash[:alert] = "USER情報が更新できませんでした..."
+      render "edit"
+    end
   end
 
   def trust_user

@@ -1,4 +1,7 @@
 class ChecksController < ApplicationController
+
+  before_action :authenticate_user
+
   def index
     @checked_arguments = current_user.checks.all
   end

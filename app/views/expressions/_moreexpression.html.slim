@@ -7,4 +7,4 @@
     p \ CHECK MORE /
     = link_to expression_path(exp) do
       span = render "layouts/review", reviews: exp.reviews
-/ .center = paginate expressions
+.center = paginate expressions, :param_name => style
