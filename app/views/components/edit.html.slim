@@ -1,0 +1,16 @@
+.hr-container.center
+  h1.headline EDIT
+  = form_with model: @component,local: true do |f|
+    = f.select :kind_of, Component.kind_ofs.keys.to_a
+    = f.label :title
+    = f.text_field :title
+    br
+    br
+    = f.label :description
+    = f.text_area :description
+    = f.hidden_field :user_id, value: current_user.id
+    br
+    br
+    = f.submit '編集する', class: 'btn'
+  h1.headline DELETE
+  = link_to '削除する', component_path, method: :delete,class: 'btn',data:{confirm: '削除してもよろしいですか？'}

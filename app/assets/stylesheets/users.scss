@@ -1,0 +1,78 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mini{
+  height: 200px;
+  width: 250px;
+  margin: 15px;
+  overflow: auto;
+  position: relative;
+}
+
+.edit-btn {
+  position: absolute;
+  display: flow;
+  top: 0;
+  right: 0;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #C3B39C;
+  margin-left: 15px;
+}
+
+.edit-btn:hover {
+  background: #D3B39C;
+}
+
+.component-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.component-form{
+  width: 100%;
+  text-align: center;
+  background-color: rgba(197, 201, 196, 0.3);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.big{
+  height: 200px;
+  width: 400px;
+}
+
+.expressions{
+  width: 60%;
+}
+
+.exp-wrap{
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.min-container{
+  max-height: 90vh;
+  margin: 5%;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-wrap{
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  margin: 15px;
+}
+
+.trust-user{
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+}

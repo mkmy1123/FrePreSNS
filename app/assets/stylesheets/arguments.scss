@@ -1,0 +1,20 @@
+// Place all the styles related to the Arguments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.arg-form{
+  width: 60%;
+  margin: 20px auto;
+  background-color: rgba(197, 201, 196, 0.3);
+}
+
+.arg-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.half{
+  width: 45%;
+  margin: 5px;
+}

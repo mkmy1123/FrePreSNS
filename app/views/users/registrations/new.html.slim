@@ -1,0 +1,50 @@
+.container
+  .hr-container
+    h2 SIGN UP
+    br
+    p 新規USER登録ページです。
+    p 下記項目をご入力いただくとすぐに会員登録は完了します。
+    p お手数ですが、空欄を作らずぜひご入力ください。
+    = render "users/shared/links"
+    br
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+
+    .field
+      = f.label :email, 'Email< メールアドレス >',class: 'label'
+      br
+      p 登録したいメールアドレスをご記入ください
+      = f.email_field :email, autofocus: true, autocomplete: "email",placeholder: '任意のEmailアドレス'
+
+    .field
+      = f.label :name, 'Name< 名前 >',class: 'label'
+      br
+      p 登録したいお名前(ハンドルネーム可能)をご記入ください
+      = f.text_field :name, autofocus: true, autocomplete: "name",placeholder: '愛着の持てるお名前'
+
+    .field
+      = f.label :optional_id, 'ID< ログイン用 >',class: 'label'
+      br
+      p 登録したい任意のID(半角英数字のみ)をご記入ください
+      p 主にログインに使用しますが、人目に触れるものですので、ご留意の上、ご入力ください
+      = f.text_field :optional_id, autofocus: true, autocomplete: "optional_id",placeholder: '忘れにくい半角英数字'
+
+    .field
+      = f.label :password, 'Passwpord< 任意のパスワード >',class: 'label'
+      br
+      p 登録したいパスワード(半角英数字のみ)をご記入ください
+      = f.password_field :password, autocomplete: "new-password",placeholder: '推測されにくいパスワード'
+
+    .field
+      = f.label :password_confirmation, 'Password< 確認用 >',class: 'label'
+      br
+      p 上記のパスワードと同じものを再確認のためご入力ください
+      = f.password_field :password_confirmation, autocomplete: "new-password",placeholder: '上記と同じパスワード'
+
+    .actions.center
+      p ご入力ありがとうございました。
+      p 空欄があると登録に失敗します、問題がなければこちらからどうぞ！！
+      br
+      p \ FrePreの世界にようこそ /
+      = f.submit "登録する", class: 'btn'
+

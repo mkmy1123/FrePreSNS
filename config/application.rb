@@ -8,12 +8,18 @@ Bundler.require(*Rails.groups)
 
 module FrePreSNS
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    config.i18n.default_locale = :ja
+    config.generators.template_engine = :slim
+    config.time_zone = 'Tokyo'
+    Time::DATE_FORMATS[:datetime_jp] = '%Y/%m/%d %H:%M:%S'
+    Time::DATE_FORMATS[:date_jp] = '%Y/%m/%d'
+    Time::DATE_FORMATS[:dateweek_jp] = '%Y/%m/%d %a %H:%M'
+    config.generators do |g|
+      g.test_framework :rspec,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+    end
   end
 end

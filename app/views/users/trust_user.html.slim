@@ -1,0 +1,8 @@
+.hr-container
+  - if params[:trusting]
+    h1 = "#{params[:trusting]}'s TRUSITING USER"
+    p = "#{@user.name}さんが現在、信用しているUSERの一覧です"
+  - else params[:trusted]
+    h1 = "#{params[:trusted]}'s TRUSITED USER"
+    p = "#{@user.name}さんを現在、信用しているUSERの一覧です"
+  = render "users", users: @users

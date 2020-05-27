@@ -1,0 +1,58 @@
+header
+      .left
+        h1.logo = link_to "FrePreSNS", root_path
+      .center
+        h1.theme 誰にでも、表現に圧倒的な自由を。
+      #menu.menu
+        h2 FrePreSNS
+        - if user_signed_in? 
+          ul
+            li = link_to arguments_path
+              h2 ARGUMENT
+              p << 議論テーマ >>
+            li = link_to expressions_path
+              h2 EXPRESSION
+              p << 議論に対しての投稿 >>
+            li = link_to components_path
+              h2 COMPONENT
+              p << 自己紹介ツール >>
+            li = link_to user_path(current_user)
+              h2 MY PAGE
+              p << 現在のUSER専用ページ >>
+            li = link_to relationships_path
+              h2 TRUST TIMELINE
+              p << TRUST USERのみの投稿を表示 >>
+            li = link_to checks_path
+              h2 CHECKED ARGUMENT
+              p << CHECKした論点に関する投稿を表示 >>
+            li = link_to destroy_user_session_path ,method: :delete
+              h2 LOG OUT
+              p << 現在のUSERをログアウト >>
+        - else
+          ul
+            li = link_to about_path
+              h2  ABOUT
+              p << FrePreについて >>
+            li = link_to howto_path
+              h2 HOWTO
+              p << 使い方解説 >>
+            li = link_to arguments_path
+              h2 ARGUMENT
+              p << 議論テーマ >>
+            li = link_to expressions_path
+              h2 EXPRESSION
+              p << 議論に対しての投稿 >>
+            li = link_to components_path
+              h2 COMPONENT
+              p << 自己紹介ツール >>
+            li = link_to new_user_session_path
+              h2 LOG IN
+              p << ログインページ >>
+            li = link_to new_user_registration_path
+              h2 SIGN UP
+              p << 新規USER登録 >>
+      #hm-icon
+        a.menu-trigger href="#"
+          span
+          span
+          span
