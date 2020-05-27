@@ -7,10 +7,7 @@
     h3 = "論点 : #{find_argument(exp.argument_id).topic}"
     = position(exp)
     h4 = "要点 : #{exp.statement}"
-    - if exp.reviews.present?
-      span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
-    - else
-      span.label = "NO YET REVIEW"
+    = render "layouts/review", reviews: exp.reviews
     br
     = exp.detail
     br

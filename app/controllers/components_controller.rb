@@ -1,4 +1,7 @@
 class ComponentsController < ApplicationController
+
+  before_action :set_component, only: [:edit, :update, :destroy]
+
   def index
     if params[:tag]
       @components = Component.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(12)
@@ -17,12 +20,10 @@ class ComponentsController < ApplicationController
   end
 
   def edit
-    @component = Component.find(params[:id])
   end
 
   def update
-    component = Component.find(params[:id])
-    if component.update(component_params)
+    if @component.update(component_params)
       redirect_to user_url(current_user)
     else
       render 'edit'
@@ -30,8 +31,7 @@ class ComponentsController < ApplicationController
   end
 
   def destroy
-    component = Component.find(params[:id])
-    component.destroy
+    @component.destroy
     redirect_to current_user
   end
 
@@ -39,5 +39,9 @@ class ComponentsController < ApplicationController
 
   def component_params
     params.require(:component).permit(:kind_of, :title, :description, :user_id, :tag_list)
+  end
+
+  def set_component
+    @component = Component.find(params[:id])
   end
 end

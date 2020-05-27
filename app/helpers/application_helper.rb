@@ -4,7 +4,7 @@ module ApplicationHelper
     if page_title.empty?
       base_title
     else
-      page_title + " ~ " + base_title
+      " ~ " + page_title + " ~ " + base_title
     end
   end
 
@@ -28,17 +28,5 @@ module ApplicationHelper
     else
       tag.span "否定 / NEGATIVE", class: 'label negative'
     end
-  end
-
-  def neutral(expressions)
-    expressions.where(style: 0).order(id: "DESC")
-  end
-
-  def positive(expressions)
-    expressions.where(style: 1).order(id: "DESC")
-  end
-
-  def negative(expressions)
-    expressions.where(style: 2).order(id: "DESC")
   end
 end

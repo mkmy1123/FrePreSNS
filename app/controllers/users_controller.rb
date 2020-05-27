@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+  
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
     @component = Component.new
-    @components = Component.where(user_id: @user.id)
-    @expressions = Expression.where(user_id: @user.id)
+    @components = Component.where(user_id: @user.id).order(created_at: :desc).page(params[:page_com]).per(8)
+    @expressions = Expression.where(user_id: @user.id).order(created_at: :desc).page(params[:page_exp]).per(7)
   end
 
   def edit

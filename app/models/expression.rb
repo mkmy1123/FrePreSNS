@@ -8,4 +8,5 @@ class Expression < ApplicationRecord
     肯定的: 1,
     否定的: 2,
   }
+  
 end

@@ -1,10 +1,12 @@
 .hr-container
   - if params[:tag]
-    h1.center COMPONENTS
-    h3.center = "##{params[:tag]}"
-    p.center = link_to ">> 一覧に戻す",components_path
+    .center
+      h1 COMPONENTS
+      h3 = "##{params[:tag]}"
+      p = link_to ">> 一覧に戻す",components_path
   - else
-    h1.center COMPONENTS
+    .center
+      h1 COMPONENTS
   .content-box.window
     p \ こちらから種類を限定できます /
     = form_with method: :get,local: true do |f|

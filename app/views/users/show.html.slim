@@ -8,6 +8,8 @@
       - if @expressions.present? 
         h3 = "#{@user.optional_id}'s EXPRESSIONS"
         .content-box.exp-wrap
+          .center
+            = paginate @expressions, param_name: :page_exp
           - @expressions.each do |exp|
             - arg = find_argument(exp.argument_id)
             span.label.arg = arg.target
@@ -19,8 +21,9 @@
           p まだ投稿していません
 
   - if @user == current_user
-    h4.center =" ADD to #{@user.optional_id}'s COMPONENTS "
-    p.center \ 自分のコンポーネントを追加したいならココです！ /
+    .center
+      h4 = " ADD to #{@user.optional_id}'s COMPONENTS "
+      p \ 自分のコンポーネントを追加したいならココです！ /
     .component-form
       = form_with model: @component ,local: true do |f|
         = f.select :kind_of, Component.kind_ofs.keys.to_a
@@ -36,9 +39,12 @@
     br
     br
   - if @components.present?
-    h4.center =" #{@user.optional_id}'s COMPONENTS "
-    p.center \ 箱の中、スクロールできますよ /
+    .center
+      h4 = " #{@user.optional_id}'s COMPONENTS "
+      p \ 箱の中、スクロールできますよ /
     .component-wrap
+      .center
+        = paginate @components, param_name: :page_com
       = render "components/com_box", components: @components
   - else
     br

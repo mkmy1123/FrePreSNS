@@ -13,11 +13,11 @@ h3 = "ID => #{user.optional_id}"
     = image_tag "/assets/default.jpg", :size => '80x80'
   br
   span TRUSTING | 
-  span = link_to user.trustings.length, trust_user_path(trusting: user)
+  = link_to user.trustings.length, trust_user_path(trusting: user)
   span  USERS
   br
   span TRUSTED | 
-  span = link_to user.trusteds.length, trust_user_path(trusted: user)
+  = link_to user.trusteds.length, trust_user_path(trusted: user)
   span  USERS
 
 h3 >> INTRODUCTION
