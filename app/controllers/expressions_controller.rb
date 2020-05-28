@@ -56,7 +56,7 @@ class ExpressionsController < ApplicationController
   private
 
   def expression_params
-    params.require(:expression).permit(:style, :statement, :detail, :argument_id)
+    params.require(:expression).permit(:position_of, :statement, :detail, :argument_id)
   end
 
   def set_expression
@@ -64,15 +64,15 @@ class ExpressionsController < ApplicationController
   end
 
   def neutral(expressions)
-    expressions.where(style: 0).order(created_at: "DESC").page(params[:neutral]).per(7)
+    expressions.where(position_of: 0).order(created_at: "DESC").page(params[:neutral]).per(7)
   end
 
   def positive(expressions)
-    expressions.where(style: 1).order(created_at: "DESC").page(params[:positive]).per(7)
+    expressions.where(position_of: 1).order(created_at: "DESC").page(params[:positive]).per(7)
   end
 
   def negative(expressions)
-    expressions.where(style: 2).order(created_at: "DESC").page(params[:negative]).per(7)
+    expressions.where(position_of: 2).order(created_at: "DESC").page(params[:negative]).per(7)
   end
 
   def set_style(expressions)

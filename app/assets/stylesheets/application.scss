@@ -38,6 +38,15 @@ a{
 a:hover{
   color: rgb(198, 178, 174);
 }
+
+body{
+  min-height: 100vh;
+}
+
+.content{
+  min-height: calc(100vh - 300px);
+}
+
 /* --- HEADER --- */ 
 
 header{
@@ -73,12 +82,21 @@ header{
 /* --- COMMON BOX AND STYLE --- */
 
 .container{
-  min-height: 70%;
+  min-height: 75vh;
   margin: 5%;
   margin-bottom: 0;
   display: flex;
   justify-content: space-between;
 }
+
+.half-container{
+  min-height: 55vh;
+  margin: 5%;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
 .short{
   height: 200px;
   display: flex;
@@ -88,7 +106,13 @@ header{
 }
 
 .hr-container{
-  min-height: 70%;
+  min-height: 75vh;
+  margin: 5%;
+  display: column;
+  justify-content: space-between;
+}
+
+.hr-mini{
   margin: 5%;
   display: column;
   justify-content: space-between;
@@ -239,7 +263,6 @@ footer{
   height: 300px;
   background-color: rgb(134, 110, 117);
   display: flex;
-  justify-content: center;
   padding: 5% 10%;
   a{
     color: #C5C8C4;

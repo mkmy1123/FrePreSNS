@@ -16,7 +16,7 @@ br
       = f.label :target, '対象となるものを選んでください : '
       = f.select :target, Argument.targets.keys.to_a
       br
-      = f.label '議論したい論点 : '
+      = f.label :topic, '議論したい論点 : '
       = f.text_field :topic, class: "long-form"
       br
       = f.label :tag_list ,'タグ : '
