@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  
   before_action :ranking_arg, only: [:top]
   before_action :random_user, only: [:top]
   before_action :random_exp, only: [:top]
@@ -19,6 +18,7 @@ class HomeController < ApplicationController
   end
 
   private
+
   def ranking_arg
     rank_argument_id = Expression.group(:argument_id).order('count_argument_id DESC').limit(3).count(:argument_id).keys
     @rank_argument = Argument.find(rank_argument_id)
@@ -26,11 +26,11 @@ class HomeController < ApplicationController
   end
 
   def random_user
-    @random_user = User.offset( rand(User.count) ).first
+    @random_user = User.offset(rand(User.count)).first
   end
 
   def random_exp
-    @random_exp = Expression.offset( rand(Expression.count) ).first
+    @random_exp = Expression.offset(rand(Expression.count)).first
   end
 
   def review_rank

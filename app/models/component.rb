@@ -5,7 +5,6 @@ class Component < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5, maximum: 20 }
   validates :kind_of, presence: true
   validates :description, presence: true, length: { minimum: 5, maximum: 200 }
-  
 
   enum kind_of: {
     仕事: 0,
@@ -19,5 +18,4 @@ class Component < ApplicationRecord
     嗜好: 8,
     その他: 20,
   }
-
 end

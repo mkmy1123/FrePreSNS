@@ -1,5 +1,4 @@
 class ArgumentsController < ApplicationController
-
   before_action :new_expression, only: [:show]
 
   def index

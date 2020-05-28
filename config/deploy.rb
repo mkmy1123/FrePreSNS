@@ -5,7 +5,7 @@ set :application, "FrePreSNS"
 set :repo_url, "git@github.com:mkmy1123/FrePreSNS.git"
 set :deploy_to, "/home/ec2-user/FrePreSNS"
 set :rbenv_ruby, '2.5.7'
-set :linked_files, %w{config/master.key .env}
+set :linked_files, %w(config/master.key .env)
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 # Default branch is :master

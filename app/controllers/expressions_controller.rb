@@ -1,5 +1,4 @@
 class ExpressionsController < ApplicationController
-
   before_action :set_expression, only: [:edit, :show, :update, :destroy]
   before_action :set_argument, only: [:edit, :show]
   before_action :new_expression, only: [:create]
