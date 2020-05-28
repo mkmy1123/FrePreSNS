@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :authenticate_user, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update, :trust_user]
 
   def show
     @component = Component.new
