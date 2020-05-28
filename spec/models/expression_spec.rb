@@ -1,10 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Expression, type: :model do
-  pending "does not allow duplicate expression statement per user" do
-    FactoryBot.create(:argument)
-    expression = FactoryBot.build(:expression, statement: nil)
-    expression.valid?
-    expect(expression.errors[:statement]).to include("を入力してください")
+  it "is valid with statement" do
+    expect(FactoryBot.build(:expression)).to be_valid
+  end
+
+  it "is valid with statement, detail" do
+    expect(FactoryBot.build(:expression, :add_detail)).to be_valid
+  end
+
+  it "is valid with statement, position_of" do
+    expect(FactoryBot.build(:expression, :add_position_of)).to be_valid
+  end
+
+  it "is valid with all optional data" do
+    expect(FactoryBot.build(:expression, :add_detail, :add_position_of)).to be_valid
   end
 end

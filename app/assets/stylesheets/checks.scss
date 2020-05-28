@@ -10,7 +10,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-content: flex-start;
   width: 80%;
+}
+
+.checked{
+  align-self: flex-start;
 }
 
 .check-wrap{

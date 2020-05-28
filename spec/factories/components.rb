@@ -24,5 +24,9 @@ FactoryBot.define do
     factory :little_title_component do
       title { "hell" }
     end
+
+    factory :little_description_component do
+      description { "hell" }
+    end
   end
 end

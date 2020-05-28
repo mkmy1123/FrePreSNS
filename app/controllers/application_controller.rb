@@ -8,4 +8,7 @@ class ApplicationController < ActionController::Base
     @expression = Expression.new
   end
 
+  def get_expressions(argument)
+    @expressions = Expression.where(argument_id: argument)
+  end
 end

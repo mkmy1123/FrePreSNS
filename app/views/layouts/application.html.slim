@@ -7,13 +7,14 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = render 'layouts/header'
-    - if user_signed_in?
-      .login-notice
-        = "Login now : #{current_user.optional_id} "
-    - if notice
-      .notice = notice
-    - if alert
-      .alert = alert
-    = yield
+    .content
+      = render 'layouts/header'
+      - if user_signed_in?
+        .login-notice
+          = "Login now : #{current_user.optional_id} "
+      - if notice
+        .notice = notice
+      - if alert
+        .alert = alert
+      = yield
     = render 'layouts/footer'
