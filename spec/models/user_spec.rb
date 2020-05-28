@@ -38,7 +38,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is invalid intrudction more than 200" do
-    user = FactoryBot.build(:intrpduction_user)
+    user = FactoryBot.build(:introduction_user)
     user.valid?
     expect(user.errors[:introduction]).to include("10字以上200字以内で記入してください")
   end
