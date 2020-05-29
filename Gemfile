@@ -100,5 +100,6 @@ gem 'chartkick'
 # 画像投稿用
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
 # seeds対策
 gem 'faker'
