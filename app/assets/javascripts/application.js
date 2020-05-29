@@ -21,9 +21,21 @@
 $(function () {
 
   $('.menu-trigger').on('click', function () {
+    $('html, body').animate({ 'scrollTop': 0 }, 300);
     $(this).toggleClass('active');
+    $('body').toggleClass('open');
+    $('.overlay').toggleClass('open');
     $('#menu').fadeToggle();
     return false;
+  });
+
+  $('.overlay').on('click', function () {
+    if ($(this).hasClass('open')) {
+      $(this).removeClass('open');
+      $('body').removeClass('open');
+      $('.menu-trigger').removeClass('active');
+      $('#menu').fadeToggle();
+    }
   });
 
   $('.raty').raty({ starType: 'i'});
