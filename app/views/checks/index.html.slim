@@ -1,27 +1,42 @@
-.container
-  .check-container 
-    h1.center CHECKED ARGUMENT's EXPRESSIONS 
-    .content-box.window
-      p \さらに CHECK済みARGUMENT を限定できます /
-      = form_with method: :get,local: true do |f|
-        = f.label "論点 : "
-        = f.select(:argument_id, options_from_collection_for_select(current_user.checked_arguments, :id, :topic),include_blank: true,class: "window")
-        = f.submit "GO" ,class: 'btn'
-    - if params[:argument_id]
-        h3.center = "ARGUMENT is 『#{find_argument(params[:argument_id]).topic}』"
-        p.center = link_to ">> 一覧に戻す", checks_path
-        .limited-wrap
-          = render "limited_expressions", expressions: get_expressions(params[:argument_id]).page(params[:page]).per(8)
-    - else
-      = render "check_expressions", expressions: get_expressions(current_user.checked_arguments).page(params[:page]).per(8)
-    br
-    br
-    br
-  .check-wrap
-    h3 現在、CHECK済みARGUMENT
-    br
-    - @checked_arguments.each do|arg|
-      .check-list
-        = find_arg_topic(arg.argument_id)
-        = link_to argument_check_path(arg.argument_id), method: :delete do
-          i.fas.fa-ban
+- provide(:title, "CHECKED TIMELINE")
+- if @checked_arguments.present?
+  .container
+    .check-container
+      h1.center CHECKED ARGUMENT's EXPRESSIONS
+      .content-box.window.checked
+        p \さらに CHECK済みARGUMENT を限定できます /
+        = form_with method: :get,local: true do |f|
+          = f.label "論点 : "
+          = f.select(:argument_id, options_from_collection_for_select(current_user.checked_arguments, :id, :topic),include_blank: true,class: "window")
+          = f.submit "GO" ,class: 'btn'
+      - if params[:argument_id]
+          h3.center = "ARGUMENT is 『#{find_arg_topic(params[:argument_id])}』"
+          p.center = link_to ">> 一覧に戻す", checks_path
+          .limited-wrap
+            = render "limited_expressions", expressions: @checked_expressions
+      - elsif @checked_expressions.present?
+        = render "check_expressions", expressions: @checked_expressions
+      - else
+        .center
+          br
+          h3 CHECKしたARGUMENTに まだEXPRESSIONがついていません... 
+          h3 さらにARGUMENTをCHECKしてみましょう！
+          h3 = link_to ">> ARGUMENT を 探す ", arguments_path
+
+    .check-wrap
+      h3 現在、CHECK済みARGUMENT
+      br
+      - @checked_arguments.each do|arg|
+        .check-list
+          = find_arg_topic(arg.argument_id)
+          = link_to argument_check_path(arg.argument_id), method: :delete do
+            i.fas.fa-ban
+- else
+  .hr-container
+    .center
+      br
+      h1 CHECKED ARGUMENT's EXPRESSIONS
+      br
+      h3 まだARGUMENT を CHECKしていません！
+      h3 きになるARGUMENT を CHECKしてみましょう！！
+      h3 = link_to ">> ARGUMENT を 探す ", arguments_path

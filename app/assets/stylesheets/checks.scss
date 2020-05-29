@@ -10,7 +10,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-content: flex-start;
   width: 80%;
+}
+
+.checked{
+  align-self: flex-start;
 }
 
 .check-wrap{
@@ -23,4 +28,10 @@
 
 .check-list{
   margin: 8px 0;
+}
+
+@media screen and (max-width:425px) {
+  .check-container{
+    width: 100%;
+  }
 }

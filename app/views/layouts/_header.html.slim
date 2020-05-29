@@ -4,53 +4,55 @@ header
       .center
         h1.theme 誰にでも、表現に圧倒的な自由を。
       #menu.menu
-        h2 FrePreSNS
+        .menubar
+          h1 MENU
         - if user_signed_in? 
           ul
+            p << 基となる論点 >>
             li = link_to arguments_path
-              h2 ARGUMENT
-              p << 議論テーマ >>
+              h2 ARGUMENTS
+            p << 自由な表現たち >>
             li = link_to expressions_path
-              h2 EXPRESSION
-              p << 議論に対しての投稿 >>
+              h2 EXPRESSIONS
+            p << USERの成分 >>
             li = link_to components_path
               h2 COMPONENT
-              p << 自己紹介ツール >>
+            p << USER専用 >>
             li = link_to user_path(current_user)
               h2 MY PAGE
-              p << 現在のUSER専用ページ >>
+            p << TRUST済 USER >>
             li = link_to relationships_path
-              h2 TRUST TIMELINE
-              p << TRUST USERのみの投稿を表示 >>
+              h2 TRUST
+            p << CHECK済 論点 >>
             li = link_to checks_path
-              h2 CHECKED ARGUMENT
-              p << CHECKした論点に関する投稿を表示 >>
+              h2 CHECKED
+            p << ログアウト >>
             li = link_to destroy_user_session_path ,method: :delete
               h2 LOG OUT
-              p << 現在のUSERをログアウト >>
         - else
           ul
+            p << FrePreについて >>
             li = link_to about_path
               h2  ABOUT
-              p << FrePreについて >>
+            p << 使い方 >>
             li = link_to howto_path
               h2 HOWTO
-              p << 使い方解説 >>
+            p << 基となる論点 >>
             li = link_to arguments_path
               h2 ARGUMENT
-              p << 議論テーマ >>
+            p << 自由な表現たち >>
             li = link_to expressions_path
               h2 EXPRESSION
-              p << 議論に対しての投稿 >>
+            p << USERの成分 >>
             li = link_to components_path
               h2 COMPONENT
-              p << 自己紹介ツール >>
+            p << ログイン >>
             li = link_to new_user_session_path
               h2 LOG IN
-              p << ログインページ >>
+            p << 新規登録 >>
             li = link_to new_user_registration_path
               h2 SIGN UP
-              p << 新規USER登録 >>
+      .overlay
       #hm-icon
         a.menu-trigger href="#"
           span

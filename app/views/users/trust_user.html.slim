@@ -1,3 +1,4 @@
+- provide(:title, "TRUST TIMELINE")
 .hr-container
   - if params[:trusting]
     h1 = "#{params[:trusting]}'s TRUSITING USER"
@@ -5,4 +6,10 @@
   - else params[:trusted]
     h1 = "#{params[:trusted]}'s TRUSITED USER"
     p = "#{@user.name}さんを現在、信用しているUSERの一覧です"
-  = render "users", users: @users
+  - if @users.present?
+    = render "users", users: @users
+  - else
+    br
+    br
+    h3 まだUSERがいません
+  

@@ -1,3 +1,4 @@
+- provide(:title, "#{@expression.statement}")
 .container
   .exp-sidebar
     h3 WRITTEN BY
@@ -22,12 +23,19 @@
     .review-form
       br
       h3 \ REVIEW として、情報の信憑性 を投稿できます /
-      - if @review.rate.present?
-        = "現在、星#{@review.rate}をつけています"
+      - if user_signed_in?
+        - if @review.rate.present?
+          = "現在、星#{@review.rate}をつけています"
+        - else
+          p レビューをまだ投稿していません
+        = form_for @review do |f|
+          .raty
+          = f.hidden_field :user_id, value: current_user.id
+          = f.hidden_field :expression_id, value: @expression.id
+          = f.submit 'REVIEW', class: 'btn'
       - else
-        p レビューをまだ投稿していません
-      = form_for @review do |f|
-        .raty
-        = f.hidden_field :user_id, value: current_user.id
-        = f.hidden_field :expression_id, value: @expression.id
-        = f.submit 'REVIEW', class: 'btn'
+          br
+          p ログイン後に使えるようになります。
+          br
+          h3 =link_to "ログインはこちらから", new_user_session_path
+          br

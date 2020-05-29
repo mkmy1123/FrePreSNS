@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
-
   before_action :set_user, only: [:create, :destroy]
+  before_action :authenticate_user!
 
   def index
     @users = current_user.trustings

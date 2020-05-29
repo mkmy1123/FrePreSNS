@@ -1,12 +1,35 @@
 .hr-container
   h1 BY TRUST USER
-  - if params[:check]
-    = link_to "全てに戻す",relationships_path
-  = form_with method: :get,local: true do |f|
-    span CHECK済みのARGUMENTに限定する
-    = f.hidden_field :check, value: current_user.id
-    = f.submit "GO" ,class: 'btn'
-  - if params[:check]
-    = render "trust_expression", expressions: @expressions.where(argument_id: current_user.checked_arguments)
+  - if @users.present?
+    - if params[:check]
+      = link_to "全てに戻す",relationships_path
+    = form_with method: :get,local: true do |f|
+      span CHECK済みのARGUMENTに限定する
+      = f.hidden_field :check, value: current_user.id
+      = f.submit "GO" ,class: 'btn'
+    - if params[:check]
+      = render "trust_expression", expressions: @expressions.where(argument_id: current_user.checked_arguments)
+    - elsif @expressions.present?
+      = render "trust_expression", expressions: @expressions
+    - else
+      br
+      br
+      h3 TRUSTしたUSERがまだEXPRESSIONを投稿していません。
+      h3 本来ならTRUST機能を使用すると、こちらにTRUSTしたユーザーのみの投稿が表示されます。
+      h3 さらにTRUSTしてみましょう！
+      br
+      br
+      h3 = link_to ">> COMPONENT から USERを探す", components_path
+      h3 もしくは
+      h3 = link_to ">> EXPRESSION から USERを探す", expressions_path
   - else
-    = render "trust_expression", expressions: @expressions
+    br
+    br
+    h3 まだ誰もTRUSTしていません。
+    h3 TRUST機能を使用すると、こちらにTRUSTしたユーザーのみの投稿が表示されます。
+    h3 試しにTRUSTしてみましょう！
+    br
+    br
+    h3 = link_to ">> COMPONENT から USERを探す", components_path
+    h3 もしくは
+    h3 = link_to ">> EXPRESSION から USERを探す", expressions_path

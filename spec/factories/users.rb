@@ -6,7 +6,7 @@ FactoryBot.define do
     password { "testtest" }
     password_confirmation { "testtest" }
 
-    factory :intrpduction_user do
+    factory :introduction_user do
       introduction { "hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellphello" }
     end
   end

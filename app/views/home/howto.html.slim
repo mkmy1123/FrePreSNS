@@ -1,7 +1,9 @@
+- provide(:title, "HOW TO")
 .hr-container
   .howto.center
     h1 HOW TO USE FrePreSNS ??
     h2 FrePreSNS の 使い方
+    br
     p このページを見てくださっている、ということは、FrePreSNSに興味を持っていただけたということで、大変嬉しく思っております。本当にありがとうございます。
     p さて、前置きはほどほどに、早速ご説明させていただきます！！
   
@@ -12,11 +14,13 @@
     p 使い方を知りたいのに、探検って。
     p そうお思いの方も多いかと思いますが、探検です！！
     p 習うより慣れろなんて言葉もございますが、
-    span 簡単なSNSサイトですので、まずは
-    = link_to "ARGUMENT一覧",arguments_path
+    p 簡単なSNSサイトですので、まずは
+    = link_to arguments_path
+      span ARGUMENT一覧
     span と
-    = link_to "EXPRESSION一覧",expressions_path
-    span だけで十分です。
+    = link_to expressions_path
+      span EXPRESSION一覧
+    p だけで十分です。
   
   .howto.right
     h1.label.negative STEP 2
@@ -26,25 +30,24 @@
     span = link_to "KEYWORD", word_path
     span を用意しています。
     p 馴染むまではわかりにくいかもしれませんが、
-    p 『あのARGUMENT、CHECKした〜？』
-    p USER間でこんな感じで使ってもらえるように、考えました。
+    p USER間で気軽に使ってもらえるように考えました。
     p 知っていただけると使いやすさも変わってくるかもしれません。
+    strong 『あのARGUMENT、CHECKした〜？』
+    p こんな感じで使えたらあなたはもうFrePre上級者です！
 
   .howto.left
     h1.label.neutral STEP 3
     h3 会員登録してみる
     br
     p FrePreの機能を存分に使うためには会員登録が必須です。
-    span ほんの少しの作業で登録できますので、
+    p お手数ですが、ほんの少しの作業で登録できますので、ご登録ください。
     span = link_to "新規登録ページ", new_user_registration_path
-    span よりご登録ください。
-    p テストユーザーとしての裏口入学もございます...
 
   .howto.right
     h1.label STEP 4
     h3 これであなたもFrePre民！
     p 会員登録をしていただいた皆様はもう、FrePreの世界の住人です。
-    p 見るだけでもガンガン投稿するのもお好みのスタイルでどうぞ！
+    p 見るだけでもガンガン投稿するのもお好みのスタイルで！
     p ただ、治安をよくするのも、悪くするのも住民次第。
     strong 名指しでの批判や、個人を傷つけるための利用は絶対におやめください。
     p みなさんによって守られている世界だということをお忘れなく。

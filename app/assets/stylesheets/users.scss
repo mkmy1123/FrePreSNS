@@ -37,9 +37,8 @@
   width: 100%;
   text-align: center;
   background-color: rgba(197, 201, 196, 0.3);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  padding: 20px;
+  margin: 20px auto;
 }
 
 .big{
@@ -75,4 +74,19 @@
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
+  min-height: 60vh;
+}
+
+@media screen and (max-width:425px) {
+  .min-container{
+    flex-direction: column;
+  }
+  .expressions{
+    width: 100%;
+    margin-top: 20px;
+  }
+  .big{
+    width: 100%;
+    margin: 0 auto;
+  }
 }

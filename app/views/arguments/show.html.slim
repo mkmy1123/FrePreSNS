@@ -1,3 +1,4 @@
+- provide(:title, "#{@argument.topic}")
 .hr-container.center
   h1 ARGUMENT
   br
@@ -7,9 +8,9 @@
 
   .content-box.window
     = form_with model: @expression, local: true do |f|
-      = f.label :style, 'あなたの考えは？'
+      = f.label :position_of, 'あなたの考えは？'
       br
-      = f.select :style, Expression.styles.keys.to_a
+      = f.select :position_of, Expression.position_ofs.keys.to_a
       br
       = f.label :statement, '簡単にいうと :'
       = f.text_field :statement,placeholder: "20字以内でどうぞ"

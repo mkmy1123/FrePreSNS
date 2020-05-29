@@ -1,54 +1,52 @@
-br
-br
-
-- if params[:argument_id].present?
-  .center
-    h1.headline Argument is
-    h1 = link_to @argument.topic,argument_path(@argument)
-    = link_to ">> 一覧に戻す", expressions_path
-- elsif params[:check].present?
-  .center
-    h1.headline CHECK済み ARGUMENT
-    = link_to ">> 一覧に戻す", expressions_path
-- else
-  .center
-    h1.headline ALL EXPRESSIONS
-.content-box.window
-    p \ こちらから議論を限定できます /
-    = form_with method: :get,local: true do |f|
-      = f.label "論点 : "
-      = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic),include_blank: true,class: "window")
-      = f.submit "GO" ,class: 'btn'
-    - if user_signed_in?
+- provide(:title, "EXPRESSIONS")
+.hr-mini
+  - if params[:argument_id].present?
+    .center
+      h1.headline Argument is
+      h1 = link_to @argument.topic,argument_path(@argument)
+      = link_to ">> 一覧に戻す", expressions_path
+  - elsif params[:check].present?
+    .center
+      h1.headline CHECK済み ARGUMENT
+      = link_to ">> 一覧に戻す", expressions_path
+  - else
+    .center
+      h1.headline ALL EXPRESSIONS
+  .content-box.window
+      p \ こちらから議論を限定できます /
       = form_with method: :get,local: true do |f|
-        span CHECK済みのARGUMENTに限定する
-        = f.hidden_field :check, value: current_user.id
+        = f.label "論点 : "
+        = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic),include_blank: true,class: "window")
         = f.submit "GO" ,class: 'btn'
-
-.container
+      - if user_signed_in?
+        = form_with method: :get,local: true do |f|
+          span CHECK済みのARGUMENTに限定する
+          = f.hidden_field :check, value: current_user.id
+          = f.submit "GO" ,class: 'btn'
+.half-container
   .expression-box.positive-box.center
     h3.label.positive POSITIVE EXPRESSION
     h4 << 肯定的 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @positive_expressions
+      = render "expression", expressions: @positive_expressions, style: "positive"
     - else
-      = render "moreexpression", expressions: @positive_expressions
+      = render "moreexpression", expressions: @positive_expressions, style: "positive"
 
   .expression-box.neutral-box.center
     h3.label.neutral NEUTRAL EXPRESSION
     h4 << 中立 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @neutral_expressions
+      = render "expression", expressions: @neutral_expressions, style: "neutral"
     - else
-      = render "moreexpression", expressions: @neutral_expressions
+      = render "moreexpression", expressions: @neutral_expressions, style: "neutral"
 
   .expression-box.negative-box.center
     h3.label.negative NEGATIVE EXPRESSION
     h4 << 否定的 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @negative_expressions
+      = render "expression", expressions: @negative_expressions, style: "negative"
     - else
-      = render "moreexpression", expressions: @negative_expressions
+      = render "moreexpression", expressions: @negative_expressions, style: "negative"

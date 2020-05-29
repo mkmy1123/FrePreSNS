@@ -4,29 +4,38 @@
 
 /* --- TOP PAGE --- */
 
+.top-container{
+  min-height: 40vh;
+  margin: 5%;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
 .content-smallbox{
   width: 50%;
   padding: 15px;
 }
 
 .expression{
-  height: 300px;
+  min-height: 300px;
   width: 90%;
   margin: 15px auto 45px;
   overflow: hidden;
+  flex: auto;
 }
 
 .argument{
   width: 30%;
-  height: 700px;
+  min-height: 700px;
   overflow: hidden;
 }
 
 .content-wrap{
-  height: 350px;
   margin: 20px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .user{
@@ -48,8 +57,9 @@
 
 .column{
   width: 65%;
-  height: auto;
-  display: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .row{
@@ -120,4 +130,37 @@
   width: 300px;
   height: 250px;
   margin: 50px 25px;
+}
+
+@media screen and (max-width:425px) {
+  .top-container{
+    flex-direction: column;
+  }
+  .content-box{
+    width: 100%;
+    height: auto;
+  }
+  .content-wrap{
+    flex-direction: column;
+  }
+  .column{
+    width: 100%;
+  }
+  .argument{
+    min-height: auto;
+  }
+  .content-box{
+    height: auto;
+  }
+  .row{
+    flex-direction: column;
+    height: auto;
+  }
+  .content-smallbox{
+    width: 100%;
+  }
+  .howto{
+    width: 100%;
+    font-size: 10px;
+  }
 }

@@ -1,5 +1,4 @@
 class ComponentsController < ApplicationController
-
   before_action :set_component, only: [:edit, :update, :destroy]
 
   def index

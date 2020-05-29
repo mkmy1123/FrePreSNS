@@ -1,6 +1,13 @@
 class ChecksController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @checked_arguments = current_user.checks.all
+    get_expressions(current_user.checked_arguments)
+    if params[:argument_id]
+      get_expressions(params[:argument_id])
+    end
+    @checked_expressions = @expressions.page(params[:page]).per(8)
   end
 
   def create

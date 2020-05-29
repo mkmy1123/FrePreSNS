@@ -1,5 +1,4 @@
 class ExpressionsController < ApplicationController
-
   before_action :set_expression, only: [:edit, :show, :update, :destroy]
   before_action :set_argument, only: [:edit, :show]
   before_action :new_expression, only: [:create]
@@ -34,7 +33,9 @@ class ExpressionsController < ApplicationController
   end
 
   def show
-    @review = Review.find_or_initialize_by(user_id: current_user.id, expression_id: @expression.id)
+    if user_signed_in?
+      @review = Review.find_or_initialize_by(user_id: current_user.id, expression_id: @expression.id)
+    end
   end
 
   def update
@@ -54,7 +55,7 @@ class ExpressionsController < ApplicationController
   private
 
   def expression_params
-    params.require(:expression).permit(:style, :statement, :detail, :argument_id)
+    params.require(:expression).permit(:position_of, :statement, :detail, :argument_id)
   end
 
   def set_expression
@@ -62,15 +63,15 @@ class ExpressionsController < ApplicationController
   end
 
   def neutral(expressions)
-    expressions.where(style: 0).order(created_at: "DESC")
+    expressions.where(position_of: 0).order(created_at: "DESC").page(params[:neutral]).per(7)
   end
 
   def positive(expressions)
-    expressions.where(style: 1).order(created_at: "DESC")
+    expressions.where(position_of: 1).order(created_at: "DESC").page(params[:positive]).per(7)
   end
 
   def negative(expressions)
-    expressions.where(style: 2).order(created_at: "DESC")
+    expressions.where(position_of: 2).order(created_at: "DESC").page(params[:negative]).per(7)
   end
 
   def set_style(expressions)
