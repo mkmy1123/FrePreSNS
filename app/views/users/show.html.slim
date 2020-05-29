@@ -27,14 +27,18 @@
       p \ 自分のコンポーネントを追加したいならココです！ /
     .component-form
       = form_with model: @component ,local: true do |f|
+        = f.label :kind_of, '種別 : '
         = f.select :kind_of, Component.kind_ofs.keys.to_a
+        br
         = f.label :title, ' タイトル : '
-        = f.text_field :title
-        = f.label :description, '説明 : '
-        = f.text_area :description
+        = f.text_field :title, class: "long-form"
         br
         = f.label :tag_list ,'タグ : '
-        = f.text_field :tag_list, value: @component.tag_list.split(','),placeholder: "複数は , で区切れます / #は自動でつきます", class: "long-form"
+        = f.text_field :tag_list, value: @component.tag_list.split(','),placeholder: ", で複数投稿可 / #は自動でつきます", class: "long-form"
+        br
+        = f.label :description, '説明 : '
+        = f.text_area :description,class: 'big'
+        br
         = f.hidden_field :user_id, value: current_user.id
         = f.submit '追加する', class: 'btn'
     br

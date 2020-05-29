@@ -68,3 +68,15 @@ $neutral: rgb(196, 179, 157);
 .position-box{
   margin: 10px;
 }
+
+@media screen and (max-width:425px) {
+  .positive-box{
+    width: 100%;
+  }
+  .negative-box{
+    width: 100%;
+  }
+  .neutral-box{
+    width: 100%;
+  }
+}

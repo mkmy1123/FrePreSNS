@@ -4,6 +4,7 @@ html
     title = full_title(yield(:title))
     = csrf_meta_tags
     = csp_meta_tag
+    meta name="viewport" content="width=device-width,initial-scale=1.0"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
@@ -13,8 +14,10 @@ html
         .login-notice
           = "Login now : #{current_user.optional_id} "
       - if notice
-        .notice = notice
+        .notice
+          .msg = notice
       - if alert
-        .alert = alert
+        .alert 
+          .msg = alert
       = yield
     = render 'layouts/footer'

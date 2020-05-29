@@ -29,3 +29,9 @@
 .check-list{
   margin: 8px 0;
 }
+
+@media screen and (max-width:425px) {
+  .check-container{
+    width: 100%;
+  }
+}

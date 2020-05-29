@@ -131,3 +131,36 @@
   height: 250px;
   margin: 50px 25px;
 }
+
+@media screen and (max-width:425px) {
+  .top-container{
+    flex-direction: column;
+  }
+  .content-box{
+    width: 100%;
+    height: auto;
+  }
+  .content-wrap{
+    flex-direction: column;
+  }
+  .column{
+    width: 100%;
+  }
+  .argument{
+    min-height: auto;
+  }
+  .content-box{
+    height: auto;
+  }
+  .row{
+    flex-direction: column;
+    height: auto;
+  }
+  .content-smallbox{
+    width: 100%;
+  }
+  .howto{
+    width: 100%;
+    font-size: 10px;
+  }
+}
