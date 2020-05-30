@@ -1,6 +1,9 @@
 - components.each do|com|
   .content-box.mini
-    = link_to 'USERを見る', user_path(com.user),class: 'edit-btn'
+    - if com.user == current_user
+      = link_to '編集', edit_component_path(com),class: 'edit-btn'
+    - else
+      = link_to 'USERを見る', user_path(com.user),class: 'edit-btn'
     strong KIND_OF
     p = com.kind_of
     strong TITLE

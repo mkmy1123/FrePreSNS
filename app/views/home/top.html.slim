@@ -17,9 +17,9 @@
               h3 = "#{@random_user.name}さん"
               br
               - if @random_user.avatar? 
-                = image_tag @random_user.avatar.thumb.url
+                = image_tag @random_user.avatar.to_s
               - else
-                = image_tag "/assets/default.jpg", :size => '80x80'
+                = image_tag asset_path("default.jpg"), :size => '80x80'
               p = "CHECK #{@random_user.checks.length}件"
               p = "TRUSTING #{@random_user.trustings.length}"
               p = "TRUSTED #{@random_user.trusteds.length}"

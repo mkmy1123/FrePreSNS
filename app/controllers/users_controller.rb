@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :authenticate_user!, only: [:edit, :update, :trust_user]
+  before_action :authenticate_user!, only: [:edit, :update]
 
   def show
     @component = Component.new
@@ -26,10 +26,10 @@ class UsersController < ApplicationController
   def trust_user
     if params[:trusting]
       @user = User.friendly.find(params[:trusting])
-      @users = @user.trustings
+      @users = @user.trustings.order(created_at: :desc).page(params[:page]).per(10)
     else
       @user = User.friendly.find(params[:trusted])
-      @users = @user.trusteds
+      @users = @user.trusteds.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
