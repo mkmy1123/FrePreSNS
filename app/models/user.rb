@@ -12,7 +12,7 @@ class User < ApplicationRecord
   # 通常のバリデーション
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
   validates :optional_id, format: { with: /\A[a-zA-Z0-9]+\z/, message: "半角英数字のみが使えます" }, length: { minimum: 8, maximum: 20 }
-  validates :introduction, length: { minimum: 10, maximum: 200, message: "10字以上200字以内で記入してください" }, allow_nil: true
+  validates :introduction, length: { minimum: 10, maximum: 200, message: "10字以上200字以内で記入してください" }, if: :allow_empty_string?
 
   # frendly_id のための 設定項目
   include FriendlyId
@@ -52,5 +52,11 @@ class User < ApplicationRecord
   # チェック機能の有無を確認する
   def checked?(argument)
     checks.exists?(argument_id: argument.id)
+  end
+
+  private
+
+  def allow_empty_string?
+    !introduction.blank?
   end
 end
