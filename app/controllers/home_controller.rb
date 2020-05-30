@@ -4,9 +4,10 @@ class HomeController < ApplicationController
   before_action :random_exp, only: [:top]
   before_action :review_rank, only: [:top]
   before_action :check_rank, only: [:top]
+  require 'net/http'
 
   def top
-    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=' + ENV['NEWS_API_KEY'] )
+    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=8282ed46f95c485c889853e56a43d97a')
     json = Net::HTTP.get(uri)
     moments = JSON.parse(json)
     @moments = moments['articles']

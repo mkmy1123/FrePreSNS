@@ -71,6 +71,19 @@
 }
 
 .trust-user{
+  a{
+    color: #000;
+  }
+  a:hover{
+    color: gray;
+  }
+}
+
+.user-wrap:hover{
+  background-color: rgba(240, 240, 240, 0.9);
+}
+
+.trust-user{
   justify-content: center;
   flex-wrap: wrap;
   display: flex;

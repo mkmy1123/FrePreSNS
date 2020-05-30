@@ -1,39 +1,42 @@
 .top-container
   .column
-    .content-box.expression
-      h1 PICK UP! EXPRESSIONS
-      - if @argument.present?
-        h3.center = "ARGUMENT : #{@argument.topic}"
-        p.center これに対してのEXPRESSIONは...
-        = bar_chart @argument.expressions.group(:position_of).count, width: "100%", height: "70%", colors: ["#4D4150"] 
+    = link_to expressions_path(argument_id: @argument.id)
+      .content-box.expression
+        h1 PICK UP! EXPRESSIONS
+        - if @argument.present?
+          h3.center = "ARGUMENT : #{@argument.topic}"
+          p.center これに対してのEXPRESSIONは...
+          = bar_chart @argument.expressions.group(:position_of).count, width: "100%", height: "70%", colors: ["#4D4150"] 
     .content-wrap
-      .content-box.user
-        h1 RANDOM USER
-        - if @random_user.present?
-          br
-          = link_to user_path(@random_user)
-            .randomuser-box
-              h3 = "ID => #{@random_user.optional_id}"
-              h3 = "#{@random_user.name}さん"
-              br
-              - if @random_user.avatar? 
-                = image_tag @random_user.avatar.to_s
-              - else
-                = image_tag asset_path("default.jpg"), :size => '80x80'
-              p = "CHECK #{@random_user.checks.length}件"
-              p = "TRUSTING #{@random_user.trustings.length}"
-              p = "TRUSTED #{@random_user.trusteds.length}"
+      = link_to user_path(@random_user)
+        .content-box.user
+          h1 RANDOM USER
+          - if @random_user.present?
+            br
+            = link_to user_path(@random_user)
+              .randomuser-box
+                h3 = "ID => #{@random_user.optional_id}"
+                h3 = "#{@random_user.name}さん"
+                br
+                - if @random_user.avatar? 
+                  = image_tag @random_user.avatar.to_s
+                - else
+                  = image_tag asset_path("default.jpg"), :size => '80x80'
+                p = "CHECK #{@random_user.checks.length}件"
+                p = "TRUSTING #{@random_user.trustings.length}"
+                p = "TRUSTED #{@random_user.trusteds.length}"
       .content-box.random-exp
-        h1 RANDOM EXPRESSION
-        - if @random_exp.present?
-          br
-          p \ ARGUMENT /
-          p = find_argument(@random_exp.argument_id).topic
-          = position(@random_exp)
-          h2 = link_to @random_exp.statement, expression_path(@random_exp)
-          br
-          h3 WRITTEN BY
-          h3 =link_to @random_exp.user.optional_id, user_path(@random_exp.user)
+        = link_to expression_path(@random_exp)
+          h1 RANDOM EXPRESSION
+          - if @random_exp.present?
+            br
+            p \ ARGUMENT /
+            p = find_argument(@random_exp.argument_id).topic
+            = position(@random_exp)
+            h2 = @random_exp.statement
+            br
+            h3 WRITTEN BY
+            h3 = @random_exp.user.optional_id
 
   .content-box.argument
     h1 \ HOT / ARGUMENT
