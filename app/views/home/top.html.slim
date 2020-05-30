@@ -66,3 +66,18 @@
           strong = "No.#{i+1}"
           = link_to arg.topic, argument_path(arg)
           br
+
+.news-wrap
+  .content-box
+    h1 Any topic??
+    p 投稿しようにもネタがない... そんな時はNEWSをチェック！
+    p （外部ニュースサイトへ遷移します。）
+    .news-content
+      .news-headline
+        p.label.neutral << 最新NEWS >>
+      - @moments.each do|moment|
+        i.fas.fa-pen-fancy
+        = link_to moment['url'] do
+          span.newsbody = " #{moment['title']}"
+        br
+        br

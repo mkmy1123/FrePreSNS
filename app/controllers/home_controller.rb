@@ -6,6 +6,10 @@ class HomeController < ApplicationController
   before_action :check_rank, only: [:top]
 
   def top
+    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=' + ENV['NEWS_API_KEY'] )
+    json = Net::HTTP.get(uri)
+    moments = JSON.parse(json)
+    @moments = moments['articles']
   end
 
   def about
