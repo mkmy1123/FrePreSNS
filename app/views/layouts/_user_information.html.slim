@@ -8,7 +8,7 @@ h3 = "ID => #{user.optional_id}"
   br
 .window.user_info
   - if user.avatar? 
-    = image_tag @user.avatar.to_s
+    = image_tag user.avatar.to_s
   - else
     = image_tag asset_path("default.jpg"), :size => '80x80'
   br
