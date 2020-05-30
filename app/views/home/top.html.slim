@@ -72,12 +72,13 @@
     h1 Any topic??
     p 投稿しようにもネタがない... そんな時はNEWSをチェック！
     p （外部ニュースサイトへ遷移します。）
-    .news-content
-      .news-headline
-        p.label.neutral << 最新NEWS >>
-      - @moments.each do|moment|
-        i.fas.fa-pen-fancy
-        = link_to moment['url'] do
-          span.newsbody = " #{moment['title']}"
-        br
-        br
+    - if @moments
+      .news-content
+        .news-headline
+          p.label.neutral << 最新NEWS >>
+        - @moments.each do|moment|
+          i.fas.fa-pen-fancy
+          = link_to moment['url'] do
+            span.newsbody = " #{moment['title']}"
+          br
+          br
