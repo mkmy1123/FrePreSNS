@@ -3,9 +3,9 @@
   h1 EDIT PAGE
   = form_for(@user) do |f|
     - if @user.avatar? 
-      = image_tag @user.avatar.thumb.url
+      = image_tag @user.avatar.to_s
     - else
-      = image_tag "/assets/default.jpg", :size => '100x100'
+      = image_tag asset_path("default.jpg"), :size => '100x100'
     br
     = f.file_field :avatar
     br
