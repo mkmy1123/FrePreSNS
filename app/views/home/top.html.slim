@@ -52,7 +52,7 @@
   .content-box.row
     .content-smallbox
       h3 REVIEW ★★★
-      p = "here #{ENV['ACCESS_KEY']}"
+      p 現在最も多くREVIEWされている投稿
       - if @top_review.present?
         h3 = link_to @top_review.statement, expression_path(@top_review)
         = render "layouts/review", reviews: @top_review.reviews
