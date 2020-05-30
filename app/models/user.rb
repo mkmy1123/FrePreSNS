@@ -8,7 +8,6 @@ class User < ApplicationRecord
   # optional_idでユーザーを判別するため、明示する
   validates_uniqueness_of :optional_id
   validates_presence_of :optional_id
-  has_one_attached :avatar
 
   # 通常のバリデーション
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
