@@ -96,6 +96,27 @@
   font-weight: bold;
 }
 
+.news-wrap{
+  margin: 5%;
+}
+
+.news-content{
+  margin: 20px;
+  margin-bottom: 0;
+  height: 250px;
+  overflow: scroll;
+  .newsbody{
+    font-size: 15px;
+    line-height: 22px;
+  }
+}
+
+.news-headline{
+  margin: 20px;
+  margin-top: 0;
+  text-align: center;
+}
+
 /* --- ABOUT --- */
 .about{
   margin-bottom: 10px;
