@@ -30,6 +30,10 @@ $neutral: rgb(196, 179, 157);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+h1{
+  font-family: 'Shadows Into Light', cursive;
+}
+
 a{
   color: rgb(128, 108, 104);
   text-decoration: none;
@@ -60,17 +64,12 @@ header{
   display: flex;
   padding: 40px 10px;
   .left{
-    flex-grow: 1;
-    .logo{
-      line-height: 50px;
-      margin-left: 5%;
-      a{
-        text-decoration: none;
-        color: black;
-      }
-      a:hover{
-        color: #BB0009;
-      }
+    margin-left: 10px;
+    a{
+      color: #000;
+    }
+    a:hover{
+      color: rgba(0, 0, 0, 0.5);
     }
   }
   .center{

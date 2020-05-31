@@ -12,6 +12,25 @@
   justify-content: space-between;
 }
 
+.eyecatch{
+  background-image: image-url("eyecatch.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 350px;
+}
+
+.layer{
+  width: 100%;
+  height: 350px;
+  background-color: rgba(197, 201, 196, 0.3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .content-smallbox{
   width: 50%;
   padding: 15px;

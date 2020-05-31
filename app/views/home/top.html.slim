@@ -1,3 +1,7 @@
+.eyecatch
+  .layer
+    h1 FREEDOM OF EXPRESSIONS
+    p あなたの表現の自由を、守りたい。
 .top-container
   .column
     .content-box.expression
@@ -36,7 +40,7 @@
           h3 =link_to @random_exp.user.optional_id, user_path(@random_exp.user)
 
   .content-box.argument
-    h1 \ HOT / ARGUMENT
+    h1 HOT ARGUMENT
     p  今人気のある論点は？？
     - if @rank_argument.present?
       .ranking
@@ -50,6 +54,7 @@
 
 .short
   .content-box.row
+    h1 User's
     .content-smallbox
       h3 REVIEW ★★★
       p 現在最も多くREVIEWされている投稿
@@ -57,6 +62,7 @@
         h3 = link_to @top_review.statement, expression_path(@top_review)
         = render "layouts/review", reviews: @top_review.reviews
         h3 Most Review of Expression
+    h1 User's
     .content-smallbox
       h3 # CHECK
       span: i.fas.fa-crown

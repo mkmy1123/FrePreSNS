@@ -1,5 +1,12 @@
 - provide(:title, "ID : #{@user.optional_id}")
 .hr-container
+  .center
+    h1 USER INFOMATION
+    - if current_user == @user
+      h3 = "ID : #{@user.optional_id} yourself!"
+      p 他人にも見られるページです。編集して自分らしさを表現しましょう！
+    - else
+      h3 = "ID : #{@user.optional_id}"
   .min-container
     / サイドバー
     .sidebar
