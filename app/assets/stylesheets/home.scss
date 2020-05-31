@@ -24,7 +24,8 @@
 .layer{
   width: 100%;
   height: 350px;
-  background-color: rgba(197, 201, 196, 0.3);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -201,10 +202,16 @@
     flex-direction: column;
   }
   .eyecatch{
-    display: none;
+    height: 200px;
   }
   .layer{
-    display: none;
+    height: 200px;
+    h1{
+      font-size: 20px;
+    }
+    p{
+      font-size: 12px;
+    }
   }
   .content-box{
     width: 100%;

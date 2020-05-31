@@ -29,18 +29,26 @@
                 p = "CHECK #{@random_user.checks.length}件"
                 p = "TRUSTING #{@random_user.trustings.length}"
                 p = "TRUSTED #{@random_user.trusteds.length}"
+
       .content-box.random-exp
         = link_to expression_path(@random_exp)
           h1 RANDOM EXPRESSION
           - if @random_exp.present?
             br
-            p \ ARGUMENT /
+            i.far.fa-flag
+            span  ARGUMENT 
             p = find_argument(@random_exp.argument_id).topic
-            = position(@random_exp)
-            h2 = @random_exp.statement
             br
-            h3 WRITTEN BY
-            h3 = @random_exp.user.optional_id
+            i.fas.fa-comment
+            span  EXPRESSION 
+            br
+            p = position(@random_exp)
+            p = @random_exp.statement
+            br
+            i.fas.fa-pen-fancy
+            span  Written by 
+            p = @random_exp.user.optional_id
+            br
 
   .content-box.argument
     h1 HOT ARGUMENT
