@@ -7,9 +7,6 @@ class ExpressionsController < ApplicationController
     if params[:argument_id]
       find_argument(params[:argument_id])
       set_style(@argument.expressions)
-    elsif params[:check]
-      @arguments = current_user.checked_arguments
-      set_style(@arguments.expressions)
     else
       expressions = Expression.all
       set_style(expressions)
