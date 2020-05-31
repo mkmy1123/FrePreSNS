@@ -1,4 +1,4 @@
 - if reviews.present?
-  span.label = "REVIEW AVG ★#{(reviews.inject(0){|result,review| result + review.rate }) / reviews.length}"
+  span.label = "REVIEW 平均 ★#{(reviews.inject(0){|result,review| result + review.rate }) / reviews.length}"
 - else
   span.label = "NO YET REVIEW"

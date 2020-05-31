@@ -427,7 +427,9 @@ textarea{
   }
 
   .hr-container{
-    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
   }
 
   .half-container{
@@ -445,12 +447,6 @@ textarea{
 
   body {
     width: 100%;
-  }
-
-  .sidebar {
-    width: 100%;
-    padding-left: 3%;
-    padding-right: 3%;
   }
 
   .pagination { 

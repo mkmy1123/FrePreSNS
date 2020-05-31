@@ -93,7 +93,27 @@
 @media screen and (max-width:425px) {
   .min-container{
     flex-direction: column;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    max-height: 800px;
   }
+
+  .exp-wrap{
+    max-height: 200px;
+  }
+
+  .user-id-info{
+    display: none;
+  }
+
+  .sidebar{
+    text-align: center;
+    width: 100%;
+  }
+
   .expressions{
     width: 100%;
     margin-top: 20px;

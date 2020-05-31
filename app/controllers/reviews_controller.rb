@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.new(review_params)
-    review.rate = params[:score]
+    review.rate = params[:rate]
     review.expression_id = params[:review][:expression_id]
     if review.save
       redirect_to review.expression, notice: "REVIEWが保存されました！ご協力ありがとうございます。"
@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
 
   def update
     review = Review.find(params[:id])
-    review.rate = params[:score]
+    review.rate = params[:rate]
     if review.update(review_params)
       redirect_to review.expression, notice: "REVIEWが更新されました！ご協力ありがとうございます。"
     end

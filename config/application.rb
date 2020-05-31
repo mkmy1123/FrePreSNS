@@ -21,5 +21,7 @@ module FrePreSNS
         helper_specs: false,
         routing_specs: false
     end
+    config.assets.paths << Rails.root.join('public')
+    config.assets.precompile << %w( cancel-off.png cencel-on.png star-off.png star-on.png star-half.png)
   end
 end
