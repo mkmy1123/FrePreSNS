@@ -1,48 +1,72 @@
 - provide(:title, "ABOUT")
-.hr-container
-  h1 HELLO!! WE ARE..
-  br
-  h3.about
-    |  はじめまして "FrePreSNS"です。
+.hr-container.center
+  .about
+    h1 HELLO!! WE ARE..
+
+  .about
+    h3 はじめまして "FrePreSNS"です。
   
-  p.about 
-    | FrePreSNSの由来について簡単に説明させていただきますね。
-    | FrePreは、FREEDOM OF EXPRESSION (表現の自由) から名付けました。
-    | SNSは、ご存知の方も多いかと思いますが、SocialNetworkServiseの略称です。
+  .about 
+    p FrePreSNSの由来について簡単に説明させていただきますね。
+    p FrePreは、FREEDOM OF EXPRESSION (表現の自由) から名付けました。
+    p SNSは、ご存知の方も多いかと思いますが、SocialNetworkServiseの略称です。
 
-  p.about
-      | 由来の通りではありますが、このサイトは表現の自由を守るという名目のもとで
-      | オンライン上で本当の仲間を探すためのサイトです。
+  .about
+      p 由来の通りではありますが、このサイトは表現の自由を守るという名目のもとで
+      p オンライン上で本当の仲間を探すためのサイトです。
 
-  p.about
-    |  表現の自由なんて堅苦しいことを言いましたが、
-      みなさんが平等に言いたいことを言えたらいいなと思って作ったサイトです。
+  .about
+    p  表現の自由なんて堅苦しいことを言いましたが、
+    p みなさんが平等に言いたいことを言えたらいいなと思って作ったサイトです。
 
-  p.about
-    |  おかしいなと思っていること、わかってほしいなと思うこと。
-      ここではいくらでも自由に発言してください。
+  .about
+    p おかしいなと思っていること、わかってほしいなと思うこと。
+    p ここではいくらでも自由に発言してください。
 
-  p.about
-    |  あなたの USER 登録 / EXPRESSION 初投稿 をお待ちしています。
+  .about
+    h1 FrePreSNS's World!
+    p 簡単に言うと、FrePreSNSはこのような構成でできています。
+    = image_tag asset_path("FrePreSNS.png")
+    p: strong 会員登録をしたUserがArgumentを元にExpressionを投稿する。
+    br
+    p 論点（Argument）が投稿されて、
+    p それに対しての考えを
+    span.label.positive 肯定的(positive)
+    span  or 
+    span.label.negative 否定的(negative)
+    span  or 
+    span.label.neutral 中立(neutral)
+    p と表明し
+    p 意見（Expression）を言う、それだけのサイトです。
+    p 英語を使っているせいで、わかりにくいと思う方はごめんなさい、
+    p きっと慣れたら使い勝手のいい子達です。
+    br
+    p 表明するなんて難しいことは苦手、、、なんて思わないでください！
+    p FrePreSNSには映画のことだって、音楽のことだって
+    p 好きなことをArgumentとしていいんです！
 
-  h1.question: i.fas.fa-comment
-  h3 使い方がよくわかりません。
-  p.answer 使い方に関するページもご用意しています。
-  span = link_to "こちらをクリックしていただいて、", howto_path
-  span ぜひご覧ください！
+  .about
+    h1.question: i.fas.fa-comment
+    h3 実際の使い方がよくわかりません。
+    p.answer 使い方に関するページもご用意しています。
+    span = link_to "こちらをクリックしていただいて、", howto_path
+    span ぜひご覧ください！
 
-  h1.question: i.fas.fa-comment
-  h3 会員登録すると何ができるのですか。
-  p.answer ARGUMENT / EXPRESSION などを投稿する（サイト内で発言する）ためには会員登録が必要です。
-  p 他にもTRUST機能としてSNSならではのフォロー機能や、CHECK機能として気になった議論テーマを登録して追うことができます。
+  .about
+    h1.question: i.fas.fa-comment
+    h3 会員登録すると何ができるのですか。
+    p.answer ARGUMENT / EXPRESSION などを投稿する（サイト内で発言する）ためには会員登録が必要です。
+    p 他にもTRUST機能としてSNSならではのフォロー機能や、CHECK機能として気になった議論テーマを登録して追うことができます。
 
-  h1.question: i.fas.fa-comment
-  h3 用語がよくわかりません。
-  p.answer よくぞ聞いてくださいました！
-  span = link_to "用語解説のページもあるのです。", word_path
-  span ぜひご覧ください！
+  .about
+    h1.question: i.fas.fa-comment
+    h3 用語がよくわかりません。
+    p.answer よくぞ聞いてくださいました！
+    span = link_to "用語解説のページもあるのです。", word_path
+    span ぜひご覧ください！
 
-  h1.question: i.fas.fa-comment
-  h3 本当に使って大丈夫か不安です。
-  p.answer ご登録に必要なのは、名前（ハンドルネーム可能）とメールアドレスを中心としたわずかな項目のみです。
-  p アカウントの削除も可能のですので、気になっていただけたのなら、まずは登録してみてください。
+  .about
+    h1.question: i.fas.fa-comment
+    h3 本当に使って大丈夫か不安です。
+    p.answer ご登録に必要なのは、名前（ハンドルネーム可能）とメールアドレスを中心としたわずかな項目のみです。
+    p アカウントの削除も可能のですので、気になっていただけたのなら、まずは登録してみてください。

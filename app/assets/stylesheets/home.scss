@@ -53,6 +53,27 @@
   width: 30%;
   min-height: 700px;
   overflow: hidden;
+  a{
+    color: #000;
+  }
+  a:hover{
+    color: #000;
+  }
+}
+
+.argument:hover{
+  background-color: rgba(240, 240, 240, 0.9);
+}
+
+.rank_argument a{
+    font-size: 15px;
+    display: block;
+    font-weight: bold;
+    color: #7F6C68;
+}
+
+.rank_argument a:hover{
+  color: rgb(194, 187, 190);
 }
 
 .content-wrap{
@@ -134,12 +155,6 @@
   margin-right: 5px;
 }
 
-.rank_argument{
-  font-size: 15px;
-  display: block;
-  font-weight: bold;
-}
-
 .news-wrap{
   margin: 5%;
 }
@@ -163,7 +178,12 @@
 
 /* --- ABOUT --- */
 .about{
-  margin-bottom: 10px;
+  padding: 10px;
+  width: 90%;
+  margin: 0 auto;
+  img{
+    margin: 10px;
+  }
 }
 
 .question{
@@ -235,6 +255,11 @@
   }
   .content-smallbox{
     width: 100%;
+  }
+  .about{
+    img{
+      width: 100%;
+    }
   }
   .howto{
     width: 100%;

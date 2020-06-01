@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'users/:id/quit' => 'users#quit', as: :quit
   put 'users/:id/invalid' => 'users#invalid', as: :invalid
   get 'checks' => 'checks#index', as: :checks
+  get 'users' => 'users#index'
 
   resources :users, only: [:show, :edit, :update]
   resources :components, only: [:index, :update, :create, :destroy, :edit]

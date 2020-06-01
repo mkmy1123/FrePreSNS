@@ -18,3 +18,15 @@
   width: 45%;
   margin: 5px;
 }
+
+.arg-wrap{
+  width: 100%;
+  padding: 20px;
+}
+
+@media screen and (max-width:425px) {
+  .arg-wrap{
+    width: 85%;
+    margin: 0 auto;
+  }
+}
