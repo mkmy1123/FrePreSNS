@@ -6,6 +6,26 @@ class UsersController < ApplicationController
     @component = Component.new
     @components = Component.where(user_id: @user.id).order(created_at: :desc).page(params[:page_com]).per(8)
     @expressions = Expression.where(user_id: @user.id).order(created_at: :desc).page(params[:page_exp]).per(7)
+    @user_entry = Entry.where(user_id: @user.id)
+    if user_signed_in?
+      unless @user.id == current_user.id
+        @current_user_entry = Entry.where(user_id: current_user.id)
+        @current_user_entry.each do |cu|
+          @user_entry.each do |u|
+            if cu.room_id == u.room_id then
+              @is_room = true
+              @room_id = cu.room_id
+            end
+          end
+        end
+        unless @is_room
+          if @user.trusting?(current_user) && current_user.trusting?(@user)
+            @room = Room.new
+            @entry = Entry.new
+          end
+        end
+      end
+    end
   end
 
   def edit

@@ -20,4 +20,6 @@ Rails.application.routes.draw do
     resource :check, only: [:create, :destroy]
   end
   resources :relationships, only: [:index, :create, :destroy]
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show, :index]
 end

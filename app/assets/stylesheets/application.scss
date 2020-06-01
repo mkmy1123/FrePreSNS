@@ -430,6 +430,9 @@ textarea{
     display: flex;
     flex-direction: column;
     flex: auto;
+    margin: 0;
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .half-container{

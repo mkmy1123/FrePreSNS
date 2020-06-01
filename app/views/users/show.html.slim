@@ -8,6 +8,18 @@
         p 他人にも見られるページです。編集して自分らしさを表現しましょう！
       - else
         h3 = "ID : #{@user.optional_id}"
+      - if user_signed_in?
+        - unless @user.id == current_user.id
+          - if @user.trusting?(current_user) && current_user.trusting?(@user) && @is_room
+            = link_to "DMを確認", room_path(@room_id),class: 'btn'
+          - elsif @user.trusting?(current_user) && current_user.trusting?(@user)
+            p 相互にトラスト関係が結ばれたので、DMができるようになりました！
+            = form_for @room do |f| 
+              = fields_for @entry do |e|
+                = e.hidden_field :user_id, value: @user.id
+              = f.submit 'DMを送る', class: 'btn'
+          - else
+            p 相互にトラスト関係が結ばれると、DMができるようになります！
   .min-container
     / サイドバー
     .sidebar
