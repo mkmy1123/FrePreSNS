@@ -37,6 +37,11 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
 
+  # deviseオーバーライド / 論理削除用
+  def active_for_authentication?
+    super && (self.is_valid == true)
+  end
+
   # フォロー機能 (トラスト機能)関連のメソッド
   def trust(other_user)
     unless self == other_user

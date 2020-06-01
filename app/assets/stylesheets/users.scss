@@ -90,6 +90,10 @@
   min-height: 60vh;
 }
 
+.quit-box{
+  margin: 50px;
+}
+
 @media screen and (max-width:425px) {
   .min-container{
     flex-direction: column;
@@ -106,7 +110,9 @@
   }
 
   .user-id-info{
-    margin: 15px;
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     h3{

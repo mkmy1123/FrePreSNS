@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_021653) do
+ActiveRecord::Schema.define(version: 2020_06_01_050257) do
 
   create_table "arguments", force: :cascade do |t|
     t.integer "target", null: false
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_021653) do
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_valid", default: true, null: false
     t.index ["optional_id"], name: "index_users_on_optional_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

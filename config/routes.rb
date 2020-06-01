@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'word' => 'home#word'
 
   get 'users/trust' => 'users#trust_user', as: :trust_user
+  get 'users/:id/quit' => 'users#quit', as: :quit
+  put 'users/:id/invalid' => 'users#invalid', as: :invalid
   get 'checks' => 'checks#index', as: :checks
 
   resources :users, only: [:show, :edit, :update]
