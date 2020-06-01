@@ -1,0 +1,4 @@
+- if user.avatar? 
+  = image_tag user.avatar.to_s
+- else
+  = image_tag asset_path("default.jpg"), :size => '80x80'

@@ -13,7 +13,7 @@ footer
       ul
         li = link_to "MYPAGE マイページ", user_path(current_user)
         li = link_to "EDIT ユーザー情報編集", edit_user_path(current_user)
-        li = link_to "DELETE USER アカウントの削除"
+        li = link_to "DELETE USER アカウントの削除", quit_path(current_user)
     - else
       ul
         li = link_to "REGISTRATION 新規登録", new_user_registration_path
