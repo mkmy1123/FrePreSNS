@@ -12,7 +12,7 @@
       p \ こちらから議論を限定できます /
       = form_with method: :get,local: true do |f|
         = f.label "論点 : "
-        = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic),include_blank: true,class: "window")
+        = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic), class: "window")
         = f.submit "GO" ,class: 'btn'
 .half-container
   .expression-box.positive-box.center

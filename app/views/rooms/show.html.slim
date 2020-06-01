@@ -1,0 +1,28 @@
+.hr-container
+  h1 Direct Message
+  p 相手を傷つけるような発言には十分留意して利用しましょう！
+  .field
+    = form_for @message do |f|
+      = f.text_field :content, placeholder: "メッセージを入力して下さい", class: 'long-form'
+      = f.hidden_field :room_id, value: @room.id
+      = f.submit "送信", class: 'btn'
+
+  - if @messages.present?
+    .center
+      = paginate @messages
+    - @messages.each do |m|
+      .content-box
+        - if m.user == current_user
+          .msg-wrap
+            .msg-avatar
+              = render "layouts/user_avatar", user: m.user
+            .msgbox.left
+              = render "rooms/msg", msg: m
+        - else
+          .msg-wrap-right
+            .msgbox.right
+              = render "rooms/msg", msg: m
+            .msg-avatar
+              = render "layouts/user_avatar", user: m.user
+  - else
+    h3 メッセージはまだありません

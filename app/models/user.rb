@@ -33,6 +33,15 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'trust_id'
   has_many :trusteds, through: :reverse_of_relationships, source: :user
 
+  # DM機能に使用
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
+  # deviseオーバーライド / 論理削除用
+  def active_for_authentication?
+    super && (self.is_valid == true)
+  end
+
   # フォロー機能 (トラスト機能)関連のメソッド
   def trust(other_user)
     unless self == other_user

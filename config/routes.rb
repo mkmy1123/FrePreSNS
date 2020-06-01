@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'word' => 'home#word'
 
   get 'users/trust' => 'users#trust_user', as: :trust_user
+  get 'users/:id/quit' => 'users#quit', as: :quit
+  put 'users/:id/invalid' => 'users#invalid', as: :invalid
   get 'checks' => 'checks#index', as: :checks
 
   resources :users, only: [:show, :edit, :update]
@@ -20,4 +22,6 @@ Rails.application.routes.draw do
     resource :check, only: [:create, :destroy]
   end
   resources :relationships, only: [:index, :create, :destroy]
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show, :index]
 end

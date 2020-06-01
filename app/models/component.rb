@@ -2,9 +2,9 @@ class Component < ApplicationRecord
   acts_as_taggable_on :tags
   belongs_to :user
 
-  validates :title, presence: true, length: { minimum: 5, maximum: 20 }
+  validates :title, presence: true, length: { maximum: 20 }
   validates :kind_of, presence: true
-  validates :description, presence: true, length: { minimum: 5, maximum: 200 }
+  validates :description, presence: true, length: { maximum: 200 }
 
   enum kind_of: {
     仕事: 0,

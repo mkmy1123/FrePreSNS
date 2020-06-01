@@ -2,15 +2,13 @@ h3 = "ID => #{user.optional_id}"
 = link_to user_path(user)
   h2 = "#{user.name} さん" 
 - if user == current_user
-  = link_to "編集", edit_user_path(current_user), class: 'trust-btn'
-- if user_signed_in?
-  = render "users/trust_btn",user: user
-  br
+  = link_to "編集", edit_user_path(current_user), class: 'btn'
+- if @user.is_valid == false
+  span.label 退会済み
+- else user_signed_in?
+    = render "users/trust_btn",user: user
 .window.user_info
-  - if user.avatar? 
-    = image_tag user.avatar.to_s
-  - else
-    = image_tag asset_path("default.jpg"), :size => '80x80'
+  = render "layouts/user_avatar", user: user
   br
   span TRUSTING | 
   = link_to user.trustings.length, trust_user_path(trusting: user)
