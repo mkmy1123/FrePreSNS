@@ -17,14 +17,12 @@ class ExpressionsController < ApplicationController
   end
 
   def create
-    new_expression = Expression.new(expression_params)
-    new_expression.user_id = current_user.id
-    # render用の読み込み
-    find_argument(new_expression.argument_id)
-    if new_expression.save
-      redirect_to new_expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
+    @expression = Expression.new(expression_params)
+    @expression.user_id = current_user.id
+    find_argument(@expression.argument_id)
+    if @expression.save
+      redirect_to @expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
     else
-      flash[:alert] = "EXPRESSIONの作成に失敗しました。要点の文字数を確認してください..."
       render "arguments/show"
     end
   end

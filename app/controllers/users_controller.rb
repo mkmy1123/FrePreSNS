@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :quit, :invalid]
+  before_action :set_user, only: [:edit, :update, :quit, :invalid]
+  before_action :set_data, only: [:show]
+  before_action :new_component, only: [:show]
   before_action :authenticate_user!, only: [:edit, :update]
+  before_action :refuse_wrong_user, only: [:edit, :update, :quit, :invalid]
 
   def index
     @q = User.ransack(params[:q])
@@ -8,12 +11,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @component = Component.new
-    @components = Component.where(user_id: @user.id).order(created_at: :desc).page(params[:page_com]).per(8)
-    @expressions = Expression.where(user_id: @user.id).order(created_at: :desc).page(params[:page_exp]).per(7)
+    # DM機能に関する変数を取得
     @user_entry = Entry.where(user_id: @user.id)
     if user_signed_in?
       unless @user.id == current_user.id
+        # @ユーザーが所属するroomを探すために変数化する
         @current_user_entry = Entry.where(user_id: current_user.id)
         @current_user_entry.each do |cu|
           @user_entry.each do |u|
@@ -34,17 +36,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_user != @user
-      redirect_to @user
-    end
   end
 
   def update
     if @user.update(user_params)
       redirect_to @user, notice: "USER情報が更新されました！"
     else
-      flash[:alert] = "USER情報が更新できませんでした..."
-      render "edit"
+      render :edit
     end
   end
 
@@ -54,8 +52,7 @@ class UsersController < ApplicationController
   def invalid
     @user.update(is_valid: false)
     reset_session
-    flash[:notice] = "退会手続きができました。FrePreはあなたの再登録をお待ちしてます！"
-    redirect_to root_path
+    redirect_to root_path, notice: "退会手続きができました。FrePreはあなたの再登録をお待ちしてます！"
   end
 
   def trust_user
@@ -70,11 +67,26 @@ class UsersController < ApplicationController
 
   private
 
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :avatar, :optional_id, :is_valid)
+  end
+
   def set_user
     @user = User.friendly.find(params[:id])
   end
 
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :avatar, :optional_id, :is_valid)
+  def new_component
+    @component = Component.new
+  end
+
+  def set_data
+    @user = User.friendly.find(params[:id])
+    @components = Component.where(user_id: @user.id).order(created_at: :desc).page(params[:page_com]).per(8)
+    @expressions = Expression.where(user_id: @user.id).order(created_at: :desc).page(params[:page_exp]).per(7)
+  end
+
+  def refuse_wrong_user
+    redirect_to root_path unless current_user == @user
+    flash[:alert] = "権限がありません。"
   end
 end
