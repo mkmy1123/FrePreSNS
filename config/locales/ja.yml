@@ -11,3 +11,10 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         optional_id: "ID"
+        name: "名前"
+        introduction: "自己紹介"
+      argument:
+        topic: "論点"
+        target: "対象"
+      expression:
+        statement: "要点"

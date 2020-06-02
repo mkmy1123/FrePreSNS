@@ -1,13 +1,13 @@
 - provide(:title, "LOG IN")
 .hr-container
-  h2 LOG IN
+  h1 LOG IN
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
-      = f.label :optional_id, 'Your ID'
+      = f.label :optional_id, 'ID'
       = f.text_field :optional_id, autofocus: true, autocomplete: "email"
 
     .field
-      = f.label :password
+      = f.label :password, 'Password'
       = f.password_field :password, autocomplete: "current-password"
 
     - if devise_mapping.rememberable?

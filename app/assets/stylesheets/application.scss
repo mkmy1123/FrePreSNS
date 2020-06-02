@@ -56,6 +56,19 @@ body.open {
   width: 100%;
 }
 
+#error-msg{
+  padding: 10px;
+  background: rgba(232, 56, 37, 0.8);
+  border: rgb(232, 56, 37);
+  text-align: center;
+  ul{
+    list-style: none;
+  }
+  li{
+    margin: 5px;
+  }
+}
+
 /* --- HEADER --- */ 
 
 header{
