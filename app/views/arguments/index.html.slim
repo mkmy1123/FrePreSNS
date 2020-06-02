@@ -1,45 +1,67 @@
 - provide(:title, 'ARGUMENTS')
-br
-br
-- if params[:tag]
-  .center
-    h1 ARGUMNET
-    h3 = "##{params[:tag]}"
-    p = link_to ">> 一覧に戻す",arguments_path
-- else
-  .center
-    h1 ARGUMNET
-.center.content-box.arg-form
-    p \ 論点は簡潔に！5字以上20字以内でお願いします！ /
-    = form_with model: @argument, local: true do |f|
+
+.hr-container.center
+  .arg-wrap
+    h1 Welcome for FrePreSNS's world !!!
+    p FrePreSNSの全ての源、ARGUMENT。
+    p 簡単に言えば論点のことですが、詳しくはAboutページやWORDページをご覧ください。
+    br
+    p では早速、ARGUMENTを作成したいところですが...
+    p まずは、試しに似たトピックがないか、確認してみましょう！
+    p 下記のようなタグで検索したいときは、
+    = link_to arguments_path(tag: "FrePre")
+      span.label.tag #FrePre
+    span を押すと抽出されて表示されます！
+
+  .window
+    = search_form_for @q do |f|
+      = f.label :topic_cont, "言いたいこと : "
+      = f.search_field :topic_cont
       br
-      = f.label :target, '対象 : '
-      = f.select :target, Argument.targets.keys.to_a
+      = f.label :target_eq, '論点の対象 : '
+      = f.select :target_eq, Argument.targets.keys.to_a, :include_blank => '指定なし'
       br
-      = f.label :topic, '論点 : '
-      = f.text_field :topic, class: "long-form"
-      br
-      = f.label :tag_list ,'タグ : '
-      = f.text_field :tag_list, value: @argument.tag_list.split(','),placeholder: " , で複数投稿可能 / #は自動です", class: "long-form"
-      - if user_signed_in?
-        = f.submit '送信', class: 'btn',data: {confirm: "一度登録すると、ご自身での削除はできません、内容に問題はないですか？他者が不快に感じる内容はお控えください。"}
-      - else
-        h3 ログインすると投稿できるようになります
-.arg-container
-  - @arguments.each do|arg|
-    .content-box.half
-      h3 = arg.created_at.to_s(:datetime_jp)
-      h4 = "TARGET #{arg.target}"
-      p = render "layouts/tag", objects: arg
-      h3 = link_to arg.topic, argument_path(arg)
-      = render "layouts/check", argument: arg
-      span.label.neutral 中立
-      span = " #{neutral_count(get_expressions(arg))} "
-      span.label.positive 肯定
-      span = " #{positive_count(get_expressions(arg))} "
-      span.label.negative 否定
-      span = " #{negative_count(get_expressions(arg))} "
-      span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)
-.center = paginate @arguments
-br
-br
+      = f.submit "検索", class: "btn"
+
+  .arg-wrap
+    - if params[:tag]
+      h1 ARGUMNET #TAG
+      h3 = "##{params[:tag]}"
+      p = link_to ">> 一覧に戻す",arguments_path
+    - elsif params[:q]
+      h1 SEARCH RESULT
+      p = link_to ">> 一覧に戻す",arguments_path
+    - else
+      h1 ALL ARGUMENTS
+
+  .arg-container
+    - if @arguments.present?
+      = render "arguments/arguments", arguments: @arguments
+    - else
+      .arg-wrap.window
+        h1 Sorry, Not found ... X0
+        p 残念ながら、検索条件に合うArgumentは見つかりませんでした。
+
+  .arg-wrap
+    h1 Let's make ARGUMENT :)
+    p 表現したい内容に沿うARGUMENTが見つかりませんでしたか？
+    p ぜひ、一緒にARGUMENTを作成しましょう！！
+    p ただ、ARGUMENTはFrePre民全員に議論されるものです。
+    p 表現の自由を守るために、後から編集することはできません。
+    p 慎重な投稿にご協力ください！
+  .content-box.arg-form
+      p \ 論点は簡潔に！5字以上20字以内でお願いします！ /
+      = form_with model: @argument, local: true do |f|
+        br
+        = f.label :target, '対象 : '
+        = f.select :target, Argument.targets.keys.to_a
+        br
+        = f.label :topic, '論点 : '
+        = f.text_field :topic, class: "long-form"
+        br
+        = f.label :tag_list ,'タグ : '
+        = f.text_field :tag_list, value: @argument.tag_list.split(','),placeholder: " , で複数投稿可能 / #は自動です", class: "long-form"
+        - if user_signed_in?
+          = f.submit '送信', class: 'btn',data: {confirm: "一度登録すると、ご自身での削除はできません、内容に問題はないですか？他者が不快に感じる内容はお控えください。"}
+        - else
+          h3 ログインすると投稿できるようになります

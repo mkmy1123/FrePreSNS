@@ -2,6 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :quit, :invalid]
   before_action :authenticate_user!, only: [:edit, :update]
 
+  def index
+    @q = User.ransack(params[:q])
+    @users = @q.result.includes(:expressions, :reviews, :relationships, :trustings, :reverse_of_relationships, :trusteds).page(params[:page])
+  end
+
   def show
     @component = Component.new
     @components = Component.where(user_id: @user.id).order(created_at: :desc).page(params[:page_com]).per(8)

@@ -1,0 +1,15 @@
+- arguments.each do|arg|
+  .content-box.half
+    h3 = arg.created_at.to_s(:datetime_jp)
+    h4 = "TARGET #{arg.target}"
+    p = render "layouts/tag", objects: arg
+    h3 = link_to arg.topic, argument_path(arg)
+    = render "layouts/check", argument: arg
+    span.label.neutral 中立
+    span = " #{neutral_count(get_expressions(arg))} "
+    span.label.positive 肯定
+    span = " #{positive_count(get_expressions(arg))} "
+    span.label.negative 否定
+    span = " #{negative_count(get_expressions(arg))} "
+    span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)
+.center = paginate arguments
