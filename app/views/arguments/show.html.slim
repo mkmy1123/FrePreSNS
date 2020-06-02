@@ -1,4 +1,5 @@
 - provide(:title, "#{@argument.topic}")
+= render "layouts/errors", obj: @expression
 .hr-container.center
   h1 ARGUMENT
   br
@@ -12,7 +13,7 @@
       br
       = f.select :position_of, Expression.position_ofs.keys.to_a
       br
-      = f.label :statement, '簡単にいうと :'
+      = f.label :statement, '簡単にいうと(要点) :'
       = f.text_field :statement,placeholder: "20字以内でどうぞ"
       br
       = f.label :detail, '\ あなたの思いの丈をいくらでも叫んでください /'
