@@ -19,4 +19,11 @@
       br
       = f.submit "検索", class: "btn"
 
-  = render "users/users", users: @users
+  - if @users.present?
+    = render "users/users", users: @users
+  - else
+    .user-seach
+      br
+      br
+      h1 Sorry, Not found ... X0
+      p 残念ながら、検索条件に合うユーザーはいませんでした。

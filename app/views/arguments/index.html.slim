@@ -8,6 +8,10 @@
     br
     p では早速、ARGUMENTを作成したいところですが...
     p まずは、試しに似たトピックがないか、確認してみましょう！
+    p 下記のようなタグで検索したいときは、
+    = link_to arguments_path(tag: "FrePre")
+      span.label.tag #FrePre
+    span を押すと抽出されて表示されます！
 
   .window
     = search_form_for @q do |f|
@@ -31,7 +35,12 @@
       h1 ALL ARGUMENTS
 
   .arg-container
-    = render "arguments/arguments", arguments: @arguments
+    - if @arguments.present?
+      = render "arguments/arguments", arguments: @arguments
+    - else
+      .arg-wrap.window
+        h1 Sorry, Not found ... X0
+        p 残念ながら、検索条件に合うArgumentは見つかりませんでした。
 
   .arg-wrap
     h1 Let's make ARGUMENT :)
