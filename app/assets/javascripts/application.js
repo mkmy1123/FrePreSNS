@@ -19,7 +19,7 @@
 //= require_tree .
 
 $(function () {
-
+  // メニューの スイッチになる部分
   $('.menu-trigger').on('click', function () {
     $('html, body').animate({ 'scrollTop': 0 }, 300);
     $(this).toggleClass('active');
@@ -28,7 +28,7 @@ $(function () {
     $('#menu').fadeToggle();
     return false;
   });
-
+  // メニュー表示中に他の部分に触れたら閉じる
   $('.overlay').on('click', function () {
     if ($(this).hasClass('open')) {
       $(this).removeClass('open');
@@ -38,6 +38,7 @@ $(function () {
     }
   });
 
+  // 星評価に使用しているratyに関する表記
   $('#star').raty({
     starType: 'img',
     size: 36,
@@ -48,4 +49,25 @@ $(function () {
     starOn: '/star-on.png',
     scoreName: 'rate'});
 
+  $(".layer", ".eyecatch").hide().fadeIn(1200);
+});
+
+// サイト全体に動きをつけるため、全ページ共通の箱にアニメーションをつけている
+$(document).ready(function () {
+  var EffectTime = 500;
+  var DelayTime = 500;
+  $(".content-box").css({ opacity: 0 });
+  $(window).on("scroll load", function () {
+    var scMiddle = $(this).scrollTop() + $(this).height();
+    var listPos = $(".content-box").offset().top;
+    setTimeout(function(){
+      if (listPos < scMiddle) {
+        $(".content-box").each(function (index) {
+          $(this)
+            .delay(DelayTime * index)
+            .animate({ opacity: 1 }, EffectTime);
+        });
+      }
+    },1200);
+  });
 });

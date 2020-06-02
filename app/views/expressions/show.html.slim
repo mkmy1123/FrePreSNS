@@ -5,11 +5,11 @@
     br
     = render "layouts/user_information", user: @expression.user
   .exp-container
-    .content-box
+    .exp-content-box
       h1 ARGUMENT
       h2 = link_to @argument.topic, argument_path(@argument)
     h1: i.fas.fa-arrow-up
-    .content-box
+    .exp-content-box
       h2 = @expression.created_at.to_s(:datetime_jp)
       - if @expression.user == current_user
         = link_to "EDIT", edit_expression_path(@expression)

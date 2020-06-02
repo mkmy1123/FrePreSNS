@@ -445,6 +445,15 @@ textarea{
     justify-content: flex-start;
   }
 
+  .hr-mini{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    p {
+      font-size: 12px;
+    }
+  }
+
   .center{
     width: 100%;
   }

@@ -25,6 +25,12 @@ $neutral: rgb(196, 179, 157);
   margin-bottom: 10px;
 }
 
+.exp-content-box{
+  border: 2px solid rgba(197, 201, 196, 0.3);
+  padding: 25px;
+  margin-bottom: 15px;
+}
+
 .expression-box{
   width: 30%;
   overflow: auto;
@@ -52,6 +58,7 @@ $neutral: rgb(196, 179, 157);
 .window{
   margin: 15px auto;
   width: 60%;
+  padding: 20px;
   text-align: center;
   background-color: rgba(197, 201, 196, 0.3);
 }
@@ -93,5 +100,9 @@ $neutral: rgb(196, 179, 157);
   .window{
     width: 100%;
     padding: 15px 0;
+  }
+  .exp-container{
+    width: 90%;
+    margin: 0 auto;
   }
 }
