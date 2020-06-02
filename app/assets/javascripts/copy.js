@@ -1,3 +1,4 @@
+// コピーボックス
 function copyToClipboard() {
   var copyTarget = document.getElementById("copyTarget");
   copyTarget.select();
