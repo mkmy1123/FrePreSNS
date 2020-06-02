@@ -1,19 +1,36 @@
 - provide(:title, "EXPRESSIONS")
-.hr-mini
-  - if params[:argument_id].present?
-    .center
-      h1.headline Argument is
-      h1 = link_to @argument.topic,argument_path(@argument)
-      = link_to ">> 一覧に戻す", expressions_path
-  - else
-    .center
-      h1.headline ALL EXPRESSIONS
+.hr-mini.center
+  h1 FREEDOM OF EXPRESSION
+  - unless params[:argument_id]
+    .expression-headline
+      p 表現の自由、せっかくですから行使しませんか？
+      p ARGUMENTに対して、肯定でも否定でも、中立でも。
+    .expression-headline
+      p FrePreSNSには自由な言葉が溢れています！
+      p ここでは、自由に言っていいんです。
+      p あなたの考えはあなたしか持っていないもの。
+    .expression-headline
+      p ぜひ、共有してください！
+    .expression-headline
+      p: strong ただ、反対意見があるのもFrePreSNSの特徴です。
+      p: strong 個人を攻撃しようと考えるのは絶対におやめください。
+      p ここにはFrePreSNSの全ての表現が詰まっています。
+
   .content-box.window
       p \ こちらから議論を限定できます /
       = form_with method: :get,local: true do |f|
         = f.label "論点 : "
         = f.select(:argument_id, options_from_collection_for_select(Argument.all, :id, :topic), class: "window")
         = f.submit "GO" ,class: 'btn'
+  
+  - if params[:argument_id].present?
+    .center
+      h1.headline Argument is
+      h2 = link_to @argument.topic,argument_path(@argument)
+      = link_to ">> 一覧に戻す", expressions_path
+  - else
+    .center
+      h1.headline ALL EXPRESSIONS
 .half-container
   .expression-box.positive-box.center
     h3.label.positive POSITIVE EXPRESSION

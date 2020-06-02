@@ -4,10 +4,12 @@ class ArgumentsController < ApplicationController
   def index
     @argument = Argument.new
     @check = Check.new
+    @q = Argument.ransack(params[:q])
+    @arguments = @q.result.includes(:taggings).page(params[:page]).per(10)
     if params[:tag]
-      @arguments = Argument.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(10)
-    else
-      @arguments = Argument.all.order(created_at: :desc).page(params[:page]).per(10)
+      @arguments = Argument.includes(:taggings).tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(10)
+    elsif params.nil?
+      @arguments = Argument.includes(:taggings).all.order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 

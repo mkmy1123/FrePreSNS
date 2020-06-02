@@ -1,0 +1,29 @@
+.hr-container.center
+  .user-search
+    h1 USER SEARCH !!!
+    p うろ覚えでまた出会いたいUSERさんはこちらで探せます。
+    p 名前かIDを何となくでも覚えていたら、検索してみましょう！
+    br
+    p もしくは、明確にIDを教えてもらった、もしくは覚えている場合。
+    input id="copyTarget" type="text" value="https://frepresns.com/users/ユーザーID" readonly="readonly" 
+    .btn onclick="copyToClipboard()" COPY!
+    p にて、アクセス可能です！
+
+  .window
+    = search_form_for @q do |f|
+      = f.label :name, "うろ覚えの名前 : "
+      = f.search_field :name_cont
+      p　OR
+      = f.label :name, "うろ覚えのID : "
+      = f.search_field :optional_id_cont
+      br
+      = f.submit "検索", class: "btn"
+
+  - if @users.present?
+    = render "users/users", users: @users
+  - else
+    .user-seach
+      br
+      br
+      h1 Sorry, Not found ... X0
+      p 残念ながら、検索条件に合うユーザーはいませんでした。
