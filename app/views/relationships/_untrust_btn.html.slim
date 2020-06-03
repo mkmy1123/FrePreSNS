@@ -1,0 +1,3 @@
+= form_with model: current_user.relationships.find_by(trust_id: user.id), html: { method: :delete } do |f|
+  = f.hidden_field :trust_id, value: user.id
+  = f.submit '信用を外す', class: 'trust-btn'

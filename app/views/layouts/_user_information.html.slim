@@ -6,17 +6,20 @@ h3 = "ID => #{user.optional_id}"
 - elsif user.is_valid == false
   span.label 退会済み
 - elsif user_signed_in?
-  = render "users/trust_btn",user: user
+  - unless current_user == user
+    #trust-ajax
+      - if current_user.trusting?(user)
+        = render 'relationships/untrust_btn', user: user
+      - else
+        = render 'relationships/trust_btn', user: user
 .window.user_info
   = render "layouts/user_avatar", user: user
-  br
-  span TRUSTING | 
-  = link_to user.trustings.length, trust_user_path(trusting: user)
-  span  USERS
-  br
-  span TRUSTED | 
-  = link_to user.trusteds.length, trust_user_path(trusted: user)
-  span  USERS
+  #trusting
+    span TRUSTING | 
+    = link_to user.trustings.length, trust_user_path(trusting: user)
+    span  USERS
+  #trusted
+    = render "relationships/trusted_count", user: user
 
 h3 >> INTRODUCTION
 - if user.introduction.present?

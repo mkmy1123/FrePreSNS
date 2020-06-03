@@ -1,0 +1,4 @@
+$('#check-<%= @check.argument_id %>').html("<%= j(render partial: 'checks/uncheck_btn', locals: {argument: @check.argument}) %>");
+<% flash.each do |type, message| %>
+  $("#flash-<%= @check.argument_id %>").html('<div class="<%= type %>"><div class="msg"><%= message %></div></div>');
+<% end %>

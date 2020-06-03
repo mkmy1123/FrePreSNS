@@ -8,7 +8,7 @@ class ExpressionsController < ApplicationController
       find_argument(params[:argument_id])
       set_style(@argument.expressions)
     else
-      expressions = Expression.all
+      expressions = Expression.includes(:reviews, :user).all
       set_style(expressions)
     end
   end

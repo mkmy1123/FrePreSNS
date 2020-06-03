@@ -4,7 +4,9 @@
   h1 ARGUMENT
   br
   h3 = " #{@argument.target} >>> 『 #{@argument.topic} 』 "
-  = render "layouts/check", argument: @argument
+  <div id="check-#{@argument.id}">
+    = render "checks/check", argument: @argument
+  </div>
   br
 
   .content-box.window
