@@ -6,11 +6,14 @@
     br
     = position(exp)
     h4 = "要点 : #{exp.statement}"
-    - if exp.reviews.present?
-      span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
-    - else
-      span.label = "NO YET REVIEW"
-    br
     = exp.detail
-    br
+    .center
+      span click review
+      i.far.fa-hand-point-down
+      br
+      = link_to expression_path(exp)
+        - if exp.reviews.present?
+          span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
+        - else
+          span.label = "NO YET REVIEW"
 .center = paginate expressions

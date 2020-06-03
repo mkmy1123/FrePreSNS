@@ -1,10 +1,14 @@
 - arguments.each do|arg|
   .content-box.half
+    / todo! slimで動的にidに書き込む方法がわからない
+    <div id="flash-#{arg.id}"></div>
     h3 = arg.created_at.to_s(:datetime_jp)
     h4 = "TARGET #{arg.target}"
     p = render "layouts/tag", objects: arg
     h3 = link_to arg.topic, argument_path(arg)
-    = render "layouts/check", argument: arg
+    <div id="check-#{arg.id}">
+      = render "checks/check", argument: arg
+    </div>
     span.label.neutral 中立
     span = " #{neutral_count(get_expressions(arg))} "
     span.label.positive 肯定

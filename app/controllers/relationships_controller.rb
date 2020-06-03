@@ -10,22 +10,26 @@ class RelationshipsController < ApplicationController
   def create
     trusting = current_user.trust(@user)
     if trusting.save
-      flash[:notice] = 'このUSERを信用しました！これからよろしくお願いします！'
-      redirect_to @user
+      respond_to do |format|
+        format.js { flash.now[:notice] = "このUSERを信用しました！これからよろしくお願いします！" } 
+      end
     else
-      flash.now[:alert] = 'このUSERの信用に失敗しました...'
-      redirect_to @user
+      respond_to do |format|
+        format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" } 
+      end
     end
   end
 
   def destroy
     trusting = current_user.untrust(@user)
     if trusting.destroy
-      flash[:notice] = 'さようなら！このUSERの信用をなかったことにしました！'
-      redirect_to @user
+      respond_to do |format|
+        format.js { flash.now[:notice] = "さようなら！このUSERの信用をなかったことにしました！" } 
+      end
     else
-      flash.now[:alert] = 'このUSERの信用を外すのに失敗しました...'
-      redirect_to @user
+      respond_to do |format|
+        format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" } 
+      end
     end
   end
 

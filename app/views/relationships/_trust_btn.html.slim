@@ -1,0 +1,3 @@
+= form_with model: current_user.relationships.new do |f|
+  = f.hidden_field :trust_id, value: user.id
+  = f.submit '信用する', class: 'trust-btn'

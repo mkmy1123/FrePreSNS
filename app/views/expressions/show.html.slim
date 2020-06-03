@@ -5,36 +5,30 @@
     br
     = render "layouts/user_information", user: @expression.user
   .exp-container
-    .exp-content-box
+    .content-box
       h1 ARGUMENT
       h2 = link_to @argument.topic, argument_path(@argument)
     h1: i.fas.fa-arrow-up
-    .exp-content-box
+    .content-box
       h2 = @expression.created_at.to_s(:datetime_jp)
       - if @expression.user == current_user
         = link_to "EDIT", edit_expression_path(@expression)
         span  | 
         = link_to "DELETE", expression_path(@expression), method: :delete, data:{confirm: "本当に削除してもよろしいですか？"}
       .position-box
+      #flash-review
       h1 THIS EXPRESSION
       = position(@expression)
       h2 = @expression.statement
       p = simple_format(@expression.detail)
       .review-form
         h3 \ 情報の信憑性 を投稿できます /
-        - if user_signed_in?
-          - if @review.rate.present?
-            = "現在、星#{@review.rate}をつけています"
+        #star-form
+          - if user_signed_in?
+            = render "reviews/review", review: @review, expression: @expression
           - else
-            p レビューしていません
-          = form_for @review do |f|
-            #star
-            = f.hidden_field :user_id, value: current_user.id
-            = f.hidden_field :expression_id, value: @expression.id
-            = f.submit 'REVIEW', class: 'btn'
-        - else
-            br
-            p ログイン後に使えるようになります。
-            br
-            h3 =link_to "ログインはこちらから", new_user_session_path
-            br
+              br
+              p ログイン後に使えるようになります。
+              br
+              h3 =link_to "ログインはこちらから", new_user_session_path
+              br
