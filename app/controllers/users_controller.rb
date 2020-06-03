@@ -86,7 +86,8 @@ class UsersController < ApplicationController
   end
 
   def refuse_wrong_user
-    redirect_to root_path unless current_user == @user
-    flash[:alert] = "権限がありません。"
+    if current_user != @user
+      redirect_to root_path, alert: "権限がありません。"
+    end
   end
 end

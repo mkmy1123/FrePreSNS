@@ -1,0 +1,9 @@
+- if review.rate.present?
+  = "現在、星#{review.rate}をつけています"
+- else
+    p レビューしていません
+= form_with model: review do |f|
+  #star
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :expression_id, value: expression.id
+  = f.submit 'REVIEW', class: 'btn'

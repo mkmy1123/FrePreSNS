@@ -7,7 +7,7 @@ class ChecksController < ApplicationController
     if params[:argument_id]
       get_expressions(params[:argument_id])
     end
-    @checked_expressions = @expressions.page(params[:page]).per(8)
+    @checked_expressions = @expressions.includes(:user, :reviews).page(params[:page]).per(8)
   end
 
   def create

@@ -18,6 +18,11 @@
   align-self: flex-start;
 }
 
+.checked-argument-headline{
+  width: 100%;
+  text-align: center;
+}
+
 .check-wrap{
   flex: 1;
   text-align: center;
@@ -37,5 +42,13 @@
 @media screen and (max-width:425px) {
   .check-container{
     width: 100%;
+    padding: 20px;
+    .mini{
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+  .limited-wrap{
+    flex-direction: column;
   }
 }

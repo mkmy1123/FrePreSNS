@@ -10,10 +10,11 @@
           = f.select(:argument_id, options_from_collection_for_select(current_user.checked_arguments, :id, :topic),include_blank: true,class: "window")
           = f.submit "GO" ,class: 'btn'
       - if params[:argument_id]
-          h3.center = "ARGUMENT is 『#{find_arg_topic(params[:argument_id])}』"
-          p.center = link_to ">> 一覧に戻す", checks_path
-          .limited-wrap
-            = render "limited_expressions", expressions: @checked_expressions
+        .checked-argument-headline
+          h3 = "ARGUMENT is 『#{find_arg_topic(params[:argument_id])}』"
+          p = link_to ">> 一覧に戻す", checks_path
+        .limited-wrap
+          = render "limited_expressions", expressions: @checked_expressions
       - elsif @checked_expressions.present?
         = render "check_expressions", expressions: @checked_expressions
       - else
