@@ -6,7 +6,7 @@
 .top-container
   .column
     = link_to expressions_path(argument_id: @argument.id)
-      .content-box.expression
+      .top-content-box.expression
         h1 PICK UP! EXPRESSIONS
         - if @argument.present?
           h3.center = "ARGUMENT : #{@argument.topic}"
@@ -14,7 +14,7 @@
           = bar_chart @argument.expressions.group(:position_of).count, width: "100%", height: "70%", colors: ["#4D4150"] 
     .content-wrap
       = link_to user_path(@random_user)
-        .content-box.user
+        .top-content-box.user
           h1 RANDOM USER
           - if @random_user.present?
             br
@@ -31,7 +31,7 @@
                 p = "TRUSTING #{@random_user.trustings.length}"
                 p = "TRUSTED #{@random_user.trusteds.length}"
 
-      .content-box.random-exp
+      .top-content-box.random-exp
         = link_to expression_path(@random_exp)
           h1 RANDOM EXPRESSION
           - if @random_exp.present?
@@ -51,7 +51,7 @@
             p = @random_exp.user.optional_id
             br
 
-  .content-box.argument
+  .top-content-box.argument
     = link_to arguments_path
       h1 HOT ARGUMENT
       p  今人気のある論点は？？
@@ -66,7 +66,7 @@
         = pie_chart Argument.group(:target).count, width: "100%", height: "45%", colors: ["#903E84", "#136EAB", "#D59533","#DFD238","#93B447","#CB4829","#009453", "#009794", "#0099CE",  "#423885"]
 
 .short
-  .content-box.row
+  .top-content-box.row
     h1 User's
     .content-smallbox
       h3 REVIEW ★★★
@@ -87,7 +87,7 @@
           br
 
 .news-wrap
-  .content-box
+  .top-content-box
     h1 Any topic??
     p 投稿しようにもネタがない... そんな時はNEWSをチェック！
     p （外部ニュースサイトへ遷移します。）
