@@ -14,11 +14,12 @@ html
       - if user_signed_in?
         .login-notice
           = "Login now : #{current_user.optional_id} "
-      - if notice
-        .notice
-          .msg = notice
-      - if alert
-        .alert 
-          .msg = alert
+      #flash
+        - if notice
+          .notice
+            .msg = notice
+        - if alert
+          .alert 
+            .msg = alert
       = yield
     = render 'layouts/footer'

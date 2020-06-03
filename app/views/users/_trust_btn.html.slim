@@ -1,9 +1,9 @@
 - unless current_user == user
   - if current_user.trusting?(user)
-    = form_for(current_user.relationships.find_by(trust_id: user.id), html: { method: :delete }) do |f|
+    = form_with(current_user.relationships.find_by(trust_id: user.id), html: { method: :delete }) do |f|
       = f.hidden_field :trust_id, value: user.id
       = f.submit '信用を外す', class: 'trust-btn'
   - else
-    = form_for(current_user.relationships.build) do |f|
+    = form_with(current_user.relationships.build) do |f|
       = f.hidden_field :trust_id, value: user.id
       = f.submit '信用する', class: 'trust-btn'
