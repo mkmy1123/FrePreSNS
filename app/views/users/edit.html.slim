@@ -1,4 +1,5 @@
 - provide(:title, "EDIT #{@user.optional_id}")
+= render "layouts/errors", obj: @user
 .hr-container
   h1 EDIT PAGE
   = form_for(@user) do |f|

@@ -18,12 +18,21 @@
   align-self: flex-start;
 }
 
+.checked-argument-headline{
+  width: 100%;
+  text-align: center;
+}
+
 .check-wrap{
   flex: 1;
   text-align: center;
   padding: 15px;
   margin-bottom: 15px;
   background-color: rgba(78, 66, 81, 0.5);
+}
+
+.check-btn-wrap{
+  padding: 20px 0;
 }
 
 .check-list{
@@ -33,5 +42,13 @@
 @media screen and (max-width:425px) {
   .check-container{
     width: 100%;
+    padding: 20px;
+    .mini{
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+  .limited-wrap{
+    flex-direction: column;
   }
 }

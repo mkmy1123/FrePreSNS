@@ -1,0 +1,5 @@
+- if user_signed_in?
+  - if current_user.checked?(argument)
+    = render "checks/uncheck_btn", argument: argument
+  - else
+    = render "checks/check_btn", argument: argument

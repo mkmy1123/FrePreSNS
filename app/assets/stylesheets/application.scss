@@ -56,6 +56,19 @@ body.open {
   width: 100%;
 }
 
+#error-msg{
+  padding: 10px;
+  background: rgba(232, 56, 37, 0.8);
+  border: rgb(232, 56, 37);
+  text-align: center;
+  ul{
+    list-style: none;
+  }
+  li{
+    margin: 5px;
+  }
+}
+
 /* --- HEADER --- */ 
 
 header{
@@ -120,6 +133,12 @@ header{
   margin: 5%;
   display: column;
   justify-content: space-between;
+}
+
+.top-content-box{
+  border: 2px solid rgba(197, 201, 196, 0.3);
+  padding: 25px;
+  margin-bottom: 15px;
 }
 
 .content-box{

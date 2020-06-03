@@ -1,11 +1,13 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation">
+  <div id="error-msg">
+    <h3>申し訳ございません。</h3>
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
                  resource: resource.class.model_name.human.downcase)
        %>
     </h2>
+    <p>お手数ですが下記項目をご確認ください。</p>
     <ul>
       <% resource.errors.full_messages.each do |message| %>
         <li><%= message %></li>

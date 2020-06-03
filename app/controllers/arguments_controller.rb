@@ -14,11 +14,12 @@ class ArgumentsController < ApplicationController
   end
 
   def create
-    argument = Argument.new(argument_params)
-    if argument.save
-      redirect_to argument, notice: "ARGUMENTが投稿できました！早速EXPRESSIONを書きましょう！"
+    @argument = Argument.new(argument_params)
+    if @argument.save
+      redirect_to @argument, notice: "ARGUMENTが投稿できました！早速EXPRESSIONを書きましょう！"
     else
-      redirect_to arguments_path, alert: "ARGUMENTが投稿できませんでした！文字数を確認してください..."
+      @q = Argument.ransack(params[:q])
+      render :index
     end
   end
 

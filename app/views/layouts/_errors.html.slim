@@ -1,0 +1,8 @@
+- if obj.errors.any?
+  #error-msg
+    h3 = "残念ながら#{pluralize(obj.errors.count, "件のエラー")} がありました..."
+    h3 内容をご確認の上、再度投稿してください。
+    p エラーが起きたのは下記項目です。
+    ul
+      - obj.errors.full_messages.each do |msg|
+        li = msg

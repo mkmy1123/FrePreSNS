@@ -1,5 +1,5 @@
 - provide(:title, 'ARGUMENTS')
-
+= render "layouts/errors", obj: @argument
 .hr-container.center
   .arg-wrap
     h1 Welcome for FrePreSNS's world !!!
@@ -49,7 +49,7 @@
     p ただ、ARGUMENTはFrePre民全員に議論されるものです。
     p 表現の自由を守るために、後から編集することはできません。
     p 慎重な投稿にご協力ください！
-  .content-box.arg-form
+  .window.arg-form
       p \ 論点は簡潔に！5字以上20字以内でお願いします！ /
       = form_with model: @argument, local: true do |f|
         br
