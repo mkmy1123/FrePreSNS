@@ -1,0 +1,15 @@
+.hr-container.center
+  h1 EDIT EVENT
+  = render "events/event_form", event: @event, argument: @event.argument
+  br
+  br
+
+  h1 DELETE EVENT
+  p イベントの中止ができます。
+  p この操作は取り消せません。
+  p このEVENTに関する投稿が一切できなくなります。
+  p よろしいですか？
+
+  = form_with model: @event, local: true do |f|
+    = f.hidden_field :is_valid, value: false
+    = f.submit 'イベントを中止する', class: 'btn', data:{confirm: "中止します。よろしいですか？" }

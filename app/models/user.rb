@@ -22,6 +22,9 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :expressions, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :participations, dependent: :destroy
+  has_many :participated_events, through: :participations, source: :event
   has_many :checks, dependent: :destroy
   has_many :checked_arguments, through: :checks, source: :argument
   has_many :components, dependent: :destroy
@@ -61,6 +64,10 @@ class User < ApplicationRecord
   # チェック機能の有無を確認する
   def checked?(argument)
     checks.exists?(argument_id: argument.id)
+  end
+
+  def participated?(event)
+    participations.exists?(event_id: event.id)
   end
 
   private
