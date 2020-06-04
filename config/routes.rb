@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:index, :create, :destroy]
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :show, :index]
+  resources :events
 end

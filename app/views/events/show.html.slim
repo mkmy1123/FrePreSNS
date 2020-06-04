@@ -1,0 +1,28 @@
+.container
+  .exp-sidebar
+    h1 PRESENTED BY
+    br
+    = render "layouts/user_information", user: @event.user
+  .event-container
+    h1 EVENT INFOMATIONS
+    .content-box.center
+      h1 ARGUMENT
+      = find_arg_topic(@event.argument_id)
+    .content-box.event-detail
+      h3 = @event.title
+      - if @event.all_day == true
+        span.label 終日
+        strong START
+        = @event.start_time.to_s(:date_jp)
+        strong END
+        = @event.end_time.to_s(:date_jp)
+      - else
+        span.label 時間指定
+        strong  START 
+        = @event.start_time.to_s(:datetime_jp)
+        strong  ~ 
+        strong  END 
+        = @event.end_time.to_s(:datetime_jp)
+      h3 詳細情報
+      p = @event.description
+      

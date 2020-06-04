@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_050257) do
+ActiveRecord::Schema.define(version: 2020_06_04_015550) do
 
   create_table "arguments", force: :cascade do |t|
     t.integer "target", null: false
@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(version: 2020_06_01_050257) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.boolean "all_day", default: false, null: false
+    t.text "description"
+    t.integer "argument_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["argument_id"], name: "index_events_on_argument_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "expressions", force: :cascade do |t|
