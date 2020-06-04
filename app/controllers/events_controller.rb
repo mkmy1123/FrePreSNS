@@ -15,7 +15,11 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event.update(event_params)
+    if @event.update(event_params)
+      redirect_to @event, notice: "Eventが更新できました！"
+    else
+      render :edit
+    end
   end
 
   def show

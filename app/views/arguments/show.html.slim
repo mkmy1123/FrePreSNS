@@ -37,25 +37,4 @@
 
   .content-box.window
     h1 EVENT
-    = form_with model: @event, local: true do |f|
-      .field
-        = f.label :title, 'イベントタイトル'
-        = f.text_field :title, class: "long-form"
-      .field
-        = f.label :start_time, '開始時間'
-        = f.datetime_field :start_time
-      .field
-        = f.label :end_time, '終了時間'
-        = f.datetime_field :end_time
-      .field
-        p 終日のイベントですか？
-        = f.radio_button :all_day, [true]
-        = f.label(:all_day, "はい", value: true)
-        = f.radio_button :all_day, [false]
-        = f.label(:all_day, "いいえ", value: false)
-      .field
-        = f.label :descroption, '説明'
-        = f.text_area :description, class: 'big'
-      = f.hidden_field :argument_id, value: @argument.id
-      = f.hidden_field :user_id, value: current_user.id
-      = f.submit 'イベントの主催者になる', class: 'btn'
+      = render "events/event_form", event: @event, argument: @argument

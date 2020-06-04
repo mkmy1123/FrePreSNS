@@ -1,0 +1,2 @@
+class EventComment < ApplicationRecord
+end

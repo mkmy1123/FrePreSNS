@@ -4,11 +4,13 @@
     br
     = render "layouts/user_information", user: @event.user
   .event-container
-    h1 EVENT INFOMATIONS
-    .content-box.center
-      h1 ARGUMENT
-      = find_arg_topic(@event.argument_id)
     .content-box.event-detail
+      h1 EVENT INFOMATIONS
+      - if @event.user == current_user
+        = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
+      .window.center
+        h1 ARGUMENT
+        = find_arg_topic(@event.argument_id)
       h3 = @event.title
       - if @event.all_day == true
         span.label 終日
@@ -25,4 +27,8 @@
         = @event.end_time.to_s(:datetime_jp)
       h3 詳細情報
       p = @event.description
-      
+
+      .window
+        p こちらのイベントに参加しますか？
+        #participation
+          = render "participations/paticipation", event: @event

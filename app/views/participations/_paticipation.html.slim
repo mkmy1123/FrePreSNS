@@ -1,0 +1,5 @@
+- if user_signed_in?
+  - if current_user.participated?(event)
+    = render "participations/not_go", event: event
+  - else
+    = render "participations/go", event: event

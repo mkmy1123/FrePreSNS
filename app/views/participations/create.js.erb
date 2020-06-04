@@ -1,0 +1,4 @@
+$('#participation').html("<%= j(render partial: 'participations/not_go', locals: {event: @participation.event}) %>");
+<% flash.each do |type, message| %>
+  $("#flash").html('<div class="<%= type %>"><div class="msg"><%= message %></div></div>');
+<% end %>
