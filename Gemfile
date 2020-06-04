@@ -111,3 +111,6 @@ gem 'fog-aws'
 gem 'faker'
 # 検索機能
 gem 'ransack'
+# Eventモデルのカレンダー表示用
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'

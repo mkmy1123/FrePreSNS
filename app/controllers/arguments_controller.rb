@@ -25,6 +25,7 @@ class ArgumentsController < ApplicationController
 
   def show
     @argument = Argument.find(params[:id])
+    @event = Event.new
   end
 
   private

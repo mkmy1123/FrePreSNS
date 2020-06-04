@@ -14,6 +14,8 @@
 //= require raty-js
 //= require chartkick
 //= require Chart.bundle
+//= require moment
+//= require fullcalendar
 //= require rails-ujs
 //= require activestorage
 //= require_tree .

@@ -8,8 +8,15 @@
     = render "checks/check", argument: @argument
   </div>
   br
-
+  .content-box.arg-info
+    h3 このページで２種類のARGUMENTに関する投稿ができます。
+    ul
+      h1 EXPRESSION
+      li このARGUMENTに対しての意見
+      h1 EVENT
+      li このARGUMENTに関するイベント
   .content-box.window
+    h1 EXPRESSION
     = form_with model: @expression, local: true do |f|
       = f.label :position_of, 'あなたの考えは？'
       br
@@ -27,3 +34,7 @@
         = f.submit 'みんなに伝える', class: 'btn'
       - else
         h3 ログインすると投稿できるようになります
+
+  .content-box.window
+    h1 EVENT
+    = render "events/event_form", event: @event, argument: @argument
