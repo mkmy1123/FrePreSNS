@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   resources :rooms, only: [:create, :show, :index]
   resources :events do
+    resources :event_comments, only: [:create, :destroy]
     resource :participation, only: [:create, :destroy]
   end
 end

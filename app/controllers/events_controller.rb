@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @events = Event.where(is_valid: true)
   end
 
   def create
@@ -16,13 +16,16 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to @event, notice: "Eventが更新できました！"
+      redirect_to @event, notice: "Eventが変更されました！"
     else
       render :edit
     end
   end
 
   def show
+    @event_comment = EventComment.new
+    @event_comments = EventComment.where(event_id: @event.id).includes(:user)
+    @users = @event.participated_users
   end
 
   def edit
@@ -38,6 +41,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :start_time, :end_time, :description, :all_day, :argument_id, :user_id)
+    params.require(:event).permit(:title, :start_time, :end_time, :description, :all_day, :argument_id, :user_id, :is_valid)
   end
 end

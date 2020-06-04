@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :expressions, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :participations, dependent: :destroy
+  has_many :participated_events, through: :participations, source: :event
   has_many :checks, dependent: :destroy
   has_many :checked_arguments, through: :checks, source: :argument
   has_many :components, dependent: :destroy

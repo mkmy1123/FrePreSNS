@@ -4,19 +4,24 @@
     br
     = render "layouts/user_information", user: @event.user
   .event-container
-    .content-box.event-detail
+    .event-headline
       h1 EVENT INFOMATIONS
-      - if @event.user == current_user
+      - if @event.is_valid == false
+        span.label.negative 中止決定
+        br
+        h3 このイベントは中止が宣言されました...
+      - elsif @event.user == current_user
         = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
+    .content-box.event-detail
       .window.center
         h1 ARGUMENT
         = find_arg_topic(@event.argument_id)
-      h3 = @event.title
       - if @event.all_day == true
         span.label 終日
-        strong START
+        strong  START 
         = @event.start_time.to_s(:date_jp)
-        strong END
+        strong  ~ 
+        strong END 
         = @event.end_time.to_s(:date_jp)
       - else
         span.label 時間指定
@@ -25,10 +30,50 @@
         strong  ~ 
         strong  END 
         = @event.end_time.to_s(:datetime_jp)
-      h3 詳細情報
+      h2 = @event.title
+      p: strong 詳細情報
       p = @event.description
 
       .window
         p こちらのイベントに参加しますか？
-        #participation
-          = render "participations/paticipation", event: @event
+        - if user_signed_in?
+          - if @event.is_valid == false
+            p イベントが中止されたので参加できません
+          - else
+            #participation
+              = render "participations/paticipation", event: @event
+        - else
+          p = link_to "ログイン後に使える機能です", new_user_session_path
+      .content-box.all-comment
+        h1 USERS
+        p = "現在参加表明しているのは#{@users.count}人です。"
+        - @users.each do|user|
+          = link_to user.optional_id, user_path(user)
+          span &nbsp;
+      .content-box.all-comment
+        h1 EVENT COMMUNICATION
+        - @event_comments.each do |com|
+          p: strong = com.created_at.to_s(:datetime_jp)
+          - if com.user == @event.user
+            span BY 
+            = link_to com.user.optional_id, user_path(com.user)
+            span.label 主催
+          - else
+            span BY 
+            = link_to com.user.optional_id, user_path(com.user)
+          br
+          .argument-title
+            p = com.body
+      .content-box.all-comment
+        - if @event.is_valid == true
+        h1 Have you any questions?
+        h3 主催者とコミュニケーションが取れます！
+        = form_with model: @event_comment, url: event_event_comments_path(@event), local: true do |f|
+          .field
+            = f.label :body, '内容'
+            = f.text_area :body
+            - if user_signed_in?
+              = f.hidden_field :user_id, value: current_user.id
+              = f.submit '送信', class: 'btn'
+            - else
+              p = link_to "ログイン後に使える機能です", new_user_session_path

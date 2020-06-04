@@ -50,10 +50,8 @@ ActiveRecord::Schema.define(version: 2020_06_04_072216) do
     t.integer "user_id", null: false
     t.integer "event_id", null: false
     t.text "body", null: false
-    t.integer "dear_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dear_user_id"], name: "index_event_comments_on_dear_user_id"
     t.index ["event_id"], name: "index_event_comments_on_event_id"
     t.index ["user_id"], name: "index_event_comments_on_user_id"
   end
