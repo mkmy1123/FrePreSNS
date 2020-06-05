@@ -4,7 +4,11 @@
     br
     = render "layouts/user_information", user: @event.user
   .event-container
-    .event-headline
+    .content-box.event-headline
+      h1 ARGUMENT
+      = find_arg_topic(@event.argument_id)
+    h1: i.fas.fa-arrow-up
+    .content-box.event-detail
       h1 EVENT INFOMATIONS
       - if @event.is_valid == false
         span.label.negative 中止決定
@@ -12,10 +16,7 @@
         h3 このイベントは中止が宣言されました...
       - elsif @event.user == current_user
         = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
-    .content-box.event-detail
-      .window.center
-        h1 ARGUMENT
-        = find_arg_topic(@event.argument_id)
+
       - if @event.all_day == true
         span.label 終日
         strong  START 
@@ -65,7 +66,7 @@
           .argument-title
             p = com.body
       - if @event.is_valid == true
-        .content-box.all-comment
+        .content-box.event-comment
           h1 Have you any questions?
           h3 主催者とコミュニケーションが取れます！
           = form_with model: @event_comment, url: event_event_comments_path(@event), local: true do |f|

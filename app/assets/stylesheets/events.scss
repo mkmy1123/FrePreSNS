@@ -11,14 +11,16 @@
 }
 
 .event-detail{
-  width: 90%;
+  width: 80%;
+  margin: 20px auto;
   padding: 20px;
   text-align: center;
 }
 
 .event-headline{
-  margin: 20px;
+  margin: 20px auto;
   text-align: center;
+  width: 80%;
 }
 
 .all-comment{
@@ -26,4 +28,28 @@
   text-align: center;
   overflow: auto;
   max-height: 300px;
+}
+
+.event-comment{
+  background-color: rgba(197, 201, 196, 0.3);
+  width: 100%;
+  text-align: center;
+}
+
+@media screen and (max-width:425px) {
+  .field textarea{
+    width: auto;
+  }
+
+  .event-container{
+    width: 100%;
+    padding: 20px;
+  }
+
+  .event-comment h1{
+    font-size: 20px;
+  }
+  .event-comment h3{
+    font-size: 10px;
+  }
 }

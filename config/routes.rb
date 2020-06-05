@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'about' => 'home#about'
   get 'howto' => 'home#howto'
   get 'word' => 'home#word'
+  get 'report' => 'inquiries#report'
+  get 'contact' => 'inquiries#contact'
+  post 'inquiry' => 'inquiries#create'
 
   get 'users/trust' => 'users#trust_user', as: :trust_user
   get 'users/:id/quit' => 'users#quit', as: :quit

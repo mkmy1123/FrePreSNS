@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:optional_id]
+  # User登録後にwelcomeメールを送信
+  after_create :send_welcome_mail
+
 
   # optional_idでユーザーを判別するため、明示する
   validates_uniqueness_of :optional_id
@@ -43,6 +46,10 @@ class User < ApplicationRecord
   # deviseオーバーライド / 論理削除用
   def active_for_authentication?
     super && (is_valid == true)
+  end
+
+  def send_welcome_mail
+    UserMailer.welcome_mail(self).deliver_now
   end
 
   # フォロー機能 (トラスト機能)関連のメソッド

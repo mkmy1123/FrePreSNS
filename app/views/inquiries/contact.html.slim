@@ -1,0 +1,20 @@
+.hr-container.center
+  .inquiry-wrap
+    h1 CONTACT FORM
+    h3 問い合わせはこちらからご利用いただけます。
+
+  .inquiry-wrap
+    p なにかご不便な点などございましたでしょうか？
+    p いたずら防止のため返信用のメールアドレスを必須項目とさせていただいております。
+    p お間違いなきよう、ご入力ください。
+
+  .inquiry-wrap
+    = form_with model: @inquiry, url: inquiry_path, local: true do |f|
+      .field
+        = f.label :email, 'メールアドレス'
+        = f.email_field :email
+      .field
+        = f.label :content, 'お問い合わせ内容'
+        = f.text_area :content, class: "big"
+      .field
+        = f.submit '送信', class: 'btn'
