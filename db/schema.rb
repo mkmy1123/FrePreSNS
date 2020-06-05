@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_072216) do
+ActiveRecord::Schema.define(version: 2020_06_05_091919) do
 
   create_table "arguments", force: :cascade do |t|
     t.integer "target", null: false
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 2020_06_04_072216) do
     t.integer "position_of", default: 0
     t.string "statement", null: false
     t.string "detail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inquiries", force: :cascade do |t|
+    t.string "email"
+    t.string "content"
+    t.string "problemUrl"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

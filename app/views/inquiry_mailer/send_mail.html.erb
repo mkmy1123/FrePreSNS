@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>おつかれさまです。</p>
+    <p>問い合わせが届きました。</p>
+    <p>下記をご確認ください。</p>
+    <hr>
+    <ul>
+      <li>返信先メールアドレス</li>
+      <p><%= @inquiry.email %></p>
+      <li>内容</li>
+      <p><%= @inquiry.content %></p>
+      <li>問題の指摘されたurl</li>
+      <% if @inquiry.problemUrl.present? %>
+        <p><a href="<%= @inquiry.problemUrl %>"><%= @inquiry.problemUrl %></a></p>
+      <% else %>
+        <p>データがありません</p>
+      <% end %>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>【 FrePreSNS登録情報確認メール 】</h3>
+    <p>この度はご登録ありがとうございます！</p>
+    <p>正式に情報が登録されましたので、ご報告させて頂きます。</p>
+    <p>下記をご確認ください。</p>
+    <hr>
+    <ul>
+      <li>お名前</li>
+      <p><%= @user.name %></p>
+      <li>ID</li>
+      <p><%= @user.optional_id %></p>
+      <li>メールアドレス</li>
+      <p><%= @user.email %></p>
+      <li>マイページ</li>
+      <p>こちらからアクセスください。</p>
+      <a href="https://frepresns.com/users/<%= @user.optional_id %>">https://frepresns.com/users/<%= @user.optional_id %></a>
+      <p>こちらのURLをご共有いただくとスムーズにご友人とも交流いただけます。</p>
+    </ul>
+    <hr>
+    <br>
+    <h3>FrePreSNSの世界をどうぞ、お楽しみください！</h3>
+    <p></p>Presented by <a href="https://frepresns.com">FrePreSNS</a></p>
+    <br>
+  </body>
+</html>
