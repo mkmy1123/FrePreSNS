@@ -10,6 +10,7 @@ class EventCommentsController < ApplicationController
   end
 
   private
+
   def event_comment_params
     params.require(:event_comment).permit(:body, :user_id, :event_id)
   end

@@ -42,7 +42,7 @@ class User < ApplicationRecord
 
   # deviseオーバーライド / 論理削除用
   def active_for_authentication?
-    super && (self.is_valid == true)
+    super && (is_valid == true)
   end
 
   # フォロー機能 (トラスト機能)関連のメソッド
@@ -73,6 +73,6 @@ class User < ApplicationRecord
   private
 
   def allow_empty_string?
-    !introduction.blank?
+    introduction.present?
   end
 end

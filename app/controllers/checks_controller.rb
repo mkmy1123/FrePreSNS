@@ -13,7 +13,7 @@ class ChecksController < ApplicationController
   def create
     @check = current_user.checks.create(argument_id: params[:argument_id])
     respond_to do |format|
-      format.js { flash.now[:notice] = "ARGUMENT を CHECK しました！" } 
+      format.js { flash.now[:notice] = "ARGUMENT を CHECK しました！" }
     end
   end
 
@@ -21,7 +21,7 @@ class ChecksController < ApplicationController
     @check = Check.find_by(argument_id: params[:argument_id], user_id: current_user.id)
     @check.destroy
     respond_to do |format|
-      format.js { flash.now[:alert] = "ARGUMENT の CHECK を外しました！" } 
+      format.js { flash.now[:alert] = "ARGUMENT の CHECK を外しました！" }
     end
   end
 end

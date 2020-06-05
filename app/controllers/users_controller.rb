@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         @current_user_entry = Entry.where(user_id: current_user.id)
         @current_user_entry.each do |cu|
           @user_entry.each do |u|
-            if cu.room_id == u.room_id then
+            if cu.room_id == u.room_id
               @is_room = true
               @room_id = cu.room_id
             end

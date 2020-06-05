@@ -5,7 +5,7 @@
       p あなたの表現の自由を、守りたい。
 .top-container
   .column
-    = link_to expressions_path(argument_id: @argument.id)
+    = link_to expressions_path(argument_id: @argument.id) if @argument.present?
       .content-box.expression
         h1 PICK UP! EXPRESSIONS
         - if @argument.present?
@@ -13,7 +13,7 @@
           p.center これに対してのEXPRESSIONは...
           = bar_chart @argument.expressions.group(:position_of).count, width: "100%", height: "70%", colors: ["#4D4150"] 
     .content-wrap
-      = link_to user_path(@random_user)
+      = link_to user_path(@random_user) if @random_user.present?
         .content-box.user
           h1 RANDOM USER
           - if @random_user.present?
@@ -32,7 +32,7 @@
                 p = "TRUSTED #{@random_user.trusteds.length}"
 
       .content-box.random-exp
-        = link_to expression_path(@random_exp)
+        = link_to expression_path(@random_exp) if @random_exp.present?
           h1 RANDOM EXPRESSION
           - if @random_exp.present?
             br

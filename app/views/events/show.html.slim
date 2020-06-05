@@ -64,16 +64,16 @@
           br
           .argument-title
             p = com.body
-      .content-box.all-comment
-        - if @event.is_valid == true
-        h1 Have you any questions?
-        h3 主催者とコミュニケーションが取れます！
-        = form_with model: @event_comment, url: event_event_comments_path(@event), local: true do |f|
-          .field
-            = f.label :body, '内容'
-            = f.text_area :body
-            - if user_signed_in?
-              = f.hidden_field :user_id, value: current_user.id
-              = f.submit '送信', class: 'btn'
-            - else
-              p = link_to "ログイン後に使える機能です", new_user_session_path
+      - if @event.is_valid == true
+        .content-box.all-comment
+          h1 Have you any questions?
+          h3 主催者とコミュニケーションが取れます！
+          = form_with model: @event_comment, url: event_event_comments_path(@event), local: true do |f|
+            .field
+              = f.label :body, '内容'
+              = f.text_area :body
+              - if user_signed_in?
+                = f.hidden_field :user_id, value: current_user.id
+                = f.submit '送信', class: 'btn'
+              - else
+                p = link_to "ログイン後に使える機能です", new_user_session_path
