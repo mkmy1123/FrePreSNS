@@ -5,18 +5,18 @@
       p あなたの表現の自由を、守りたい。
 .top-container
   .column
-    = link_to expressions_path(argument_id: @argument.id) if @argument.present?
-      .content-box.expression
-        h1 PICK UP! EXPRESSIONS
-        - if @argument.present?
+    - if @argument.present?
+      = link_to expressions_path(argument_id: @argument.id)
+        .content-box.expression
+          h1 PICK UP! EXPRESSIONS
           h3.center = "ARGUMENT : #{@argument.topic}"
           p.center これに対してのEXPRESSIONは...
           = bar_chart @argument.expressions.group(:position_of).count, width: "100%", height: "70%", colors: ["#4D4150"] 
     .content-wrap
-      = link_to user_path(@random_user) if @random_user.present?
-        .content-box.user
-          h1 RANDOM USER
-          - if @random_user.present?
+      - if @random_user.present?
+        = link_to user_path(@random_user)
+          .content-box.user
+            h1 RANDOM USER
             br
             = link_to user_path(@random_user)
               .randomuser-box
@@ -32,9 +32,9 @@
                 p = "TRUSTED #{@random_user.trusteds.length}"
 
       .content-box.random-exp
-        = link_to expression_path(@random_exp) if @random_exp.present?
-          h1 RANDOM EXPRESSION
-          - if @random_exp.present?
+        - if @random_exp.present?
+          = link_to expression_path(@random_exp)
+            h1 RANDOM EXPRESSION
             br
             i.far.fa-flag
             span  ARGUMENT 
