@@ -1,5 +1,4 @@
 class InquiriesController < ApplicationController
-
   before_action :new_inquiry, except: [:create]
 
   def report
@@ -19,8 +18,9 @@ class InquiriesController < ApplicationController
       flash[:alert] = "Error発生！お手数ですがもう一度ご入力ください。"
     end
   end
-  
+
   private
+
   def inquiry_params
     params.require(:inquiry).permit(:email, :content, :problemUrl)
   end

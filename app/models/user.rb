@@ -7,7 +7,6 @@ class User < ApplicationRecord
   # User登録後にwelcomeメールを送信
   after_create :send_welcome_mail
 
-
   # optional_idでユーザーを判別するため、明示する
   validates_uniqueness_of :optional_id
   validates_presence_of :optional_id
