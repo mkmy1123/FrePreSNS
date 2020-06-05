@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" } 
+        format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" }
       end
     end
   end
@@ -25,7 +25,7 @@ class ReviewsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" } 
+        format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" }
       end
     end
   end

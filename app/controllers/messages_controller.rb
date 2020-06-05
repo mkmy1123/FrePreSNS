@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-
   before_action :authenticate_user!
 
   def create
@@ -10,5 +9,4 @@ class MessagesController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-
 end

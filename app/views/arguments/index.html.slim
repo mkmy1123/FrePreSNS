@@ -56,7 +56,7 @@
         = f.label :target, '対象 : '
         = f.select :target, Argument.targets.keys.to_a
         br
-        = f.label :topic, '論点 : '
+        = f.label :topic, '今回の論点 : '
         = f.text_field :topic, class: "long-form"
         br
         = f.label :tag_list ,'タグ : '
