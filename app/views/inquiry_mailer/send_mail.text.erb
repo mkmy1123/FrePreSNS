@@ -1,0 +1,16 @@
+おつかれさまです。
+問い合わせが届きました。
+下記をご確認ください。
+- - - - - - - - - - - - - - - - - - - -
+・返信先メールアドレス
+<%= @inquiry.email %>
+
+・内容
+<%= @inquiry.content %>
+
+・問題の指摘されたurl
+<% if @inquiry.problemUrl.present? %>
+  <%= @inquiry.problemUrl %>
+<% else %>
+  データがありません
+<% end %>

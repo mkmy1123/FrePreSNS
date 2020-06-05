@@ -5,8 +5,8 @@ footer
       li = link_to "ABOUT サイト紹介", about_path
       li = link_to "HOWTO 使い方の説明", howto_path
       li = link_to "WORDS 用語説明", word_path
-      li = link_to "REPORT  不審人物の報告", ''
-      li = link_to "CONTACT お問い合わせ", ''
+      li = link_to "REPORT  不審人物の報告", report_path
+      li = link_to "CONTACT お問い合わせ", contact_path
   .box
     p USER INFOMATIONS
     - if user_signed_in?

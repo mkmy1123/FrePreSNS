@@ -1,0 +1,27 @@
+.hr-container.center
+  .inquiry-wrap
+    h1 Is there something wrong?
+    h3 治安保持にご協力ありがとうございます。
+
+  .inquiry-wrap
+    p まずは不愉快な思いをさせてしまったこと、お詫び申し上げます。
+    p ご迷惑おかけして申し訳ございません。
+    p 悪質なユーザー、投稿に関してお気軽にご連絡ください。
+    p いたずら防止のためメールアドレスを必須項目とさせていただいております。
+    p お間違いなきよう、ご入力ください。
+    p 基本的にはご連絡を希望しない場合、こちらからはご連絡いたしませんが、
+    p ご協力のほど、よろしくお願いいたします。
+  
+  .inquiry-wrap
+    = form_with model: @inquiry, url: inquiry_path, local: true do |f|
+      .field
+        = f.label :email, 'メールアドレス'
+        = f.email_field :email
+      .field
+        = f.label :content, '問題内容'
+        = f.text_area :content, class: "big"
+      .field
+        = f.label :problemUrl, '問題のある投稿URL'
+        = f.text_field :problemUrl
+      
+        = f.submit '送信', class: 'btn'
