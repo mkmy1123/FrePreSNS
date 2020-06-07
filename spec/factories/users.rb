@@ -9,5 +9,9 @@ FactoryBot.define do
     factory :introduction_user do
       introduction { "hellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellohellphello" }
     end
+
+    factory :invalid_user do
+      is_valid { false }
+    end
   end
 end

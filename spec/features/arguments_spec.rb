@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.feature "Arguments", type: :feature do
-  scenario "user creates a new argument" do
+  include Devise::Test::IntegrationHelpers
+  background do
     user = FactoryBot.create(:user)
+    sign_in user
+  end
+  scenario "The user creates a new argument" do
     visit root_path
-    click_link "LOG IN"
-    fill_in "ID", with: user.optional_id
-    fill_in "Password", with: user.password
-    click_button "ログインする"
     click_link "ARGUMENTS"
     expect(page).to have_content "論点は簡潔に！"
     find_field("今回の論点").set('テストの論点です。')

@@ -6,7 +6,7 @@
   .event-container
     .content-box.event-headline
       h1 ARGUMENT
-      = find_arg_topic(@event.argument_id)
+      h3 = find_arg_topic(@event.argument_id)
     h1: i.fas.fa-arrow-up
     .content-box.event-detail
       h1 EVENT INFOMATIONS
@@ -15,7 +15,7 @@
         br
         h3 このイベントは中止が宣言されました...
       - elsif @event.user == current_user
-        = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
+        p = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
 
       - if @event.all_day == true
         span.label 終日
