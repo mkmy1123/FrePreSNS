@@ -48,9 +48,7 @@ class User < ApplicationRecord
   end
 
   def send_welcome_mail
-    if Rails.env.production?
-      UserMailer.welcome_mail(self).deliver_now
-    end
+    UserMailer.welcome_mail(self).deliver_now
   end
 
   # フォロー機能 (トラスト機能)関連のメソッド

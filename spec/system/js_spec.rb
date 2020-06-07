@@ -11,8 +11,7 @@ RSpec.feature "relationships", type: :system do
   scenario "The user trust the other user, in js", js: true do
     visit user_path(@user2)
     click_button "信用する"
-    sleep 3
-    expect(page).to have_css('.notice')
+    expect(find('.notice')).to have_content('信用しました')
   end
 
   scenario "The user untrust the other user, in js", js: true do
@@ -20,7 +19,6 @@ RSpec.feature "relationships", type: :system do
     visit user_path(@user2)
     expect(page).to have_content "TRUSTED | 1"
     click_button "信用を外す"
-    sleep 3
-    expect(page).to have_css('.notice')
+    expect(find('.notice')).to have_content('さようなら')
   end
 end
