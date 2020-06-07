@@ -1,29 +1,26 @@
-# SystemSpecを使用するための環境構築がうまくいかない
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.feature "relationships", type: :system do
-#   include Devise::Test::IntegrationHelpers
-#   before do
-#     @user = create(:user)
-#     @user2 = create(:user)
-#     sign_in @user
-#   end
-#   # scenario "The user trust the other user" do
-#   #   visit user_path(@user2)
-#   #   expect(page).to have_content "TRUSTED | 0"
-#   #   click_button "信用する"
-#   #   expect(page).to have_content "TRUSTED | 1"
-#   # end
-#   scenario "The user trust the other user" do
-#     visit user_path(@user2)
-#     click_button "信用する"
-#     expect(page).to have_content "信用しました"
-#   end
-#   scenario "The user untrust the other user" do
-#     @user.trust(@user2)
-#     visit user_path(@user2)
-#     expect(page).to have_content "TRUSTED | 1"
-#     click_button "信用を外す"
-#     expect(page).to have_content "TRUSTED | 0"
-#   end
-# end
+RSpec.feature "relationships", type: :system do
+  include Devise::Test::IntegrationHelpers
+  before do
+    @user = create(:user)
+    @user2 = create(:user)
+    sign_in @user
+  end
+
+  scenario "The user trust the other user, in js", js: true do
+    visit user_path(@user2)
+    click_button "信用する"
+    sleep 3
+    expect(page).to have_css('.notice')
+  end
+
+  scenario "The user untrust the other user, in js", js: true do
+    @user.trust(@user2)
+    visit user_path(@user2)
+    expect(page).to have_content "TRUSTED | 1"
+    click_button "信用を外す"
+    sleep 3
+    expect(page).to have_css('.notice')
+  end
+end
