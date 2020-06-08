@@ -4,6 +4,11 @@ FactoryBot.define do
     association :user
     association :argument
 
+    factory :positive_expression do
+      statement { "プログラミング楽しい！" }
+      position_of { 1 }
+    end
+
     trait :add_detail do
       sequence(:detail) { |n| "#{n}はやっぱりどうしてもおかしい" }
     end

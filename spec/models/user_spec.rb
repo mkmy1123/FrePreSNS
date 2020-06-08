@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-# 最初の簡単なテストなので条件文を英語で挑戦して書いてみてます
 RSpec.describe User, type: :model do
   it "is valid with optional_id, name, email, password, and  password_comfimation" do
     expect(FactoryBot.build(:user)).to be_valid
