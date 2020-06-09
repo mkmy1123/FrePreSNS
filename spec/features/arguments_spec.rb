@@ -9,7 +9,7 @@ RSpec.feature "Arguments", type: :feature do
     @argument = FactoryBot.create(:tag_argument)
   end
   describe "Action as index page" do
-    let(:argument){ FactoryBot.create(:argument) }
+    let(:argument) { FactoryBot.create(:argument) }
 
     scenario "Only signed_in_user get submit btn" do
       sign_out @user
