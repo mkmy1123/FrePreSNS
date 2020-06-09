@@ -11,10 +11,12 @@ class RelationshipsController < ApplicationController
     trusting = current_user.trust(@user)
     if trusting.save
       respond_to do |format|
+        format.html { redirect_to user_path(@user) }
         format.js { flash.now[:notice] = "このUSERを信用しました！これからよろしくお願いします！" }
       end
     else
       respond_to do |format|
+        format.html { redirect_to user_path(@user) }
         format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" }
       end
     end
@@ -24,10 +26,12 @@ class RelationshipsController < ApplicationController
     trusting = current_user.untrust(@user)
     if trusting.destroy
       respond_to do |format|
+        format.html { redirect_to user_path(@user) }
         format.js { flash.now[:notice] = "さようなら！このUSERの信用をなかったことにしました！" }
       end
     else
       respond_to do |format|
+        format.html { redirect_to user_path(@user) }
         format.js { flash.now[:alert] = "Error!ブラウザの再読み込みをお試しください" }
       end
     end
