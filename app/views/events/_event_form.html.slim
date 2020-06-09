@@ -17,6 +17,9 @@
   .field
     = f.label :descroption, '説明'
     = f.text_area :description, class: 'big'
-  = f.hidden_field :argument_id, value: argument.id
-  = f.hidden_field :user_id, value: current_user.id
-  = f.submit 'イベントを主催する', class: 'btn'
+    - if user_signed_in?
+      = f.hidden_field :argument_id, value: argument.id
+      = f.hidden_field :user_id, value: current_user.id
+      = f.submit 'イベントを主催する', class: 'btn'
+    - else
+      h3 ログインすると投稿できるようになります

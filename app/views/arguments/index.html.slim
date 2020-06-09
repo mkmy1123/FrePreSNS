@@ -17,11 +17,11 @@
     = search_form_for @q do |f|
       = f.label :topic_cont, "言いたいこと : "
       = f.search_field :topic_cont
-      br
-      = f.label :target_eq, '論点の対象 : '
-      = f.select :target_eq, Argument.targets.keys.to_a, :include_blank => '指定なし'
-      br
       = f.submit "検索", class: "btn"
+    = form_with method: :get,local: true do |f|
+      = f.label :target, '絞り込み : '
+      = f.select :target, Argument.targets.keys.to_a,include_blank: "指定なし"
+      = f.submit "GO" ,class: 'btn'
 
   .arg-wrap
     - if params[:tag]
@@ -30,6 +30,10 @@
       p = link_to ">> 一覧に戻す",arguments_path
     - elsif params[:q]
       h1 SEARCH RESULT
+      p = link_to ">> 一覧に戻す",arguments_path
+    - elsif params[:target]
+      h1 SEARCH RESULT
+      h3 = "TARGET : #{params[:target]}"
       p = link_to ">> 一覧に戻す",arguments_path
     - else
       h1 ALL ARGUMENTS
@@ -56,7 +60,7 @@
         = f.label :target, '対象 : '
         = f.select :target, Argument.targets.keys.to_a
         br
-        = f.label :topic, '今回の論点 : '
+        = f.label :topic, '論点 : '
         = f.text_field :topic, class: "long-form"
         br
         = f.label :tag_list ,'タグ : '

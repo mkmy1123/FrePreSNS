@@ -39,6 +39,22 @@ RSpec.feature "registration", type: :feature do
       visit user_path(user)
       expect(page).to have_css("img[src*='default']")
     end
+
+    scenario "After resistration, other user is able to trust" do
+      visit root_path
+      click_link "SIGN UP"
+      fill_in "Email メールアドレス", with: "test@test.com"
+      fill_in "Name 名前", with: "テストさん"
+      fill_in "ID ログイン用", with: "test1010"
+      fill_in "Passwpord パスワード", with: "testtest"
+      fill_in "Password 確認用", with: "testtest"
+      click_button "登録する"
+      click_link "LOG OUT"
+      sign_in other_user
+      visit user_path("test1010")
+      click_button "信用する"
+      expect(page).to have_content "TRUSTED | 1"
+    end
   end
 
   describe 'delete user' do
