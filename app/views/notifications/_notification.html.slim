@@ -1,0 +1,12 @@
+- visitor = notification.visitor
+- visited = notification.visited
+.container
+  span
+    = link_to user_path(visitor) do
+      strong
+        = visitor.name
+    = 'さんが'
+
+    - case notification.action
+    - when 'trust' then
+      = "あなたをフォローしました"

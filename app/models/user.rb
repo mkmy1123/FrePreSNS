@@ -42,6 +42,10 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
 
+  # 通知機能に使用
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
   # deviseオーバーライド / 論理削除用
   def active_for_authentication?
     super && (is_valid == true)
@@ -65,6 +69,17 @@ class User < ApplicationRecord
 
   def trusting?(other_user)
     trustings.include?(other_user)
+  end
+
+  def create_notification_trust!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'trust'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'trust'
+      )
+      notification.save if notification.valid?
+    end
   end
 
   # チェック機能の有無を確認する

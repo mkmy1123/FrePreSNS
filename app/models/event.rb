@@ -5,5 +5,7 @@ class Event < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :participated_users, through: :participations, source: :user
 
+  has_many :notifications, dependent: :destroy
+
   validates :title, presence: true
 end

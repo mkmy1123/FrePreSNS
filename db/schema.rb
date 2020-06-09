@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_091919) do
+ActiveRecord::Schema.define(version: 2020_06_09_141817) do
 
   create_table "arguments", force: :cascade do |t|
     t.integer "target", null: false
@@ -97,6 +97,22 @@ ActiveRecord::Schema.define(version: 2020_06_05_091919) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "argument_id"
+    t.integer "expression_id"
+    t.integer "event_id"
+    t.string "action", default: "", null: false
+    t.boolean "looked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_notifications_on_event_id"
+    t.index ["expression_id"], name: "index_notifications_on_expression_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "participations", force: :cascade do |t|
