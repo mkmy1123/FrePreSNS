@@ -9,6 +9,13 @@
 User.create!(
   [
     {
+      email: 'master@test.com',
+      optional_id: 'mkmy1123',
+      name: '管理人',
+      password: 'testtest',
+      password_confirmation: 'testtest'
+    },
+    {
       email: 'test1@test.com',
       optional_id: 'yamadamada',
       name: 'やまだ',
@@ -40,6 +47,13 @@ User.create!(
       email: 'test5@test.com',
       optional_id: 'helloworld',
       name: '駆け出しエンジニア',
+      password: 'testtest',
+      password_confirmation: 'testtest'
+    },
+    {
+      email: 'test6@test.com',
+      optional_id: 'testtester',
+      name: 'お試しアカウント',
       password: 'testtest',
       password_confirmation: 'testtest'
     }

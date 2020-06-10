@@ -6,7 +6,6 @@ class Argument < ApplicationRecord
   has_many :checks
   has_many :checked_users, through: :checks, source: :user
 
-  # 通常のバリデーション
   validates :topic, presence: true, length: { minimum: 5, maximum: 20 }
   validates :target, presence: true
 

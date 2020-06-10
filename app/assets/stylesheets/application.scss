@@ -32,7 +32,7 @@ $neutral: rgb(196, 179, 157);
 }
 
 h1{
-  font-family: 'Shadows Into Light', cursive;
+  font-family: 'Shadows Into Light', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 a{
@@ -433,11 +433,16 @@ textarea{
   height: 35px;
   line-height: 35px;
   text-align: center;
-  color: #000;
+  a{
+    color: #000;
+  }
 }
 
 .login-notice:hover{
   background: rgba(197, 201, 196, 0.5);
+  a:hover{
+    color: #000;
+  }
 }
 
 .msg{

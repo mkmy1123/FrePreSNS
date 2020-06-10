@@ -5,9 +5,9 @@ class Event < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :participated_users, through: :participations, source: :user
 
+  validates :title, presence: true, length: { minimum: 5, maximum: 20 }
   has_many :notifications, dependent: :destroy
-
-  validates :title, presence: true
+  
 
   def create_notification_comment!(current_user, event_comment_id)
     temp_ids = Participation.select(:user_id).where.not(user_id: current_user.id).distinct
