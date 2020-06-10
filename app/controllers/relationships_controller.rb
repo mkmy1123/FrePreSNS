@@ -9,6 +9,7 @@ class RelationshipsController < ApplicationController
 
   def create
     trusting = current_user.trust(@user)
+    @user.create_notification_trust!(current_user)
     if trusting.save
       respond_to do |format|
         format.html { redirect_to user_path(@user) }

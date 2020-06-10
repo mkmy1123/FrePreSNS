@@ -21,6 +21,7 @@ class ExpressionsController < ApplicationController
     @expression.user_id = current_user.id
     find_argument(@expression.argument_id)
     if @expression.save
+      @argument.create_notification_checkedEexpression!(current_user, @expression.id)
       redirect_to @expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
     else
       render "arguments/show"
