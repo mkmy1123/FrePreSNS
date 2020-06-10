@@ -63,6 +63,8 @@
 - FullCalender(カレンダー表示)
 - Raty.js(星評価)
 - kaminari(ページネーション)
+- chartkick(グラフ化)
+- acts-as-taggable-on(タグ機能)
 - ransack(検索機能)
 - slim(テンプレートエンジン)
 - rubocop-airbnb(静的解析)
