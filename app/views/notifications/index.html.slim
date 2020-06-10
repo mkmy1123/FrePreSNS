@@ -1,3 +1,4 @@
+- provide(:title, "#{current_user.optional_id}'s DATA")
 - notifications = @notifications.where.not(visitor_id: current_user.id)
 .hr-container
   .notification-wrap
@@ -19,14 +20,20 @@
     h1 EVENTS
     p \ 参加予定のイベント一覧 /
     .content-box.notification-box
-      - @partIn.each do |part|
-        = link_to part.event.title, event_path(part.event)
-        = " / "
+      - if @partIn.present?
+        - @partIn.each do |part|
+          = link_to part.event.title, event_path(part.event)
+          = " / "
+      - else
+        p 参加予定のイベントはありません
 
   .notification-wrap
     h1 CHECKED ARGUMENTS
     p \ CHECK済み ARGUMENT一覧 /
     .content-box.notification-box
-      - @checks.each do |check|
-        = link_to check.argument.topic, argument_path(check.argument)
-        = " / "
+      - if @checks.present?
+        - @checks.each do |check|
+          = link_to check.argument.topic, argument_path(check.argument)
+          = " / "
+      - else
+        p CHECK済みのARGUMENTが存在しません

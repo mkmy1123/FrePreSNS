@@ -1,3 +1,4 @@
+- provide(:title, "#{@event.title}")
 .container
   .exp-sidebar
     h1 PRESENTED BY
@@ -33,7 +34,7 @@
         = @event.end_time.to_s(:datetime_jp)
       h2 = @event.title
       p: strong 詳細情報
-      p = @event.description
+      p = simple_format(@event.description)
 
       .window
         p こちらのイベントに参加しますか？
@@ -50,7 +51,7 @@
         p = "現在参加表明しているのは#{@users.count}人です。"
         - @users.each do|user|
           = link_to user.optional_id, user_path(user)
-          span &nbsp;
+          = " / "
       .content-box.all-comment
         h1 EVENT COMMUNICATION
         - @event_comments.each do |com|

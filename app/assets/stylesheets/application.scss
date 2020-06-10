@@ -433,7 +433,9 @@ textarea{
   height: 35px;
   line-height: 35px;
   text-align: center;
-  color: #000;
+  a{
+    color: #000;
+  }
 }
 
 .login-notice:hover{
