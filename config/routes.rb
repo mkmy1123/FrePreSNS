@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'report' => 'inquiries#report'
   get 'contact' => 'inquiries#contact'
   post 'inquiry' => 'inquiries#create'
+  post '/guest_sign_in', to: 'home#guest'
 
   get 'users/trust' => 'users#trust_user', as: :trust_user
   get 'users/:id/quit' => 'users#quit', as: :quit
