@@ -50,9 +50,14 @@ class UsersController < ApplicationController
   end
 
   def invalid
-    @user.update(is_valid: false)
-    reset_session
-    redirect_to root_path, notice: "退会手続きができました。FrePreはあなたの再登録をお待ちしてます！"
+    tester = User.friendly.find('testtester')
+    if @user != tester
+      @user.update(is_valid: false)
+      reset_session
+      redirect_to root_path, notice: "退会手続きができました。FrePreはあなたの再登録をお待ちしてます！"
+    else
+      redirect_to root_path, alert: "退会手続きがが許可されていません！"
+    end
   end
 
   def trust_user

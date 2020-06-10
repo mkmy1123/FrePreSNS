@@ -1,0 +1,32 @@
+- notifications = @notifications.where.not(visitor_id: current_user.id)
+.hr-container
+  .notification-wrap
+    h1 = "YOUR DATA < #{current_user.optional_id} > "
+    p こちらであなたに関するデータを確認できます！
+  .notification-wrap
+    h1 NOTIFICATIONS
+    - if notifications.exists?
+      p \ あなた宛の通知です、確認済みを押すと表示されなくなります。 /
+      = link_to "確認済み", look_path, method: :put, class: 'btn'
+      .content-box.notification-box
+        = render notifications
+        = paginate notifications
+    - else
+      .content-box.notification-box
+        p 通知はありません
+
+  .notification-wrap
+    h1 EVENTS
+    p \ 参加予定のイベント一覧 /
+    .content-box.notification-box
+      - @partIn.each do |part|
+        = link_to part.event.title, event_path(part.event)
+        = " / "
+
+  .notification-wrap
+    h1 CHECKED ARGUMENTS
+    p \ CHECK済み ARGUMENT一覧 /
+    .content-box.notification-box
+      - @checks.each do |check|
+        = link_to check.argument.topic, argument_path(check.argument)
+        = " / "
