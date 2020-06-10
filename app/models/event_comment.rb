@@ -4,4 +4,6 @@ class EventComment < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  validates :body, presence: true, length: { minimum: 5, maximum: 100 }
+
 end
