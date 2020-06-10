@@ -1,0 +1,26 @@
+- visitor = notification.visitor
+- visited = notification.visited
+
+span
+  = link_to user_path(visitor) do
+    strong
+      = visitor.name
+  = 'さんが'
+
+  - case notification.action
+  - when 'trust' then
+    = "あなたをフォローしました"
+  - when 'comment' then
+    - if notification.event.user_id == visited.id
+      = link_to "【主催イベント】#{notification.event.title}", notification.event, style: "font-weight: bold;"
+    - else
+      span
+        = link_to event_path(notification.event) do
+          strong
+            = notification.event.title
+    = "にコメントしました"
+  - when 'checkedExpression' then
+    = link_to "【CHECK済】#{notification.argument.topic}", expressions_path(argument_id: notification.argument.id), style: "font-weight: bold;"
+    = "に#{notification.expression.position_of}で表明しました！"
+  span.label = "#{time_ago_in_words(notification.created_at).upcase}前"
+  .answer

@@ -22,6 +22,12 @@ class HomeController < ApplicationController
   def word
   end
 
+  def guest
+    user = User.friendly.find('testtester')
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   private
 
   def ranking_arg

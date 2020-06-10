@@ -12,8 +12,12 @@ html
     .content
       = render 'layouts/header'
       - if user_signed_in?
-        .login-notice
-          = "Login now : #{current_user.optional_id} "
+        = link_to(notifications_path) do
+          .login-notice
+            = "Login now : #{current_user.optional_id} "
+            - if unlooked_notifications.any?
+              = link_to(notifications_path) do
+                i.fas.fa-bell
       #flash
         - if notice
           .notice
