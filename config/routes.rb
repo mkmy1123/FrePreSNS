@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   put 'users/:id/invalid' => 'users#invalid', as: :invalid
   get 'checks' => 'checks#index', as: :checks
   get 'users' => 'users#index'
+  put 'notifications/look', as: :look
 
   resources :users, only: [:show, :edit, :update]
   resources :components, only: [:index, :update, :create, :destroy, :edit]
@@ -32,5 +33,5 @@ Rails.application.routes.draw do
     resources :event_comments, only: [:create, :destroy]
     resource :participation, only: [:create, :destroy]
   end
-  resources :notifications, only: :index
+  resources :notifications, only: [:index]
 end

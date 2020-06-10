@@ -105,10 +105,13 @@ ActiveRecord::Schema.define(version: 2020_06_09_141817) do
     t.integer "argument_id"
     t.integer "expression_id"
     t.integer "event_id"
+    t.integer "event_comment_id"
     t.string "action", default: "", null: false
     t.boolean "looked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["argument_id"], name: "index_notifications_on_argument_id"
+    t.index ["event_comment_id"], name: "index_notifications_on_event_comment_id"
     t.index ["event_id"], name: "index_notifications_on_event_id"
     t.index ["expression_id"], name: "index_notifications_on_expression_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"

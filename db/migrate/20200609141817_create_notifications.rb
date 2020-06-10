@@ -6,6 +6,7 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
       t.integer :argument_id
       t.integer :expression_id
       t.integer :event_id
+      t.integer :event_comment_id
       t.string :action, default: '', null: false
       t.boolean :looked, default: false, null: false
 
@@ -14,7 +15,9 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
 
     add_index :notifications, :visitor_id
     add_index :notifications, :visited_id
+    add_index :notifications, :argument_id
     add_index :notifications, :expression_id
     add_index :notifications, :event_id
+    add_index :notifications, :event_comment_id
   end
 end
