@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :new_component, only: [:show]
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :refuse_wrong_user, only: [:edit, :update, :quit, :invalid]
+  before_action :refuse_test_user, only: [:update, :invalid]
 
   def index
     @q = User.ransack(params[:q])
@@ -50,14 +51,9 @@ class UsersController < ApplicationController
   end
 
   def invalid
-    tester = User.friendly.find('testtester')
-    if @user != tester
-      @user.update(is_valid: false)
-      reset_session
-      redirect_to root_path, notice: "退会手続きができました。FrePreはあなたの再登録をお待ちしてます！"
-    else
-      redirect_to root_path, alert: "退会手続きがが許可されていません！"
-    end
+    @user.update(is_valid: false)
+    reset_session
+    redirect_to root_path, notice: "退会手続きができました。FrePreはあなたの再登録をお待ちしてます！"
   end
 
   def trust_user
@@ -93,6 +89,13 @@ class UsersController < ApplicationController
   def refuse_wrong_user
     if current_user != @user
       redirect_to root_path, alert: "権限がありません。"
+    end
+  end
+
+  def refuse_test_user
+    tester = User.friendly.find('testtester')
+    if @user == tester
+      redirect_to root_path, alert: "その操作は許可されていません！"
     end
   end
 end
