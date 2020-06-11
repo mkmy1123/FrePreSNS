@@ -14,7 +14,7 @@ html
       - if user_signed_in?
         = link_to(notifications_path) do
           .login-notice
-            = "Login now : #{current_user.optional_id} "
+            p.noti-link= "Login now : #{current_user.optional_id} "
             - if unlooked_notifications.any?
               = link_to(notifications_path) do
                 i.fas.fa-bell
