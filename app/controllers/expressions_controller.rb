@@ -6,7 +6,8 @@ class ExpressionsController < ApplicationController
   def index
     if params[:argument_id]
       find_argument(params[:argument_id])
-      set_style(@argument.expressions)
+      @expressions = Expression.where(argument_id: @argument.id).includes(:reviews, :user)
+      set_style(@expressions)
     else
       expressions = Expression.includes(:reviews, :user).all
       set_style(expressions)

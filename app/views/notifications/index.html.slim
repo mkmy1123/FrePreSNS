@@ -1,4 +1,4 @@
-- provide(:title, "#{current_user.optional_id}'s DATA")
+- provide(:title, "#{current_user.optional_id} DATA")
 - notifications = @notifications.where.not(visitor_id: current_user.id)
 .hr-container
   .notification-wrap
@@ -33,7 +33,7 @@
     .content-box.notification-box
       - if @checks.present?
         - @checks.each do |check|
-          = link_to check.argument.topic, argument_path(check.argument)
+          = link_to check.argument.topic, expressions_path(argument_id: check.argument.id)
           = " / "
       - else
         p CHECK済みのARGUMENTが存在しません

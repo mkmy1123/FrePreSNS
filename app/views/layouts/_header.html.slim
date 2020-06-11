@@ -1,67 +1,67 @@
 header
-      .left
-        = link_to root_path
-          h1 FrePreSNS
-      .center
-        h1.theme 誰にでも、表現に圧倒的な自由を。
-      #menu.menu
-        .menubar
-          h1 MENU
-        - if user_signed_in? 
-          ul
-            p << 基となる論点 >>
-            li = link_to arguments_path
-              h2 ARGUMENTS
-            p << 自由な表現たち >>
-            li = link_to expressions_path
-              h2 EXPRESSIONS
-            p << 表現活動 >>
-            li = link_to events_path
-              h2 EVENTS
-            p << FrePre民の成分 >>
-            li = link_to components_path
-              h2 COMPONENT
-            p << FrePre民専用 >>
-            li = link_to user_path(current_user)
-              h2 MY PAGE
-            p << TRUST済 FrePre民 >>
-            li = link_to relationships_path
-              h2 TRUST
-            p << CHECK済 論点 >>
-            li = link_to checks_path
-              h2 CHECKED
-            p << ログアウト >>
-            li = link_to destroy_user_session_path ,method: :delete
-              h2 LOG OUT
-        - else
-          ul
-            p << FrePreについて >>
-            li = link_to about_path
-              h2  ABOUT
-            p << 使い方 >>
-            li = link_to howto_path
-              h2 HOWTO
-            p << 基となる論点 >>
-            li = link_to arguments_path
-              h2 ARGUMENT
-            p << 自由な表現たち >>
-            li = link_to expressions_path
-              h2 EXPRESSION
-            p << 表現活動 >>
-            li = link_to events_path
-              h2 EVENTS
-            p << USERの成分 >>
-            li = link_to components_path
-              h2 COMPONENT
-            p << ログイン >>
-            li = link_to new_user_session_path
-              h2 LOG IN
-            p << 新規登録 >>
-            li = link_to new_user_registration_path
-              h2 SIGN UP
-      .overlay
-      #hm-icon
-        a.menu-trigger href="#"
-          span
-          span
-          span
+  .logo-wrap
+    = link_to root_path
+      = image_tag asset_path("logo.png"),size:'150x180'
+  .center
+    h1.theme 誰にでも、表現に圧倒的な自由を。
+  #menu.menu
+    .menubar
+      h1 MENU
+    - if user_signed_in? 
+      ul
+        p << 基となる論点 >>
+        li = link_to arguments_path
+          h2 ARGUMENTS
+        p << 自由な表現たち >>
+        li = link_to expressions_path
+          h2 EXPRESSIONS
+        p << 表現活動 >>
+        li = link_to events_path
+          h2 EVENTS
+        p << FrePre民の成分 >>
+        li = link_to components_path
+          h2 COMPONENT
+        p << FrePre民専用 >>
+        li = link_to user_path(current_user)
+          h2 MY PAGE
+        p << TRUST済 FrePre民 >>
+        li = link_to relationships_path
+          h2 TRUST
+        p << CHECK済 論点 >>
+        li = link_to checks_path
+          h2 CHECKED
+        p << ログアウト >>
+        li = link_to destroy_user_session_path ,method: :delete
+          h2 LOG OUT
+    - else
+      ul
+        p << FrePreについて >>
+        li = link_to about_path
+          h2  ABOUT
+        p << 使い方 >>
+        li = link_to howto_path
+          h2 HOWTO
+        p << 基となる論点 >>
+        li = link_to arguments_path
+          h2 ARGUMENT
+        p << 自由な表現たち >>
+        li = link_to expressions_path
+          h2 EXPRESSION
+        p << 表現活動 >>
+        li = link_to events_path
+          h2 EVENTS
+        p << USERの成分 >>
+        li = link_to components_path
+          h2 COMPONENT
+        p << ログイン >>
+        li = link_to new_user_session_path
+          h2 LOG IN
+        p << 新規登録 >>
+        li = link_to new_user_registration_path
+          h2 SIGN UP
+.overlay
+#hm-icon
+  a.menu-trigger href="#"
+    span
+    span
+    span
