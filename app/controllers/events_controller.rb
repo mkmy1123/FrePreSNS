@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update]
 
   def index
     @events = Event.where(is_valid: true)
@@ -29,10 +29,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-  end
-
-  def destroy
-    @event.destroy
   end
 
   private

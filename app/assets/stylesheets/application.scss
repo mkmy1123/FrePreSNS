@@ -74,18 +74,10 @@ body.open {
 
 header{
   background-color: rgba(197, 201, 196, 0.3);
+  position: relative;
   height: 100px;
   display: flex;
   padding: 40px 10px;
-  .left{
-    margin-left: 10px;
-    a{
-      color: #000;
-    }
-    a:hover{
-      color: rgba(0, 0, 0, 0.5);
-    }
-  }
   .center{
     flex-grow: 1;
     .theme{
@@ -97,6 +89,11 @@ header{
   }
 }
 
+.logo-wrap{
+  position: absolute;
+  top: -30px;
+  left: 20px;
+}
 /* --- COMMON BOX AND STYLE --- */
 
 .container{
@@ -443,6 +440,10 @@ textarea{
   a:hover{
     color: #000;
   }
+}
+
+.noti-link{
+  color: #000;
 }
 
 .msg{
