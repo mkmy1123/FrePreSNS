@@ -20,7 +20,7 @@
       = f.submit "検索", class: "btn"
     = form_with method: :get,local: true do |f|
       = f.label :target, '絞り込み : '
-      = f.select :target, Argument.targets.keys.to_a,include_blank: "指定なし"
+      = f.select :target, Argument.targets.keys.to_a
       = f.submit "GO" ,class: 'btn'
 
   .arg-wrap

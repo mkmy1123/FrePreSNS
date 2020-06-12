@@ -58,6 +58,7 @@
               span.rank = "第#{i+1}位"
               span.label ="#{arg.target}"
               .rank_argument = link_to arg.topic, expressions_path(argument_id: arg.id)
+      = link_to arguments_path
         p.rank-title 現在のARGUMENTの割合は？？
         = pie_chart Argument.group(:target).count, width: "100%", height: "45%", colors: ["#903E84", "#136EAB", "#D59533","#DFD238","#93B447","#CB4829","#009453", "#009794", "#0099CE",  "#423885"]
 

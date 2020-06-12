@@ -65,8 +65,8 @@
       h4 = " #{@user.optional_id}'s COMPONENTS "
       p \ 箱の中、スクロールできますよ /
     .component-wrap
-      / render時にページネーションが崩れるので unlessで分岐を入れている
-      - unless @component.errors.any?
+      / render時にページネーションが崩れるので 分岐を入れている
+      - if @component.errors.blank?
         .pagination
           = paginate @components, param_name: :page_com
       = render "components/com_box", components: @components

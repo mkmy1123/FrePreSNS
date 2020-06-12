@@ -9,7 +9,7 @@ module UsersHelper
 
   def half_avatar?(user)
     if user.avatar?
-      image_tag user.avatar.thumb_half.to_s
+      image_tag user.avatar.to_s, :size => '50x50'
     else
       image_tag asset_path("default.jpg"), :size => '50x50'
     end

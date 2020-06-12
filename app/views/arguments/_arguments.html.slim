@@ -1,3 +1,6 @@
+.pagination
+  = paginate arguments
+
 - arguments.each do|arg|
   .content-box.half
     / todo! slimで動的にidに書き込む方法がわからない
@@ -17,5 +20,3 @@
         span = " #{positive_count(get_expressions(arg))} "
         span.label.negative 否定
         span = " #{negative_count(get_expressions(arg))} "
-.pagination
-  = paginate arguments
