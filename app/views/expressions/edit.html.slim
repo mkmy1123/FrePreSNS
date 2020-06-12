@@ -1,18 +1,5 @@
 - provide(:title, "EDIT #{@expression.statement}")
+= render 'layouts/errors', obj: @expression
 .hr-container.center
   h2 =">> ARGUMENT is 『#{@argument.topic}』"
-  br
-  = form_with model: @expression, local: true do |f|
-      = f.label :style, 'あなたの考えは？'
-      br
-      = f.select :position_of, Expression.position_ofs.keys.to_a
-      br
-      = f.label :statement, '簡単にいうと :'
-      = f.text_field :statement,placeholder: "20字以内でどうぞ"
-      br
-      = f.label :detail, '\ あなたの思いの丈をいくらでも叫んでください /'
-      br
-      = f.text_area :detail, class: 'big'
-      br
-      = f.hidden_field :argument_id ,value: @argument.id
-      = f.submit '表現を改める', class: 'btn'
+  = render "expressions/exp_form", exp: @expression

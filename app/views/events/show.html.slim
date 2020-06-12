@@ -14,12 +14,15 @@
     .content-box.event-detail
       h1 EVENT INFOMATIONS
       .short-margin-box
+        / 開催の可否
         - if @event.is_valid == false
           span.label.negative 中止決定
           h3 このイベントは中止が宣言されました...
+        / 開催で主催ユーザーなら
         - elsif @event.user == current_user
           p = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
       .short-margin-box
+        / 終日イベントなら日付のみ
         - if @event.all_day == true
           span.label 終日
           strong  START 
@@ -27,6 +30,7 @@
           strong  ~ 
           strong END 
           = @event.end_time.to_s(:date_jp)
+        / 時間指定イベントなら時間詳細あり
         - else
           span.label 時間指定
           strong  START 
@@ -44,6 +48,7 @@
           - if @event.is_valid == false
             p イベントが中止されたので参加できません
           - else
+            / 参加ボタンを表示(ajax)
             #participation
               = render "participations/paticipation", event: @event
         - else
@@ -65,6 +70,7 @@
           = link_to com.user.optional_id, user_path(com.user)
           .argument-title
             p = com.body
+      / イベント自体が無効なら表示しない
       - if @event.is_valid == true
         .content-box.event-comment
           h1 Have you any questions?

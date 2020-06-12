@@ -78,17 +78,23 @@
 
 ## 設計関連
 
+
 ### データベース定義書
   現行最新版。データベースに関しては不明点があれば、こちらをご覧ください。  
 [Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1LJDf-PTz2rxxBPnCHkduCCveFnAMm-yxTkbmD6VxaNY/edit#gid=484817952)
+
 
 ### 詳細設計書
   現行最新版。使用gemなどはこちらに詳細に表記してあります。  
 [Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1ELdvGt2tc8qumAhRqrdeybJLEICKoSfhN-yjP-pc4kQ/edit#gid=2019313919)
 
 
+### 機能一覧
+  使用技術や機能について。特筆すべきものを細かく記しています。   
+[Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1-G0ooqs94KSpr2QMj2FbsxY0Ie-k0rswbSFvwwAepUI/edit#gid=0)
+
+
 ### 参考までに
   WBSです。初めての自己開発でしたが、計画的に行うことができました。  
 [Googleドキュメントに移動します](https://docs.google.com/spreadsheets/d/1tgcUZLeBETO5J1ap4PkeI7nnB0Fe5afuVtAP8pvLnDw/edit#gid=1773513600)
-
 

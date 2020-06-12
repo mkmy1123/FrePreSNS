@@ -5,11 +5,15 @@ class ArgumentsController < ApplicationController
     @argument = Argument.new
     @check = Check.new
     @q = Argument.ransack(params[:q])
-    @arguments = @q.result.includes(:taggings).order(created_at: :desc).page(params[:page]).per(10)
+    # タグの絞り込みがあれば
     if params[:tag]
       @arguments = Argument.includes(:taggings).tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(10)
+    # targetカラムの絞り込みがあれば
     elsif params[:target]
       @arguments = Argument.includes(:taggings).where(target: params[:target]).order(created_at: :desc).page(params[:page]).per(10)
+    # ransack検索結果 & 全件表示
+    else
+      @arguments = @q.result.includes(:taggings).order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 

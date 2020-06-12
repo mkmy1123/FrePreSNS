@@ -37,8 +37,9 @@
       = render "layouts/user_information", user: @user
     / 投稿一覧
     .expressions
-      - if @expressions.present? 
-        h3 = "#{@user.optional_id}'s EXPRESSIONS"
+      - if @expressions.present?
+        .short-margin-box.center
+          h3 = "#{@user.optional_id}'s EXPRESSIONS"
         .exp-content-box.exp-wrap
           .center
             = paginate @expressions, param_name: :page_exp
@@ -61,7 +62,7 @@
     = render 'users/com_form', com: @component
 
   - if @components.present?
-    .center
+    .short-margin-box.center
       h4 = " #{@user.optional_id}'s COMPONENTS "
       p \ 箱の中、スクロールできますよ /
     .component-wrap

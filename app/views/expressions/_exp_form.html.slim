@@ -1,0 +1,18 @@
+= form_with model: exp, local: true do |f|
+  .block
+    = f.label :position_of, 'あなたの考えは？'
+    = f.select :position_of, Expression.position_ofs.keys.to_a
+  .block
+    = f.label :statement, '簡単にいうと(要点) :'
+    = f.text_field :statement,placeholder: "20字以内でどうぞ"
+  .block
+    = f.label :detail, '\ あなたの思いの丈をいくらでも叫んでください /'
+  .block
+    = f.text_area :detail, class: 'big'
+    = f.hidden_field :argument_id ,value: @argument.id
+  - if user_signed_in?
+    .block
+      = f.submit 'みんなに伝える', class: 'btn'
+  - else
+    .short-margin-box
+      h3 ログインすると投稿できるようになります
