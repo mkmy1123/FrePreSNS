@@ -1,25 +1,27 @@
 = form_with model: event, local: true do |f|
-  .field
+  .block
     = f.label :title, 'イベントタイトル'
     = f.text_field :title, class: "long-form"
-  .field
+  .block
     = f.label :start_time, '開始時間'
     = f.datetime_field :start_time
-  .field
+  .block
     = f.label :end_time, '終了時間'
     = f.datetime_field :end_time
-  .field
+  .block
     p 終日のイベントですか？
     = f.radio_button :all_day, [true]
     = f.label(:all_day, "はい", value: true)
     = f.radio_button :all_day, [false]
     = f.label(:all_day, "いいえ", value: false)
-  .field
+  .block
     = f.label :descroption, '説明'
     = f.text_area :description, class: 'big'
     - if user_signed_in?
-      = f.hidden_field :argument_id, value: argument.id
-      = f.hidden_field :user_id, value: current_user.id
-      = f.submit 'イベントを主催する', class: 'btn'
+      .block
+        = f.hidden_field :argument_id, value: argument.id
+        = f.hidden_field :user_id, value: current_user.id
+        = f.submit 'イベントを主催する', class: 'btn'
     - else
-      h3 ログインすると投稿できるようになります
+      .short-margin-box
+        h3 ログインすると投稿できるようになります
