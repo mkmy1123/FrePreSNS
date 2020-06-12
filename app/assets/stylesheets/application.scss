@@ -94,6 +94,14 @@ header{
   top: -30px;
   left: 20px;
 }
+
+.logo-wrap:hover{
+  -webkit-transform: scale(1.1,1.1);
+  -moz-transform: scale(1.1,1.1);
+  -o-transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  transform: scale(1.1,1.1);
+}
 /* --- COMMON BOX AND STYLE --- */
 
 .container{
@@ -166,6 +174,14 @@ header{
   text-align: left;
 }
 
+.margin-box{
+  margin: 100px auto;
+}
+
+.short-margin-box{
+  margin: 20px auto;
+}
+
 .label{
   border-radius: 2px;
   color: white;
@@ -195,6 +211,12 @@ header{
   padding: 30px 0;
   width: 100%;
 }
+
+.pagination{
+  width: 100%;
+  text-align: center;
+}
+
 /* --- HAMBURGER ICON --- */
 
 #hm-icon{
@@ -339,6 +361,14 @@ footer{
       padding: 1px 10px;
     }
   }
+}
+
+.box:hover{
+  -webkit-transform: scale(1.1,1.1);
+  -moz-transform: scale(1.1,1.1);
+  -o-transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  transform: scale(1.1,1.1);
 }
 
 /* --- FORM ---  */

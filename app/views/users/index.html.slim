@@ -11,19 +11,20 @@
 
   .window
     = search_form_for @q do |f|
-      = f.label :name, "うろ覚えの名前 : "
-      = f.search_field :name_cont
-      p　OR
-      = f.label :name, "うろ覚えのID : "
-      = f.search_field :optional_id_cont
-      br
-      = f.submit "検索", class: "btn"
+      .block
+        = f.label :name, "うろ覚えの名前 : "
+        = f.search_field :name_cont
+      p OR
+      .block
+        = f.label :name, "うろ覚えのID : "
+        = f.search_field :optional_id_cont
+      .block
+        = f.submit "検索", class: "btn"
 
   - if @users.present?
     = render "users/users", users: @users
   - else
     .user-seach
-      br
-      br
-      h1 Sorry, Not found ... X0
-      p 残念ながら、検索条件に合うユーザーはいませんでした。
+      .margin-box
+        h1 Sorry, Not found ... X0
+        p 残念ながら、検索条件に合うユーザーはいませんでした。

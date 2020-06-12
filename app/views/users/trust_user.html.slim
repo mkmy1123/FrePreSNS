@@ -1,15 +1,16 @@
 - provide(:title, "TRUST TIMELINE")
 .hr-container
+  / パラメーターでtrusting or trusted の一覧、どちらを表示するか見分ける
   - if params[:trusting]
     h1 = "#{params[:trusting]}'s TRUSITING USER"
     p = "#{@user.name}さんが現在、信用しているUSERの一覧です"
   - else params[:trusted]
     h1 = "#{params[:trusted]}'s TRUSITED USER"
     p = "#{@user.name}さんを現在、信用しているUSERの一覧です"
+
+  / 対応するユーザーがいれば一覧を表示
   - if @users.present?
     = render "users", users: @users
   - else
-    br
-    br
-    h3 まだUSERがいません
-  
+    .margin-box
+      h3 まだUSERがいません

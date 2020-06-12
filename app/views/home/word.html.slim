@@ -78,3 +78,45 @@
     br
     p よくあるフォロー機能です。
     p TRUSTINGがそのUSERが信用している人たち、TRUSTEDがそのUSERを信用した人たち。
+  .content-box.word
+    h3 DM
+    p DM機能。相互にTRUST関係が結ばれると、DMができます。
+    .answer
+    br
+    p DM ＝ ダイレクトメッセージ。
+    p.btn DMを送る
+    p こんなボタンが現れたら初めてできる、二人だけの世界です。
+  .content-box.word
+    h3 EVENT
+    p EVENT機能。ARGUMENTに基づいてイベント開催ができます。
+    .answer
+    br
+    h3 = link_to "EVENTのページ", events_path
+    p ARGUMENTに対して行動を起こしたい時、有用です。作りたい時はARGUMENTを選んでください。
+  .content-box.word
+    h3 EVENT COMMUNICATION
+    p EVENTに関するコメントが残せる機能。
+    .answer
+    br
+    p EVENT主催とDMはしたくない、そういう時はこの機能で。
+    p 他人の目があるから安全。参加ボタンもあります。
+  .content-box.word
+    h3 NOTIFICATION
+    p 通知機能。
+    span 通知があると
+    i.fas.fa-bell
+    span がつきます！
+    .answer
+    br
+    p 参加イベントに動きがあったり、CHECKしたARGUMENTにEXPRESSIONがついたり、誰かにTRUSTされたりすると通知が来ます。
+  .content-box.word
+    h3 In the end
+    p ここまで読んでくれたあなたへ。
+    .answer
+    br
+    - if user_signed_in?
+      h3 = link_to "NOTIFICATIONのページ", notifications_path
+      p 最後はあえて面倒な言葉を使いましたが、理解できましたか？わからない方は実際に使ってみてください！
+    - else
+      h3 = link_to "SIGN UPのページ", new_user_registration_path
+      p 最後はあえて面倒な言葉を使いましたが、理解できましたか？ぜひ会員登録して楽しんでくださいね。

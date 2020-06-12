@@ -24,7 +24,7 @@ class EventsController < ApplicationController
 
   def show
     @event_comment = EventComment.new
-    @event_comments = EventComment.where(event_id: @event.id).includes(:user)
+    @event_comments = EventComment.where(event_id: @event.id).includes(:user).page(params[:page]).per(15)
     @users = @event.participated_users
   end
 

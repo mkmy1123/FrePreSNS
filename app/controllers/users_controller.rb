@@ -82,7 +82,7 @@ class UsersController < ApplicationController
 
   def set_data
     @user = User.friendly.find(params[:id])
-    @components = Component.where(user_id: @user.id).order(created_at: :desc).page(params[:page_com]).per(8)
+    @components = Component.where(user_id: @user.id).includes(:user, :taggings).order(created_at: :desc).page(params[:page_com]).per(8)
     @expressions = Expression.where(user_id: @user.id).order(created_at: :desc).page(params[:page_exp]).per(7)
   end
 

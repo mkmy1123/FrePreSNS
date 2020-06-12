@@ -6,3 +6,13 @@
   margin: 10px auto 20px;
   width: 85%;
 }
+
+.trust-exp{
+  color: #000;
+}
+
+.trust-exp:hover{
+  -webkit-transform: translate(5px);
+  -ms-transform: translate(5px);
+  transform: translate(5px);
+}
