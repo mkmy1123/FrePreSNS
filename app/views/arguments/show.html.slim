@@ -1,9 +1,11 @@
 - provide(:title, "#{@argument.topic}")
 = render "layouts/errors", obj: @expression
+= render "layouts/errors", obj: @event
 .hr-container.center
   h1 ARGUMENT
   br
   h3 = " #{@argument.target} >>> 『 #{@argument.topic} 』 "
+  / ajaxの処理用
   <div id="check-#{@argument.id}">
     = render "checks/check", argument: @argument
   </div>
@@ -17,24 +19,7 @@
       li このARGUMENTに関するイベント
   .content-box.window
     h1 EXPRESSION
-    = form_with model: @expression, local: true do |f|
-      = f.label :position_of, 'あなたの考えは？'
-      br
-      = f.select :position_of, Expression.position_ofs.keys.to_a
-      br
-      = f.label :statement, '簡単にいうと(要点) :'
-      = f.text_field :statement,placeholder: "20字以内でどうぞ"
-      br
-      = f.label :detail, '\ あなたの思いの丈をいくらでも叫んでください /'
-      br
-      = f.text_area :detail, class: 'big'
-      br
-      = f.hidden_field :argument_id ,value: @argument.id
-      - if user_signed_in?
-        = f.submit 'みんなに伝える', class: 'btn'
-      - else
-        h3 ログインすると投稿できるようになります
-
+    = render "expressions/exp_form", exp: @expression
   .content-box.window
     h1 EVENT
     = render "events/event_form", event: @event, argument: @argument

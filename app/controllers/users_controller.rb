@@ -15,9 +15,11 @@ class UsersController < ApplicationController
     # DM機能に関する変数を取得
     @user_entry = Entry.where(user_id: @user.id)
     if user_signed_in?
+      # 自分とはDMできない
       unless @user.id == current_user.id
-        # @ユーザーが所属するroomを探すために変数化する
+        # ユーザーが所属する記録を全て変数化する
         @current_user_entry = Entry.where(user_id: current_user.id)
+        # その中で一致する部屋を探す
         @current_user_entry.each do |cu|
           @user_entry.each do |u|
             if cu.room_id == u.room_id
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
             end
           end
         end
+        # 一致する部屋がなければ
         unless @is_room
           if @user.trusting?(current_user) && current_user.trusting?(@user)
             @room = Room.new

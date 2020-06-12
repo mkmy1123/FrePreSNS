@@ -1,4 +1,4 @@
-.component-form
+.component-form.content-box
   = form_with model: com, local: true do |f|
     .block
       = f.label :kind_of, '種別 : '
@@ -7,8 +7,11 @@
       = f.label :title, ' タイトル : '
       = f.text_field :title, class: "long-form"
     .block
+      i.fas.fa-exclamation-circle
+      span.label.neutral タグを複数投稿する場合、カンマ（,）必須
+      br
       = f.label :tag_list ,'タグ : '
-      = f.text_field :tag_list, value: com.tag_list.split(','),placeholder: ", で複数投稿可 / #は自動でつきます", class: "long-form"
+      = f.text_field :tag_list, value: com.tag_list.split(','),placeholder: "#は自動でつきます", class: "long-form"
     .block
       = f.label :description, '説明 : '
       = f.text_area :description,class: 'big'

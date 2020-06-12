@@ -7,7 +7,9 @@ class HomeController < ApplicationController
   require 'net/http'
 
   def top
-    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=8282ed46f95c485c889853e56a43d97a')
+    # newsAPIを使用
+    # 今回はエラー対応していないが理解が追いついたらすべき
+    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=' + ENV['NEWS_API_KEY'])
     json = Net::HTTP.get(uri)
     moments = JSON.parse(json)
     @moments = moments['articles']
@@ -31,12 +33,14 @@ class HomeController < ApplicationController
   private
 
   def ranking_arg
+    # EXPRESSION側から集計、上位三件を取得
     rank_argument_id = Expression.group(:argument_id).order('count_argument_id DESC').limit(3).count(:argument_id).keys
     @rank_argument = Argument.find(rank_argument_id)
     @argument = @rank_argument.first
   end
 
   def random_user
+    # 実際数を確認してからランダムな数値を取得、そこからの範囲の最初を得る
     @random_user = User.offset(rand(User.count)).first
   end
 

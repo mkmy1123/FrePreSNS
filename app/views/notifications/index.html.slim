@@ -20,9 +20,9 @@
     h1 EVENTS
     p \ 参加予定のイベント一覧 /
     .content-box.notification-box
-      - if @part_in.present?
-        - @part_in.each do |part|
-          = link_to part.event.title, event_path(part.event)
+      - if @events.present?
+        - @events.each do |eve|
+          = link_to eve.title, event_path(eve)
           = " / "
       - else
         p 参加予定のイベントはありません
@@ -31,9 +31,9 @@
     h1 CHECKED ARGUMENTS
     p \ CHECK済み ARGUMENT一覧 /
     .content-box.notification-box
-      - if @checks.present?
-        - @checks.each do |check|
-          = link_to check.argument.topic, expressions_path(argument_id: check.argument.id)
+      - if @arguments.present?
+        - @arguments.each do |arg|
+          = link_to arg.topic, expressions_path(argument_id: arg.id)
           = " / "
       - else
         p CHECK済みのARGUMENTが存在しません

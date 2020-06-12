@@ -10,9 +10,9 @@
     = f.datetime_field :end_time
   .block
     p 終日のイベントですか？
-    = f.radio_button :all_day, [true]
+    = f.radio_button :all_day, true
     = f.label(:all_day, "はい", value: true)
-    = f.radio_button :all_day, [false]
+    = f.radio_button :all_day, false
     = f.label(:all_day, "いいえ", value: false)
   .block
     = f.label :descroption, '説明'
