@@ -16,4 +16,5 @@
           span.label = "REVIEW AVG ★#{(exp.reviews.inject(0){|result,review| result + review.rate }) / exp.reviews.length}"
         - else
           span.label = "NO YET REVIEW"
-.center = paginate expressions
+.pagination
+  = paginate expressions

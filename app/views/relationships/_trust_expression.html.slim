@@ -7,7 +7,7 @@
     h3 = "論点 : #{find_argument(exp.argument_id).topic}"
     = position(exp)
     h4 = "要点 : #{exp.statement}"
-    = render "layouts/review", reviews: exp.reviews
+    = avg?(exp.reviews)
     br
     = exp.detail
     br

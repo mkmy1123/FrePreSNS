@@ -15,7 +15,7 @@
         = link_to "EDIT", edit_expression_path(@expression)
         span  | 
         = link_to "DELETE", expression_path(@expression), method: :delete, data:{confirm: "本当に削除してもよろしいですか？"}
-      .position-box
+      / ajaxのFlash表示用
       #flash-review
       h1 THIS EXPRESSION
       = position(@expression)

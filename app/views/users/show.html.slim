@@ -3,6 +3,7 @@
   .center
     h1 USER INFOMATION
     .user-id-info
+      / パーシャル化すると余計にわからなくなったのでそのままにしてます
       / 論理削除済みのユーザーをまず外す
       - if @user.is_valid == false
         p 退会済みのユーザーです。近々削除されてしまいます...
@@ -51,39 +52,24 @@
         .content-box.exp-wrap
           p まだ投稿していません
 
+  / 自分のページの場合のみ、USERに関連したCOMPONENTを登録できるフォームを表示
   - if @user == current_user
     .center
       h4 = " ADD to #{@user.optional_id}'s COMPONENTS "
       p \ 自分のコンポーネントを追加したいならココです！ /
-    .component-form
-      = form_with model: @component ,local: true do |f|
-        = f.label :kind_of, '種別 : '
-        = f.select :kind_of, Component.kind_ofs.keys.to_a
-        br
-        = f.label :title, ' タイトル : '
-        = f.text_field :title, class: "long-form"
-        br
-        = f.label :tag_list ,'タグ : '
-        = f.text_field :tag_list, value: @component.tag_list.split(','),placeholder: ", で複数投稿可 / #は自動でつきます", class: "long-form"
-        br
-        = f.label :description, '説明 : '
-        = f.text_area :description,class: 'big'
-        br
-        = f.hidden_field :user_id, value: current_user.id
-        = f.submit '追加する', class: 'btn'
-    br
-    br
+      = render 'layouts/errors', obj: @component
+    = render 'users/com_form', com: @component
+
   - if @components.present?
     .center
       h4 = " #{@user.optional_id}'s COMPONENTS "
       p \ 箱の中、スクロールできますよ /
     .component-wrap
-      .center
-        = paginate @components, param_name: :page_com
+      / render時にページネーションが崩れるので unlessで分岐を入れている
+      - unless @component.errors.any?
+        .pagination
+          = paginate @components, param_name: :page_com
       = render "components/com_box", components: @components
   - else
-    br
-    br
-    h4.center =" #{@user.optional_id} 's COMPONENTS は まだ登録されていません"
-    br
-    br
+    .margin-box.center
+      h4 =" #{@user.optional_id} 's COMPONENTS は まだ登録されていません"

@@ -1,0 +1,14 @@
+- if user_signed_in?
+  = link_to(notifications_path) do
+    .login-notice
+      p.noti-link= "Login now : #{current_user.optional_id} "
+      - if unlooked_notifications.any?
+        = link_to(notifications_path) do
+          i.fas.fa-bell
+#flash
+  - if notice
+    .notice
+      .msg = notice
+  - if alert
+    .alert 
+      .msg = alert

@@ -38,7 +38,7 @@
             br
             i.far.fa-flag
             span  ARGUMENT 
-            p = find_argument(@random_exp.argument_id).topic
+            p = find_arg_topic(@random_exp.argument_id)
             br
             i.fas.fa-comment
             span  EXPRESSION 
@@ -73,7 +73,7 @@
       p 現在最も多くREVIEWされている投稿
       - if @top_review.present?
         h3 = link_to @top_review.statement, expression_path(@top_review)
-        = render "layouts/review", reviews: @top_review.reviews
+        p = avg?(@top_review.reviews)
         h3 Most Review of Expression
     h1 User's
     .content-smallbox
@@ -91,7 +91,7 @@
     h1 Any topic??
     p 投稿しようにもネタがない... そんな時はNEWSをチェック！
     p （外部ニュースサイトへ遷移します。）
-    - if @moments
+    - if @moments.present?
       .news-content
         .news-headline
           p.label.neutral << 最新NEWS >>

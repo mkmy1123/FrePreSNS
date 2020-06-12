@@ -166,6 +166,10 @@ header{
   text-align: left;
 }
 
+.margin-box{
+  margin: 100px auto;
+}
+
 .label{
   border-radius: 2px;
   color: white;
@@ -195,6 +199,12 @@ header{
   padding: 30px 0;
   width: 100%;
 }
+
+.pagination{
+  width: 100%;
+  text-align: center;
+}
+
 /* --- HAMBURGER ICON --- */
 
 #hm-icon{

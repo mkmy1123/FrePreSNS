@@ -1,0 +1,17 @@
+.component-form
+  = form_with model: com, local: true do |f|
+    .block
+      = f.label :kind_of, '種別 : '
+      = f.select :kind_of, Component.kind_ofs.keys.to_a
+    .block
+      = f.label :title, ' タイトル : '
+      = f.text_field :title, class: "long-form"
+    .block
+      = f.label :tag_list ,'タグ : '
+      = f.text_field :tag_list, value: com.tag_list.split(','),placeholder: ", で複数投稿可 / #は自動でつきます", class: "long-form"
+    .block
+      = f.label :description, '説明 : '
+      = f.text_area :description,class: 'big'
+    .block
+      = f.hidden_field :user_id, value: current_user.id
+      = f.submit '追加する', class: 'btn'

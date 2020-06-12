@@ -26,4 +26,5 @@
         p = "EXPRESSION #{user.expressions.length} 件"
         p = "REVIEW #{user.reviews.length} 件"
         p = "TRUSTING #{user.trustings.length} 人 / TRUSTED #{user.trusteds.length} 人"
-.center = paginate users
+.pagination
+  = paginate users

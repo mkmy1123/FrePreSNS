@@ -12,4 +12,5 @@
     p \ GO TO REVIEW /
     = link_to expression_path(exp)
       span = render "layouts/review", reviews: exp.reviews
-.center = paginate expressions
+.pagination
+  = paginate expressions

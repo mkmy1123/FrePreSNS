@@ -16,4 +16,5 @@
     span.label.negative 否定
     span = " #{negative_count(get_expressions(arg))} "
     span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)
-.center = paginate arguments
+.pagination
+  = paginate arguments

@@ -22,19 +22,23 @@ footer
         li = link_to "USER SEARCH ユーザーを探す", users_path
         li = link_to "PASSWORD パスワード変更",new_user_password_path
   .box
-    p FUNCTION ONLY LOGIN USER
     - if user_signed_in?
       ul
-        li = link_to "REVIEW", expressions_path
-        span: i.far.fa-lightbulb
+        i.fas.fa-star-half-alt
         span   REVIEWしたい投稿をCLICK!!
-        li = link_to "CHECK", arguments_path
-        span: i.far.fa-lightbulb
+        li = link_to ">> REVIEW FUNCTION", expressions_path
+        i.fas.fa-check-circle
         span   気になる論点をCHECK!!
-        li = link_to "TRUST USER", components_path
-        span: i.far.fa-lightbulb
+        li = link_to ">> CHECK FUNCTION", arguments_path
+        i.far.fa-lightbulb
         span   素敵なUSERをTRUST!!
+        li = link_to ">> TRUST FUNCTION", components_path
+        i.fas.fa-bell
+        span   自分のDATAの確認にも!!
+        li = link_to ">> NOTIFICATION FUNCTION", notifications_path
+
     - else
+      p FUNCTION ONLY LOGIN USER
       = link_to new_user_session_path do
         p >> ログイン後、
         p  追加機能が使用できます
@@ -42,3 +46,4 @@ footer
         li - REVIEW
         li - CHECK
         li - TRUST
+        li - NOTIFICATION

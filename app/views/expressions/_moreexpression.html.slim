@@ -3,7 +3,7 @@
     i.far.fa-flag
     span  ARGUMENT 
     p = link_to find_argument(exp.argument_id).topic, expressions_path(argument_id: exp.argument_id)
-    p = render "layouts/review", reviews: exp.reviews
+    p = avg?(exp.reviews)
     span  written by 
     i.fas.fa-pen-fancy
     = link_to user_path(exp.user)
@@ -15,4 +15,5 @@
       = exp.statement
     .argument-title
     br
-.center = paginate expressions, :param_name => style
+.pagination
+  = paginate expressions, :param_name => style
