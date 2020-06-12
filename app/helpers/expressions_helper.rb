@@ -1,5 +1,4 @@
 module ExpressionsHelper
-
   def get_expressions(argument)
     Expression.where(argument_id: argument)
   end
@@ -25,5 +24,4 @@ module ExpressionsHelper
   def negative_count(expressions)
     expressions.where(position_of: 2).length
   end
-
 end

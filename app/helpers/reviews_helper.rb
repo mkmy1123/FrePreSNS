@@ -1,7 +1,6 @@
 module ReviewsHelper
-
   def review_avg(reviews)
-    (reviews.inject(0){|result,review| result + review.rate }) / reviews.length
+    (reviews.inject(0) { |result, review| result + review.rate }) / reviews.length
   end
 
   def avg?(reviews)

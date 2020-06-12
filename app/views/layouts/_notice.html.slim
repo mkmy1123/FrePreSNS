@@ -3,7 +3,7 @@
     .login-notice
       .noti-link
         = "Login now : #{current_user.optional_id} "
-        - if unlooked_notifications.any?
+        - if notifications?
           i.fas.fa-bell
 #flash
   - if notice

@@ -72,7 +72,7 @@ class User < ApplicationRecord
   end
 
   def create_notification_trust!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'trust'])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'trust'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,

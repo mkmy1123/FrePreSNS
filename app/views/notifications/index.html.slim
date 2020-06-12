@@ -20,8 +20,8 @@
     h1 EVENTS
     p \ 参加予定のイベント一覧 /
     .content-box.notification-box
-      - if @partIn.present?
-        - @partIn.each do |part|
+      - if @part_in.present?
+        - @part_in.each do |part|
           = link_to part.event.title, event_path(part.event)
           = " / "
       - else

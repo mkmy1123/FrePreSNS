@@ -1,5 +1,4 @@
 class Notification < ApplicationRecord
-  default_scope -> { order(created_at: :desc) }
   belongs_to :argument, optional: true
   belongs_to :expression, optional: true
   belongs_to :event, optional: true

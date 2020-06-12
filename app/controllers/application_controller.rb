@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_guest
-    email = resource&.email || params[:user][:email].downcase
     if optional_id == 'testtester'
       redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end
