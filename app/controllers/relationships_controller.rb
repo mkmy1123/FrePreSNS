@@ -4,7 +4,7 @@ class RelationshipsController < ApplicationController
 
   def index
     @users = current_user.trustings
-    @expressions = Expression.where(user_id: @users).order("created_at DESC")
+    @expressions = Expression.where(user_id: @users).includes(:user, :reviews).order("created_at DESC")
   end
 
   def create

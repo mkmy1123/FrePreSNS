@@ -4,6 +4,7 @@
 
 .limited-wrap{
   display: flex;
+  width: 100%;
 }
 
 .check-container{
@@ -39,14 +40,18 @@
   margin: 8px 0;
 }
 
+.click:hover{
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -o-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
 @media screen and (max-width:425px) {
   .check-container{
     width: 100%;
     padding: 20px;
-    .mini{
-      margin: 0;
-      margin-bottom: 20px;
-    }
   }
   .limited-wrap{
     flex-direction: column;

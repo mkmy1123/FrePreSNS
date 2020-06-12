@@ -1,9 +1,8 @@
 - provide(:title, 'EDIT EVENT')
 .hr-container.center
   h1 EDIT EVENT
-  = render "events/event_form", event: @event, argument: @event.argument
-  br
-  br
+  .short-margin-box
+    = render "events/event_form", event: @event, argument: @event.argument
 
   h1 DELETE EVENT
   p イベントの中止ができます。

@@ -27,15 +27,15 @@ class Argument < ApplicationRecord
     checked_ids = Check.select(:user_id).where(argument_id: id).distinct
     checked_ids.each do |check_id|
       notification = current_user.active_notifications.new(
-      argument_id: id,
-      expression_id: expression_id,
-      visited_id: check_id['user_id'],
-      action: 'checkedExpression'
-    )
-    if notification.visitor_id == notification.visited_id
-      notification.looked = true
-    end
-    notification.save if notification.valid?
+        argument_id: id,
+        expression_id: expression_id,
+        visited_id: check_id['user_id'],
+        action: 'checkedExpression'
+      )
+      if notification.visitor_id == notification.visited_id
+        notification.looked = true
+      end
+      notification.save if notification.valid?
     end
   end
 end

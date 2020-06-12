@@ -13,32 +13,29 @@
         .checked-argument-headline
           h3 = "ARGUMENT is 『#{find_arg_topic(params[:argument_id])}』"
           p = link_to ">> 一覧に戻す", checks_path
-        .limited-wrap
-          = render "limited_expressions", expressions: @checked_expressions
-      - elsif @checked_expressions.present?
+      - if @checked_expressions.present?
         = render "check_expressions", expressions: @checked_expressions
       - else
-        .center
-          br
+        .margin-box
           h3 CHECKしたARGUMENTに まだEXPRESSIONがついていません... 
           h3 さらにARGUMENTをCHECKしてみましょう！
           h3 = link_to ">> ARGUMENT を 探す ", arguments_path
-
+    / サイドカラム
     .check-wrap
       h3 現在、CHECK済みARGUMENT
-      br
       - @checked_arguments.each do|check|
-        p = check.argument.topic
-        <div id="check-#{check.argument.id}">
-          = render "checks/check", argument: check.argument
-        </div>
+        .short-margin-box
+          .argument-title
+            p = check.argument.topic
+          <div id="check-#{check.argument.id}">
+            = render "checks/check", argument: check.argument
+          </div>
       .check-btn-wrap
         p \ CHECK変更した? /
         = link_to "更新", checks_path, class: 'btn'
 - else
   .hr-container
-    .center
-      br
+    .short-margin-box
       h1 CHECKED ARGUMENT's EXPRESSIONS
       br
       h3 まだARGUMENT を CHECKしていません！

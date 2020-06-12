@@ -9,11 +9,13 @@
     <div id="check-#{arg.id}">
       = render "checks/check", argument: arg
     </div>
-    span.label.neutral 中立
-    span = " #{neutral_count(get_expressions(arg))} "
-    span.label.positive 肯定
-    span = " #{positive_count(get_expressions(arg))} "
-    span.label.negative 否定
-    span = " #{negative_count(get_expressions(arg))} "
-    span = link_to '<< GO TO EXPRESSIONS', expressions_path(argument_id: arg.id)
-.center = paginate arguments
+    = link_to expressions_path(argument_id: arg.id)
+      .position-counter
+        span.label.neutral 中立
+        span = " #{neutral_count(get_expressions(arg))} "
+        span.label.positive 肯定
+        span = " #{positive_count(get_expressions(arg))} "
+        span.label.negative 否定
+        span = " #{negative_count(get_expressions(arg))} "
+.pagination
+  = paginate arguments

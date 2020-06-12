@@ -3,21 +3,18 @@
 .hr-container
   h1 EDIT PAGE
   = form_for(@user) do |f|
-    - if @user.avatar? 
-      = image_tag @user.avatar.to_s
-    - else
-      = image_tag asset_path("default.jpg"), :size => '100x100'
-    br
-    = f.file_field :avatar
-    br
-    = f.label :name
-    = f.text_field :name
-    br
-    = f.label 'ID'
-    = f.text_field :optional_id
-    br
-    = f.label :introduction
-    br
-    = f.text_area :introduction ,class: 'big'
-    br
-    = f.submit '編集する', class: 'btn'
+    = avatar?(@user)
+    .block
+      = f.file_field :avatar
+    .block
+      = f.label :name
+      = f.text_field :name
+    .block
+      = f.label 'ID'
+      = f.text_field :optional_id
+    .block
+      = f.label :introduction
+    .block
+      = f.text_area :introduction ,class: 'big'
+    .block
+      = f.submit '編集する', class: 'btn'

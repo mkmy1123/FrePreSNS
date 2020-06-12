@@ -1,5 +1,6 @@
 - provide(:title, "#{@expression.statement}")
 .container
+  / サイドバー
   .exp-sidebar
     h1 WRITTEN BY
     br
@@ -8,6 +9,7 @@
     .content-box
       h1 ARGUMENT
       h2 = link_to @argument.topic, argument_path(@argument)
+    / 上矢印のアイコン
     h1: i.fas.fa-arrow-up
     .content-box
       h2 = @expression.created_at.to_s(:datetime_jp)
@@ -15,20 +17,19 @@
         = link_to "EDIT", edit_expression_path(@expression)
         span  | 
         = link_to "DELETE", expression_path(@expression), method: :delete, data:{confirm: "本当に削除してもよろしいですか？"}
-      .position-box
-      #flash-review
-      h1 THIS EXPRESSION
-      = position(@expression)
-      h2 = @expression.statement
-      p = simple_format(@expression.detail)
-      .review-form
-        h3 \ 情報の信憑性 を投稿できます /
-        #star-form
-          - if user_signed_in?
-            = render "reviews/review", review: @review, expression: @expression
-          - else
-              br
-              p ログイン後に使えるようになります。
-              br
-              h3 =link_to "ログインはこちらから", new_user_session_path
-              br
+      .short-margin-box
+        / ajaxのFlash表示用
+        #flash-review
+        h1 THIS EXPRESSION
+        = position(@expression)
+        h2 = @expression.statement
+        p = simple_format(@expression.detail)
+        .review-form
+          h3 \ 情報の信憑性 を投稿できます /
+          #star-form
+            - if user_signed_in?
+              = render "reviews/review", review: @review, expression: @expression
+            - else
+              .short-margin-box
+                p ログイン後に使えるようになります。
+                h3 =link_to "ログインはこちらから", new_user_session_path

@@ -1,5 +1,6 @@
 - provide(:title, "#{@event.title}")
 .container
+  / サイドバー
   .exp-sidebar
     h1 PRESENTED BY
     br
@@ -8,31 +9,32 @@
     .content-box.event-headline
       h1 ARGUMENT
       h3 = find_arg_topic(@event.argument_id)
+    / 上矢印のアイコン
     h1: i.fas.fa-arrow-up
     .content-box.event-detail
       h1 EVENT INFOMATIONS
-      - if @event.is_valid == false
-        span.label.negative 中止決定
-        br
-        h3 このイベントは中止が宣言されました...
-      - elsif @event.user == current_user
-        p = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
-
-      - if @event.all_day == true
-        span.label 終日
-        strong  START 
-        = @event.start_time.to_s(:date_jp)
-        strong  ~ 
-        strong END 
-        = @event.end_time.to_s(:date_jp)
-      - else
-        span.label 時間指定
-        strong  START 
-        = @event.start_time.to_s(:datetime_jp)
-        strong  ~ 
-        strong  END 
-        = @event.end_time.to_s(:datetime_jp)
-      h2 = @event.title
+      .short-margin-box
+        - if @event.is_valid == false
+          span.label.negative 中止決定
+          h3 このイベントは中止が宣言されました...
+        - elsif @event.user == current_user
+          p = link_to "イベントの編集", edit_event_path(@event), class: 'btn'
+      .short-margin-box
+        - if @event.all_day == true
+          span.label 終日
+          strong  START 
+          = @event.start_time.to_s(:date_jp)
+          strong  ~ 
+          strong END 
+          = @event.end_time.to_s(:date_jp)
+        - else
+          span.label 時間指定
+          strong  START 
+          = @event.start_time.to_s(:datetime_jp)
+          strong  ~ 
+          strong  END 
+          = @event.end_time.to_s(:datetime_jp)
+        h2 = @event.title
       p: strong 詳細情報
       p = simple_format(@event.description)
 
@@ -54,16 +56,13 @@
           = " / "
       .content-box.all-comment
         h1 EVENT COMMUNICATION
+        .pagination
+          = paginate @event_comments
         - @event_comments.each do |com|
           p: strong = com.created_at.to_s(:datetime_jp)
           - if com.user == @event.user
-            span BY 
-            = link_to com.user.optional_id, user_path(com.user)
             span.label 主催
-          - else
-            span BY 
-            = link_to com.user.optional_id, user_path(com.user)
-          br
+          = link_to com.user.optional_id, user_path(com.user)
           .argument-title
             p = com.body
       - if @event.is_valid == true
@@ -71,11 +70,12 @@
           h1 Have you any questions?
           h3 主催者とコミュニケーションが取れます！
           = form_with model: @event_comment, url: event_event_comments_path(@event), local: true do |f|
-            .field
+            .block
               = f.label :body, '内容'
               = f.text_area :body
               - if user_signed_in?
-                = f.hidden_field :user_id, value: current_user.id
-                = f.submit '送信', class: 'btn'
+                .block
+                  = f.hidden_field :user_id, value: current_user.id
+                  = f.submit '送信', class: 'btn'
               - else
                 p = link_to "ログイン後に使える機能です", new_user_session_path

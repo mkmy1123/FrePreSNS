@@ -22,11 +22,8 @@
               .randomuser-box
                 h3 = "ID => #{@random_user.optional_id}"
                 h3 = "#{@random_user.name}さん"
-                br
-                - if @random_user.avatar? 
-                  = image_tag @random_user.avatar.to_s
-                - else
-                  = image_tag asset_path("default.jpg"), :size => '80x80'
+                .short-margin-box
+                  = avatar?(@random_user)
                 p = "CHECK #{@random_user.checks.length}件"
                 p = "TRUSTING #{@random_user.trustings.length}"
                 p = "TRUSTED #{@random_user.trusteds.length}"
@@ -34,22 +31,21 @@
       .content-box.random-exp
         - if @random_exp.present?
           = link_to expression_path(@random_exp)
-            h1 RANDOM EXPRESSION
-            br
-            i.far.fa-flag
-            span  ARGUMENT 
-            p = find_argument(@random_exp.argument_id).topic
-            br
-            i.fas.fa-comment
-            span  EXPRESSION 
-            br
-            p = position(@random_exp)
-            p = @random_exp.statement
-            br
-            i.fas.fa-pen-fancy
-            span  Written by 
-            p = @random_exp.user.optional_id
-            br
+            .short-margin-box
+              h1 RANDOM EXPRESSION
+            .short-margin-box
+              i.far.fa-flag
+              span  ARGUMENT 
+              p = find_arg_topic(@random_exp.argument_id)
+            .short-margin-box
+              i.fas.fa-comment
+              span  EXPRESSION
+              p = position(@random_exp)
+              p = @random_exp.statement
+            .short-margin-box
+              i.fas.fa-pen-fancy
+              span  Written by 
+              p = @random_exp.user.optional_id
 
   .content-box.argument
     = link_to arguments_path
@@ -73,7 +69,7 @@
       p 現在最も多くREVIEWされている投稿
       - if @top_review.present?
         h3 = link_to @top_review.statement, expression_path(@top_review)
-        = render "layouts/review", reviews: @top_review.reviews
+        p = avg?(@top_review.reviews)
         h3 Most Review of Expression
     h1 User's
     .content-smallbox
@@ -91,13 +87,12 @@
     h1 Any topic??
     p 投稿しようにもネタがない... そんな時はNEWSをチェック！
     p （外部ニュースサイトへ遷移します。）
-    - if @moments
+    - if @moments.present?
       .news-content
         .news-headline
           p.label.neutral << 最新NEWS >>
         - @moments.each do|moment|
-          i.fas.fa-pen-fancy
-          = link_to moment['url'] do
-            span.newsbody = " #{moment['title']}"
-          br
-          br
+          .news-headline.left
+            i.fas.fa-pen-fancy
+            = link_to moment['url'] do
+              span.newsbody = " #{moment['title']}"

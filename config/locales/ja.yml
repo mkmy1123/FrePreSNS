@@ -18,3 +18,8 @@ ja:
         target: "対象"
       expression:
         statement: "要点"
+      component:
+        description: "説明"
+        title: "タイトル"
+        tag_list: "タグ"
+        kind_of: "種類"

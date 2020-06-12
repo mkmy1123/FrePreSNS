@@ -4,9 +4,11 @@
   p 相手を傷つけるような発言には十分留意して利用しましょう！
   .field
     = form_for @message do |f|
-      = f.text_field :content, placeholder: "メッセージを入力して下さい", class: 'long-form'
-      = f.hidden_field :room_id, value: @room.id
-      = f.submit "送信", class: 'btn'
+      .block
+        = f.text_area :content, placeholder: "メッセージを入力して下さい", class: 'big'
+        = f.hidden_field :room_id, value: @room.id
+      .block
+        = f.submit "送信", class: 'btn'
 
   - if @messages.present?
     .center
@@ -16,7 +18,7 @@
         - if m.user == current_user
           .msg-wrap
             .msg-avatar
-              = render "layouts/user_avatar", user: m.user
+              = half_avatar?(m.user)
             .msgbox.left
               = render "rooms/msg", msg: m
         - else
@@ -24,6 +26,6 @@
             .msgbox.right
               = render "rooms/msg", msg: m
             .msg-avatar
-              = render "layouts/user_avatar", user: m.user
+              = half_avatar?(m.user)
   - else
     h3 メッセージはまだありません
