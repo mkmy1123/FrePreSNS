@@ -3,26 +3,31 @@
   .relation-wrap
     h1 BY TRUST USER
   .relation-wrap
+    / TRUST済USERがいれば そのUSERに紐づくEXPRESSIONを表示させていく
     - if @users.present?
-      - if params[:check]
-        = link_to "全てに戻す",relationships_path
+      / さらにARGUEMENTを限定するフォーム
       = form_with method: :get,local: true do |f|
         span CHECK済みのARGUMENTに限定する
         = f.hidden_field :check, value: current_user.id
         = f.submit "GO" ,class: 'btn'
+      / CHECKしたARGUMENTに限定する場合のパラメータがあればそれを表示
       - if params[:check]
+        = link_to "全てに戻す",relationships_path
         = render "trust_expression", expressions: @expressions.where(argument_id: current_user.checked_arguments)
+      / なければEXPERESSIONを表示させる
       - elsif @expressions.present?
         = render "trust_expression", expressions: @expressions
+      /  TRUST済みUSER は 存在するが そのEXPRESSIONが存在しない場合
       - else
         .relation-wrap
-          p TRUSTしたUSERがまだEXPRESSIONを投稿していません。
+          p TRUSTしたUSERがまだ投稿していません。
           p 本来ならTRUST機能を使用すると、こちらにTRUSTしたユーザーのみの投稿が表示されます。
           p さらにTRUSTしてみましょう！
         .relation-wrap
           h3 = link_to ">> COMPONENT から USERを探す", components_path
           p もしくは
           h3 = link_to ">> EXPRESSION から USERを探す", expressions_path
+    / TRUST済みの USERがいなければ TRUST機能の利用を促す
     - else
       .relation-wrap
         p まだ誰もTRUSTしていません。

@@ -19,6 +19,7 @@
   background-repeat: no-repeat;
   width: 100%;
   height: 350px;
+  overflow: hidden;	
 }
 
 .layer{
@@ -30,6 +31,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.layer:hover{
+  transform: scale(1.1);
+  transition-duration: 0.1s;
 }
 
 .content-smallbox{

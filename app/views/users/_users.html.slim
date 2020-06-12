@@ -4,10 +4,7 @@
       .content-box.user-wrap
         h3 = "ID => #{user.optional_id}"
         .center
-          - if user.avatar? 
-            = image_tag user.avatar.to_s
-          - else
-            = image_tag asset_path("default.jpg"), :size => '80x80'
+          = half_avatar?(user)
           br
           p = " #{user.name} さん"
         .answer

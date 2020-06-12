@@ -3,7 +3,7 @@
 .hr-container
   h1 EDIT PAGE
   = form_for(@user) do |f|
-    = avator?(@user)
+    = avatar?(@user)
     .block
       = f.file_field :avatar
     .block
