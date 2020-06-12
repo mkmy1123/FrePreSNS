@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_guest
+    # ゲストユーザーの情報変更を許可しない
     if optional_id == 'testtester'
       redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end

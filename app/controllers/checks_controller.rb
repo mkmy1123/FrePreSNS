@@ -2,12 +2,16 @@ class ChecksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @checked_arguments = current_user.checks.includes(:argument).all
-    get_expressions(current_user.checked_arguments)
+    # ユーザのCHECK済み ARGUMENTをインスタンス変数化
+    @arguments = current_user.checked_arguments
+    # ARGUMENTの指定があれば限定してインスタンス変数化
     if params[:argument_id]
       get_expressions(params[:argument_id])
+    else
+      get_expressions(@arguments)
     end
-    @checked_expressions = @expressions.includes(:user, :reviews).page(params[:page]).per(8)
+    # viewに渡すために調整
+    @expressions = @expressions.includes(:user, :reviews).page(params[:page]).per(8)
   end
 
   def create

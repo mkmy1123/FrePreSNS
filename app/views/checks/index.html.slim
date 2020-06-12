@@ -1,20 +1,23 @@
 - provide(:title, "CHECKED TIMELINE")
-- if @checked_arguments.present?
+- if @arguments.present?
   .container
     .check-container
       h1.center CHECKED ARGUMENT's EXPRESSIONS
       .window.checked
+        / 絞り込みフォーム
         p \さらに CHECK済みARGUMENT を限定できます /
         = form_with method: :get,local: true do |f|
           = f.label "論点 : "
-          = f.select(:argument_id, options_from_collection_for_select(current_user.checked_arguments, :id, :topic),include_blank: true,class: "window")
+          = f.select(:argument_id, options_from_collection_for_select(@arguments, :id, :topic),include_blank: true,class: "window")
           = f.submit "GO" ,class: 'btn'
+      / 絞り込みがあればそのトピックを表示
       - if params[:argument_id]
         .checked-argument-headline
           h3 = "ARGUMENT is 『#{find_arg_topic(params[:argument_id])}』"
           p = link_to ">> 一覧に戻す", checks_path
-      - if @checked_expressions.present?
-        = render "check_expressions", expressions: @checked_expressions
+      / CHECKしたARGUMENTにEXPRESSIONが投稿されていれば内容を表示
+      - if @expressions.present?
+        = render "check_expressions", expressions: @expressions
       - else
         .margin-box
           h3 CHECKしたARGUMENTに まだEXPRESSIONがついていません... 
@@ -23,13 +26,15 @@
     / サイドカラム
     .check-wrap
       h3 現在、CHECK済みARGUMENT
-      - @checked_arguments.each do|check|
+      - @arguments.each do|arg|
         .short-margin-box
           .argument-title
-            p = check.argument.topic
-          <div id="check-#{check.argument.id}">
-            = render "checks/check", argument: check.argument
+            p = arg.topic
+          / ajax用の表記
+          <div id="check-#{arg.id}">
+            = render "checks/check", argument: arg
           </div>
+      / ajaxでの更新のため TIMELINEに反映させるためのボタン
       .check-btn-wrap
         p \ CHECK変更した? /
         = link_to "更新", checks_path, class: 'btn'

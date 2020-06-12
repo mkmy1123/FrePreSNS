@@ -6,7 +6,7 @@ class Argument < ApplicationRecord
   has_many :checks
   has_many :checked_users, through: :checks, source: :user
 
-  validates :topic, presence: true, length: { minimum: 5, maximum: 20 }
+  validates :topic, presence: true, length: { in: 5..20 }
   validates :target, presence: true
 
   # TargetカラムのEnum
@@ -23,7 +23,9 @@ class Argument < ApplicationRecord
     その他: 20,
   }
 
+  # CHECK済みARGUMENTに投稿があれば通知するメソッド
   def create_notification_checkedEexpression!(current_user, expression_id)
+    # CHECKのユーザIDをこのargumentに限って変数化
     checked_ids = Check.select(:user_id).where(argument_id: id).distinct
     checked_ids.each do |check_id|
       notification = current_user.active_notifications.new(
@@ -32,6 +34,7 @@ class Argument < ApplicationRecord
         visited_id: check_id['user_id'],
         action: 'checkedExpression'
       )
+      # 通知元と通知先が同じならば既視扱いにする
       if notification.visitor_id == notification.visited_id
         notification.looked = true
       end

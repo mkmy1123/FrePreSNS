@@ -3,8 +3,8 @@ class NotificationsController < ApplicationController
 
   def index
     @notifications = current_user.passive_notifications.includes(:visitor, :visited).where(looked: false).order(created_at: :desc).page(params[:page]).per(20)
-    @part_in = current_user.participations.includes(:event).order(created_at: :desc).all
-    @checks = current_user.checks.includes(:argument).order(created_at: :desc).all
+    @events = current_user.participated_events.order(created_at: :desc)
+    @arguments = current_user.checked_arguments.order(created_at: :desc)
   end
 
   def look

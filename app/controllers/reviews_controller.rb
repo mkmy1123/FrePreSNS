@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    # パラメータがうまく渡せずreview内にrateが入らないので後から渡す
     @review.rate = params[:rate]
     @review.expression_id = params[:review][:expression_id]
     if @review.save
@@ -18,6 +19,7 @@ class ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
+    # パラメータがうまく渡せずreview内にrateが入らないので後から渡す
     @review.rate = params[:rate]
     if @review.update(review_params)
       respond_to do |format|

@@ -1,25 +1,7 @@
 - provide(:title, "EDIT COMPONENTS")
-.hr-container.center
+= render 'layouts/errors', obj: @component
+.edit-container
   h1.headline EDIT
-  = form_with model: @component,local: true do |f|
-    .block
-      p = f.label :kind_of
-      = f.select :kind_of, Component.kind_ofs.keys.to_a
-    .block
-      p = f.label :title
-      span.label.neutral 20字以内
-      br
-      = f.text_field :title,class: 'long-form'
-    .block
-      p = f.label :tag_list
-      span.label.neutral 複数入力の場合は 『,(カンマ) 』必須！
-      br
-      = f.text_field :tag_list, value: @component.tag_list.split(','),placeholder: ", で複数投稿可 / #は自動でつきます", class: "long-form"
-    .block
-      p = f.label :description
-      = f.text_area :description, class: 'big'
-      = f.hidden_field :user_id, value: current_user.id
-    .block
-      = f.submit '編集する', class: 'btn'
+  = render 'users/com_form', com: @component
   h1.headline DELETE
   = link_to '削除する', component_path, method: :delete,class: 'btn',data:{confirm: '削除してもよろしいですか？'}

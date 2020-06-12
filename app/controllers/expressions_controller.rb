@@ -1,16 +1,19 @@
 class ExpressionsController < ApplicationController
   before_action :set_expression, only: [:edit, :show, :update, :destroy]
-  before_action :set_argument, only: [:edit, :show]
+  before_action :set_argument, only: [:edit, :show, :update]
   before_action :new_expression, only: [:create]
 
   def index
+    # 絞り込みがあれば
     if params[:argument_id]
+      # そのARGUMENTをインスタンス変数に
       find_argument(params[:argument_id])
-      @expressions = Expression.where(argument_id: @argument.id).includes(:reviews, :user)
-      set_style(@expressions)
+      expressions = Expression.where(argument_id: @argument.id).includes(:reviews, :user)
+      # position_ofカラムに合わせてEXPRESSIONをインスタンス変数化
+      set_position(expressions)
     else
       expressions = Expression.includes(:reviews, :user).all
-      set_style(expressions)
+      set_position(expressions)
     end
   end
 
@@ -20,11 +23,13 @@ class ExpressionsController < ApplicationController
   def create
     @expression = Expression.new(expression_params)
     @expression.user_id = current_user.id
+    # インスタンス変数化
     find_argument(@expression.argument_id)
     if @expression.save
       @argument.create_notification_checkedEexpression!(current_user, @expression.id)
       redirect_to @expression, notice: "おめでとうございます、無事EXPRESSIONが生まれました！"
     else
+      @event = Event.new
       render "arguments/show"
     end
   end
@@ -39,8 +44,7 @@ class ExpressionsController < ApplicationController
     if @expression.update(expression_params)
       redirect_to @expression, notice: "ありがとうございます！EXPRESSION を更新しました！"
     else
-      flash[:alert] = "EXPRESSIONの更新に失敗しました。内容を確認してください..."
-      render 'edit'
+      render :edit
     end
   end
 
@@ -59,6 +63,10 @@ class ExpressionsController < ApplicationController
     @expression = Expression.find(params[:id])
   end
 
+  def set_argument
+    @argument = Argument.find(@expression.argument_id)
+  end
+
   def neutral(expressions)
     expressions.where(position_of: 0).order(created_at: "DESC").page(params[:neutral]).per(7)
   end
@@ -71,13 +79,10 @@ class ExpressionsController < ApplicationController
     expressions.where(position_of: 2).order(created_at: "DESC").page(params[:negative]).per(7)
   end
 
-  def set_style(expressions)
+  def set_position(expressions)
+    # 上記３メソッドとセット
     @neutral_expressions = neutral(expressions)
     @positive_expressions = positive(expressions)
     @negative_expressions = negative(expressions)
-  end
-
-  def set_argument
-    find_argument(@expression.argument_id)
   end
 end

@@ -2,6 +2,7 @@ class ComponentsController < ApplicationController
   before_action :set_component, only: [:edit, :update, :destroy]
 
   def index
+    # view側からの絞り込みに対応してインスタンス変数化
     if params[:tag]
       @components = Component.tagged_with(params[:tag]).includes(:user, :taggings).order(created_at: :desc).page(params[:page]).per(12)
     elsif params[:kind_of]
@@ -15,8 +16,9 @@ class ComponentsController < ApplicationController
     @component = Component.new(component_params)
     @user = @component.user
     if @component.save
-      redirect_to @user
+      redirect_to @user, notice: "あなたのCOMPONENTが投稿されました！"
     else
+      # render用のデータを取得するためのメソッド
       get_data
       render 'users/show'
     end
@@ -27,9 +29,9 @@ class ComponentsController < ApplicationController
 
   def update
     if @component.update(component_params)
-      redirect_to user_url(current_user)
+      redirect_to user_path(current_user), notice: "あなたのCOMPONENTが更新されました！"
     else
-      render 'edit'
+      render :edit
     end
   end
 

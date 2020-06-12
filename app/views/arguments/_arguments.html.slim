@@ -1,11 +1,15 @@
+.pagination
+  = paginate arguments
+
 - arguments.each do|arg|
   .content-box.half
-    / todo! slimで動的にidに書き込む方法がわからない
+    / ajaxのflash表示に使用
     <div id="flash-#{arg.id}"></div>
     h3 = arg.created_at.to_s(:datetime_jp)
     h4 = "TARGET #{arg.target}"
     p = render "layouts/tag", objects: arg
     h3 = link_to arg.topic, argument_path(arg)
+    / check機能のajax処理のため
     <div id="check-#{arg.id}">
       = render "checks/check", argument: arg
     </div>
@@ -17,5 +21,3 @@
         span = " #{positive_count(get_expressions(arg))} "
         span.label.negative 否定
         span = " #{negative_count(get_expressions(arg))} "
-.pagination
-  = paginate arguments

@@ -18,8 +18,15 @@ ja:
         target: "対象"
       expression:
         statement: "要点"
+        argument_id: "この論点に対する投稿"
       component:
         description: "説明"
         title: "タイトル"
         tag_list: "タグ"
         kind_of: "種類"
+      event:
+        start_time: "開始時間"
+        end_time: "終了時間"
+        all_day: "終日開催"
+        title: "イベントタイトル"
+        description: "詳細情報"

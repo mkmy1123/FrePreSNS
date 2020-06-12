@@ -10,7 +10,9 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, notice: "Eventが作成できました！"
     else
-      render :index
+      # 必要な情報をセットするメソッド
+      set_data
+      render "arguments/show"
     end
   end
 
@@ -25,6 +27,7 @@ class EventsController < ApplicationController
   def show
     @event_comment = EventComment.new
     @event_comments = EventComment.where(event_id: @event.id).includes(:user).page(params[:page]).per(15)
+    # 参加予定のUSERをすべて取得
     @users = @event.participated_users
   end
 
@@ -35,6 +38,11 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def set_data
+    @expression = Expression.new
+    @argument = @event.argument
   end
 
   def event_params
