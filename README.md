@@ -2,9 +2,15 @@
 
 ### FrePreSNS
 ###### ~ あなたの表現の自由を守るためのSNS ~ 
+
+
 ご覧いただきありがとうございます。  
 こちらはポートフォリオとして作成したSNS WEBアプリケーションです。  
 ![twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fmkmy1123%2FFrePreSNS)
+
+
+![TOP PAGE](https://user-images.githubusercontent.com/61111655/84232788-fc1e2980-ab2b-11ea-824f-a00fb2c3a255.png)
+
 
 <br>
 <br>
@@ -37,16 +43,11 @@
 <br>
 
 ## Screenshot!
-簡単に写真を掲載します。  
+GIF画像を掲載します。  
 実際のサイトは[こちらからご覧ください。](https://frepresns.com)
 
 
-表現の自由を示すために内容が過激だと感じる方もいらっしゃるかもしれませんが  
-全てが私の意見ではなくテストデータです。  
-表現の自由を念頭にご覧ください。
-![TOP PAGE](https://user-images.githubusercontent.com/61111655/84232788-fc1e2980-ab2b-11ea-824f-a00fb2c3a255.png)
-![ARGUMENTS](https://user-images.githubusercontent.com/61111655/84238777-879cb800-ab36-11ea-9d23-3362a0be159c.png)
-
+![GIF](https://user-images.githubusercontent.com/61111655/84582098-80212b80-ae22-11ea-85bb-e46cc825cadf.gif)
 
 
 ## 技術面
