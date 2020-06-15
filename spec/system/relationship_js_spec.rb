@@ -11,7 +11,7 @@ RSpec.feature "relationships", type: :system do
   scenario "The user trust the other user, in js", js: true do
     visit user_path(@user2)
     click_button "信用する"
-    sleep 3
+    sleep 6
     expect(page).to have_selector '.notice', text: '信用しました'
   end
 

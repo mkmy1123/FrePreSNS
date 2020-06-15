@@ -96,9 +96,11 @@ class UsersController < ApplicationController
   end
 
   def refuse_test_user
-    tester = User.friendly.find('testtester')
-    if @user == tester
-      redirect_to root_path, alert: "その操作は許可されていません！"
+    if Rails.env.production?
+      tester = User.friendly.find('testtester')
+      if @user == tester
+        redirect_to root_path, alert: "その操作は許可されていません！"
+      end
     end
   end
 end

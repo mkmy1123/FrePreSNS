@@ -32,7 +32,7 @@ RSpec.feature "registration", type: :feature do
     scenario "After resistration, the user page exists" do
       sign_in user
       visit user_path(user)
-      expect(current_url).to eq("http://www.example.com/users/#{user.optional_id}")
+      expect(current_url).to have_content(user.optional_id)
     end
 
     scenario "After resistration, the user avator is default image" do
