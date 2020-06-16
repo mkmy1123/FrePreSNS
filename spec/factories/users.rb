@@ -13,5 +13,14 @@ FactoryBot.define do
     factory :invalid_user do
       is_valid { false }
     end
+
+    factory :example_user do
+      name { 'やまださん' }
+      email { "yamada@example.com" }
+      optional_id { "yamadayo100" }
+      password { "testtest" }
+      password_confirmation { "testtest" }
+      introduction { "やまだです、山田じゃありません！" }
+    end
   end
 end

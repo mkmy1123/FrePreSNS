@@ -33,7 +33,7 @@ RSpec.describe User, type: :model do
   it "is invalid with a optional_id written in Japanese" do
     user = FactoryBot.build(:user, optional_id: "テストID")
     user.valid?
-    expect(user.errors[:optional_id]).to include("半角英数字のみが使えます")
+    expect(user.errors[:optional_id]).to include("半角英数字とハイフン(-)のみが使えます")
   end
 
   it "is invalid intrudction more than 200" do

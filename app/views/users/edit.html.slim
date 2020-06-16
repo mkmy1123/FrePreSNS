@@ -5,7 +5,7 @@
   = form_for(@user) do |f|
     = avatar?(@user)
     .block
-      = f.file_field :avatar
+      = f.file_field :avatar, id: 'avatar'
     .block
       = f.label :name
       = f.text_field :name

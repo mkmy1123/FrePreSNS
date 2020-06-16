@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.feature "Arguments", type: :feature do
+RSpec.feature "Around arguments", type: :feature do
   include Devise::Test::IntegrationHelpers
 
   background do
-    @user = FactoryBot.create(:user)
+    @user = create(:user)
     sign_in @user
-    @argument = FactoryBot.create(:tag_argument)
+    @argument = create(:tag_argument)
   end
-  describe "Action as index page" do
-    let(:argument) { FactoryBot.create(:argument) }
+  describe "As index action" do
+    let(:argument) { create(:argument) }
 
     scenario "Only signed_in_user get submit btn" do
       sign_out @user
@@ -76,11 +76,11 @@ RSpec.feature "Arguments", type: :feature do
       @user.checks.create(argument_id: @argument.id)
       visit argument_path(@argument)
       expect(page).to have_content "CHECK済"
-      expect(page).to have_no_css ".fa-check-circle"
+      expect('.content').to have_no_css ".fa-check-circle"
     end
   end
 
-  describe "Action as show page" do
+  describe "As show action" do
     scenario "Argument exists, only signed_in_user get button" do
       sign_out @user
       visit argument_path(@argument)
@@ -92,7 +92,7 @@ RSpec.feature "Arguments", type: :feature do
       @user.checks.create(argument_id: @argument.id)
       visit argument_path(@argument)
       expect(page).to have_content "CHECK済"
-      expect(page).to have_no_css ".fa-check-circle"
+      expect('.content').to have_no_css ".fa-check-circle"
     end
   end
 end

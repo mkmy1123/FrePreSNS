@@ -12,11 +12,11 @@
   .window
     = search_form_for @q do |f|
       .block
-        = f.label :name, "うろ覚えの名前 : "
+        = f.label :name_cont, "うろ覚えの名前 : "
         = f.search_field :name_cont
       p OR
       .block
-        = f.label :name, "うろ覚えのID : "
+        = f.label :optional_id_cont, "うろ覚えのID : "
         = f.search_field :optional_id_cont
       .block
         = f.submit "検索", class: "btn"
