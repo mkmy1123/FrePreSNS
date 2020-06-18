@@ -8,24 +8,26 @@ RSpec.feature "Around arguments", type: :feature do
     sign_in @user
     @argument = create(:tag_argument)
   end
-  describe "As index action" do
+  describe "#index" do
     let(:argument) { create(:argument) }
 
-    scenario "Only signed_in_user get submit btn" do
-      sign_out @user
-      visit arguments_path
-      expect(page).to have_content "ログインすると投稿できるようになります"
-      expect(page).not_to have_button "送信"
-    end
+    context "By signed_in_user" do
+      scenario "Page has submit btn" do
+        sign_out @user
+        visit arguments_path
+        expect(page).to have_content "ログインすると投稿できるようになります"
+        expect(page).not_to have_button "送信"
+      end
 
-    scenario "Signed_in_user creates a new argument" do
-      visit root_path
-      click_link "ARGUMENTS"
-      expect(page).to have_content "論点は簡潔に！"
-      find_field("論点").set('テストの論点です。')
-      click_button "送信"
-      expect(page).to have_content "テストの論点です。"
-      expect(page).to have_content "が投稿できました"
+      scenario "User create a new argument" do
+        visit root_path
+        click_link "ARGUMENTS"
+        expect(page).to have_content "論点は簡潔に！"
+        find_field("論点").set('テストの論点です。')
+        click_button "送信"
+        expect(page).to have_content "テストの論点です。"
+        expect(page).to have_content "が投稿できました"
+      end
     end
 
     scenario "Using argument search(name), the result is corrent" do
@@ -80,7 +82,7 @@ RSpec.feature "Around arguments", type: :feature do
     end
   end
 
-  describe "As show action" do
+  describe "#show" do
     scenario "Argument exists, only signed_in_user get button" do
       sign_out @user
       visit argument_path(@argument)
