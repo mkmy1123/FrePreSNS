@@ -5,7 +5,7 @@ class EventCommentsController < ApplicationController
     @event = @event_comment.event
     if @event_comment.save
       @event.create_notification_comment!(current_user, @event_comment.id)
-      redirect_to @event, notice: "投稿できました！返信を待ちましょう！"
+      redirect_to @event, notice: "投稿できました！反応を待ちましょう！"
     else
       redirect_to @event, alert: "Errorが発生しました。もう一度投稿してください"
     end

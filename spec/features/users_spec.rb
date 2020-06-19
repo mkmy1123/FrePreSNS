@@ -3,11 +3,12 @@ require 'rails_helper'
 RSpec.feature "Around users", type: :feature do
   include Devise::Test::IntegrationHelpers
   background do
-    @user = FactoryBot.create(:example_user)
+    @user = create(:example_user)
   end
 
   describe 'As edit action' do
     let(:user) { create(:user) }
+
     scenario "Page have edit button" do
       sign_in user
       visit user_path(user)
@@ -64,6 +65,7 @@ RSpec.feature "Around users", type: :feature do
 
   describe "As index action" do
     let(:user) { create(:user) }
+
     scenario "Searching user_name's search form, user info hits" do
       visit users_path
       fill_in 'うろ覚えの名前 :', with: user.name
@@ -104,6 +106,7 @@ RSpec.feature "Around users", type: :feature do
 
   describe "As show action" do
     let(:user) { create(:user) }
+
     scenario "User is current_user, page has edit button" do
       sign_in @user
       visit user_path(@user)

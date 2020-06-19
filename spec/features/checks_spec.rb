@@ -13,7 +13,7 @@ RSpec.feature "Checks", type: :feature do
     scenario "user checks the argument" do
       visit arguments_path
       expect(page).to have_content @argument.topic
-      expect { find('#check_btn').click }.to change { Check.count }.by(1)
+      expect { find('#check_btn').click }.to change(Check, :count).by(1)
     end
 
     scenario "user unchecks the argument" do
@@ -21,7 +21,7 @@ RSpec.feature "Checks", type: :feature do
       visit arguments_path
       expect(page).to have_content @argument.topic
       expect(page).to have_content "CHECK済"
-      expect { find('#uncheck_btn').click }.to change { Check.count }.by(-1)
+      expect { find('#uncheck_btn').click }.to change(Check, :count).by(-1)
     end
   end
 

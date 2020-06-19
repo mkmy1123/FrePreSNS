@@ -15,4 +15,7 @@ AllCops:
         - 'spec/factories/**'
 
 Metrics/LineLength:
-    Max: 160
+    Max: 128
+
+Layout/MultilineMethodCallIndentation:
+    EnforcedStyle: aligned

@@ -1,12 +1,6 @@
 class InquiriesController < ApplicationController
   before_action :new_inquiry, except: [:create]
 
-  def report
-  end
-
-  def contact
-  end
-
   def create
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save

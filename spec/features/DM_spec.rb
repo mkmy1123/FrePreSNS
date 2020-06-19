@@ -12,7 +12,8 @@ RSpec.feature "DM function", type: :feature do
   end
 
   describe "Trusting user each other" do
-    let(:room){ create(:room) }
+    let(:room) { create(:room) }
+
     scenario "User send DM" do
       visit user_path(@other_user)
       click_button 'DMを送る'

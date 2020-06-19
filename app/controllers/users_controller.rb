@@ -8,7 +8,11 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result.includes(:expressions, :reviews, :relationships, :trustings, :reverse_of_relationships, :trusteds).page(params[:page])
+    users = @q.result.includes(
+      :expressions, :reviews, :relationships,
+      :trustings, :reverse_of_relationships, :trusteds
+    )
+    @users = pagination(users)
   end
 
   def show
@@ -39,18 +43,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @user.update(user_params)
       redirect_to @user, notice: "USER情報が更新されました！"
     else
       render :edit
     end
-  end
-
-  def quit
   end
 
   def invalid
@@ -62,17 +60,21 @@ class UsersController < ApplicationController
   def trust_user
     if params[:trusting]
       @user = User.friendly.find(params[:trusting])
-      @users = @user.trustings.order(created_at: :desc).page(params[:page]).per(10)
+      users = @user.trustings.order(created_at: :desc)
     else
       @user = User.friendly.find(params[:trusted])
-      @users = @user.trusteds.order(created_at: :desc).page(params[:page]).per(10)
+      users = @user.trusteds.order(created_at: :desc)
     end
+    @users = pagination(users)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :introduction, :avatar, :optional_id, :is_valid)
+    params.require(:user).permit(
+      :name, :email, :password, :password_confirmation,
+      :introduction, :avatar, :optional_id, :is_valid
+    )
   end
 
   def set_user
@@ -85,8 +87,14 @@ class UsersController < ApplicationController
 
   def set_data
     @user = User.friendly.find(params[:id])
-    @components = Component.where(user_id: @user.id).includes(:user, :taggings).order(created_at: :desc).page(params[:page_com]).per(8)
-    @expressions = Expression.where(user_id: @user.id).order(created_at: :desc).page(params[:page_exp]).per(7)
+    components = Component.where(user_id: @user.id).includes(:user, :taggings)
+    expressions = Expression.where(user_id: @user.id)
+    @components = arrange_com(components)
+    @expressions = arrange_exp(expressions)
+  end
+
+  def pagination(users)
+    users.page(params[:page]).per(10)
   end
 
   def refuse_wrong_user
@@ -96,6 +104,7 @@ class UsersController < ApplicationController
   end
 
   def refuse_test_user
+    # 本番環境でテストユーザに情報更新をさせない
     if Rails.env.production?
       tester = User.friendly.find('testtester')
       if @user == tester

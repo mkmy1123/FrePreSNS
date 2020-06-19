@@ -56,7 +56,9 @@ class ExpressionsController < ApplicationController
   private
 
   def expression_params
-    params.require(:expression).permit(:position_of, :statement, :detail, :argument_id)
+    params.require(:expression).permit(
+      :position_of, :statement, :detail, :argument_id
+    )
   end
 
   def set_expression
@@ -67,22 +69,25 @@ class ExpressionsController < ApplicationController
     @argument = Argument.find(@expression.argument_id)
   end
 
-  def neutral(expressions)
-    expressions.where(position_of: 0).order(created_at: "DESC").page(params[:neutral]).per(7)
-  end
-
-  def positive(expressions)
-    expressions.where(position_of: 1).order(created_at: "DESC").page(params[:positive]).per(7)
-  end
-
-  def negative(expressions)
-    expressions.where(position_of: 2).order(created_at: "DESC").page(params[:negative]).per(7)
-  end
-
   def set_position(expressions)
-    # 上記３メソッドとセット
+    # 下記メソッドとセット
     @neutral_expressions = neutral(expressions)
     @positive_expressions = positive(expressions)
     @negative_expressions = negative(expressions)
+  end
+
+  def neutral(exps)
+    exps.where(position_of: 0).order(created_at: "DESC").
+      page(params[:neutral]).per(7)
+  end
+
+  def positive(exps)
+    exps.where(position_of: 1).order(created_at: "DESC").
+      page(params[:positive]).per(7)
+  end
+
+  def negative(exps)
+    exps.where(position_of: 2).order(created_at: "DESC").
+      page(params[:negative]).per(7)
   end
 end

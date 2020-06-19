@@ -17,4 +17,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end
   end
+
+  def arrange_com(components)
+    components.order(created_at: :desc).page(params[:page_com]).per(8)
+  end
+
+  def arrange_exp(expressions)
+    expressions.order(created_at: :desc).page(params[:page_exp]).per(7)
+  end
 end

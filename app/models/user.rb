@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # 通常のバリデーション
   validates :name, presence: true, length: { in: 2..20 }
   validates :optional_id, format: { with: /\A[a-zA-Z0-9\-]+\z/, message: "半角英数字とハイフン(-)のみが使えます" }, length: { in: 8..20 }
-  validates :introduction, length: { in: 10..200 , message: "10字以上200字以内で記入してください" }, allow_blank: true
+  validates :introduction, length: { in: 10..200, message: "10字以上200字以内で記入してください" }, allow_blank: true
 
   # frendly_id のための 設定項目
   include FriendlyId

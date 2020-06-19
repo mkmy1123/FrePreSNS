@@ -2,7 +2,10 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @notifications = current_user.passive_notifications.includes(:visitor, :visited).where(looked: false).order(created_at: :desc).page(params[:page]).per(20)
+    @notifications =
+      current_user.passive_notifications.
+      includes(:visitor, :visited).where(looked: false).
+      order(created_at: :desc).page(params[:page]).per(20)
     @events = current_user.participated_events.order(created_at: :desc)
     @arguments = current_user.checked_arguments.order(created_at: :desc)
   end

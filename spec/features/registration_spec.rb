@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature "registration", type: :feature do
   include Devise::Test::IntegrationHelpers
   describe 'signup' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:other_user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
 
     scenario "The user sign up" do
       visit root_path
@@ -57,10 +57,10 @@ RSpec.feature "registration", type: :feature do
     end
   end
 
-  describe 'delete user' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:other_user) { FactoryBot.create(:user) }
-    let!(:invalid_user) { FactoryBot.create(:invalid_user) }
+  describe 'Logic delete' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+    let!(:invalid_user) { create(:invalid_user) }
 
     scenario "The user delete in the logic" do
       sign_in user

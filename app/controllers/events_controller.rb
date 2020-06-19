@@ -26,12 +26,10 @@ class EventsController < ApplicationController
 
   def show
     @event_comment = EventComment.new
-    @event_comments = EventComment.where(event_id: @event.id).includes(:user).page(params[:page]).per(15)
+    event_comments = EventComment.where(event_id: @event.id).includes(:user)
+    @event_comments = arrangement(event_comments)
     # 参加予定のUSERをすべて取得
     @users = @event.participated_users
-  end
-
-  def edit
   end
 
   private
@@ -46,6 +44,13 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :start_time, :end_time, :description, :all_day, :argument_id, :user_id, :is_valid)
+    params.require(:event).permit(
+      :title, :start_time, :end_time, :description,
+      :all_day, :argument_id, :user_id, :is_valid
+    )
+  end
+
+  def arrangement(event_comments)
+    event_comments.page(params[:page]).per(15)
   end
 end
