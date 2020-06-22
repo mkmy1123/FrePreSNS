@@ -15,15 +15,6 @@ class HomeController < ApplicationController
     @moments = moments['articles']
   end
 
-  def about
-  end
-
-  def howto
-  end
-
-  def word
-  end
-
   def guest
     user = User.friendly.find('testtester')
     sign_in user
@@ -34,8 +25,10 @@ class HomeController < ApplicationController
 
   def ranking_arg
     # EXPRESSION側から集計、上位三件を取得
-    rank_argument_id = Expression.group(:argument_id).order('count_argument_id DESC').limit(3).count(:argument_id).keys
-    @rank_argument = Argument.find(rank_argument_id)
+    rank_arg_id =
+      Expression.group(:argument_id).order('count_argument_id DESC').
+      limit(3).count(:argument_id).keys
+    @rank_argument = Argument.find(rank_arg_id)
     @argument = @rank_argument.first
   end
 
@@ -49,13 +42,17 @@ class HomeController < ApplicationController
   end
 
   def review_rank
-    review_exp_id = Review.group(:expression_id).order('count_expression_id DESC').limit(1).count(:expression_id).keys
-    review_exp = Expression.find(review_exp_id)
-    @top_review = review_exp.first
+    rvw_exp_id =
+      Review.group(:expression_id).order('count_expression_id DESC').
+      limit(1).count(:expression_id).keys
+    rvw_exp = Expression.find(rvw_exp_id)
+    @top_review = rvw_exp.first
   end
 
   def check_rank
-    check_arg_id = Check.group(:argument_id).order('count_argument_id DESC').limit(3).count(:argument_id).keys
-    @top_check = Argument.find(check_arg_id)
+    chk_arg_id =
+      Check.group(:argument_id).order('count_argument_id DESC').
+      limit(3).count(:argument_id).keys
+    @top_check = Argument.find(chk_arg_id)
   end
 end

@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature "registration", type: :feature do
   include Devise::Test::IntegrationHelpers
   describe 'signup' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:other_user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
 
     scenario "The user sign up" do
       visit root_path
@@ -32,7 +32,7 @@ RSpec.feature "registration", type: :feature do
     scenario "After resistration, the user page exists" do
       sign_in user
       visit user_path(user)
-      expect(current_url).to eq("http://www.example.com/users/#{user.optional_id}")
+      expect(current_url).to have_content(user.optional_id)
     end
 
     scenario "After resistration, the user avator is default image" do
@@ -57,10 +57,10 @@ RSpec.feature "registration", type: :feature do
     end
   end
 
-  describe 'delete user' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:other_user) { FactoryBot.create(:user) }
-    let!(:invalid_user) { FactoryBot.create(:invalid_user) }
+  describe 'Logic delete' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+    let!(:invalid_user) { create(:invalid_user) }
 
     scenario "The user delete in the logic" do
       sign_in user

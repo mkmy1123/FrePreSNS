@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "session", type: :feature do
   include Devise::Test::IntegrationHelpers
   background do
-    @user = FactoryBot.create(:user)
+    @user = create(:user)
   end
 
   describe 'login' do

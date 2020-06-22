@@ -1,20 +1,37 @@
 require 'rails_helper'
 
 RSpec.feature "Checks", type: :feature do
-  scenario "user creates a new argument, and checks the argument" do
-    user = FactoryBot.create(:user)
-    visit root_path
-    click_link "LOG IN"
-    fill_in "ID", with: user.optional_id
-    fill_in "Password", with: user.password
-    click_button "ログインする"
-    click_link "ARGUMENTS"
-    expect(page).to have_content "論点は簡潔に！"
-    find_field("今回の論点").set('テストの論点です。')
-    click_button "送信"
-    expect(page).to have_content "テストの論点です。"
-    expect(page).to have_content "が投稿できました"
-    find_by_id('check_btn').click
-    expect(page).to have_content "CHECK済"
+  include Devise::Test::IntegrationHelpers
+
+  background do
+    @user = create(:user)
+    sign_in @user
+    @argument = create(:tag_argument)
+  end
+
+  describe "By signed in user" do
+    scenario "user checks the argument" do
+      visit arguments_path
+      expect(page).to have_content @argument.topic
+      expect { find('#check_btn').click }.to change(Check, :count).by(1)
+    end
+
+    scenario "user unchecks the argument" do
+      @user.checks.create(argument_id: @argument.id)
+      visit arguments_path
+      expect(page).to have_content @argument.topic
+      expect(page).to have_content "CHECK済"
+      expect { find('#uncheck_btn').click }.to change(Check, :count).by(-1)
+    end
+  end
+
+  describe "By NOT signed in user" do
+    scenario "Page doesn't have check_btn" do
+      sign_out @user
+      visit arguments_path
+      expect(page).to have_content @argument.topic
+      expect(page).not_to have_css '#check_btn'
+      expect(page).not_to have_css '#uncheck_btn'
+    end
   end
 end
