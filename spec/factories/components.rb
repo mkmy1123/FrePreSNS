@@ -20,5 +20,10 @@ FactoryBot.define do
     factory :over_title_component do
       title { "hellohellohellohello!" }
     end
+
+    factory :tag_component do
+      topic { "タグがあると嬉しい" }
+      tag_list { "そんなタグ" }
+    end
   end
 end
