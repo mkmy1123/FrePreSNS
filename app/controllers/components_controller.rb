@@ -1,5 +1,6 @@
 class ComponentsController < ApplicationController
   before_action :set_component, only: [:edit, :update, :destroy]
+  before_action :reject_other_user, only: [:edit]
 
   def index
     # view側からの絞り込みに対応してインスタンス変数化
@@ -59,5 +60,11 @@ class ComponentsController < ApplicationController
 
   def arrangement(components)
     components.order(created_at: :desc).page(params[:page]).per(12)
+  end
+
+  def reject_other_user
+    unless @component.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
