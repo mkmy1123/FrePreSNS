@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  context "when argument, expression and user exsists" do
+  context "exsiting argument, expression and user" do
     before do
-      @user = FactoryBot.create(:user)
-      @expression = FactoryBot.create(:expression)
+      @user = create(:user)
+      @expression = create(:expression)
     end
 
     it "is valid with corrent infomations" do

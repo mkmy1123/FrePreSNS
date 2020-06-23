@@ -11,5 +11,9 @@ FactoryBot.define do
     factory :nil_title_event do
       title { nil }
     end
+
+    factory :past_start_time do
+      start_time { Date.today.before_day(10) }
+    end
   end
 end

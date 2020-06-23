@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Check, type: :model do
-  context "when argument and user exsists" do
+  context "existing argument and user" do
     before do
-      @user = FactoryBot.create(:user)
-      @argument = FactoryBot.create(:argument)
+      @user = create(:user)
+      @argument = create(:argument)
     end
 
     it "is valid with correct infomation" do
