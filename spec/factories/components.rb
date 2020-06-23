@@ -22,7 +22,6 @@ FactoryBot.define do
     end
 
     factory :tag_component do
-      topic { "タグがあると嬉しい" }
       tag_list { "そんなタグ" }
     end
   end
