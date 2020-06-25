@@ -16,10 +16,6 @@ class User < ApplicationRecord
   validates :optional_id, format: { with: /\A[a-zA-Z0-9\-]+\z/, message: "半角英数字とハイフン(-)のみが使えます" }, length: { in: 8..20 }
   validates :introduction, length: { in: 10..200, message: "10字以上200字以内で記入してください" }, allow_blank: true
 
-  # frendly_id のための 設定項目
-  include FriendlyId
-  friendly_id :optional_id
-
   # carrierwave のため 設定項目
   mount_uploader :avatar, AvatarUploader
 
@@ -45,6 +41,10 @@ class User < ApplicationRecord
   # 通知機能に使用
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
+  def to_param
+    optional_id
+  end
 
   # deviseオーバーライド / 論理削除用
   def active_for_authentication?

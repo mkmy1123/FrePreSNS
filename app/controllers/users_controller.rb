@@ -59,10 +59,10 @@ class UsersController < ApplicationController
 
   def trust_user
     if params[:trusting]
-      @user = User.friendly.find(params[:trusting])
+      @user = User.find_by(optional_id: params[:trusting])
       users = @user.trustings.order(created_at: :desc)
     else
-      @user = User.friendly.find(params[:trusted])
+      @user = User.find_by(optional_id: params[:trusted])
       users = @user.trusteds.order(created_at: :desc)
     end
     @users = pagination(users)
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.friendly.find(params[:id])
+    @user = User.find_by(optional_id: params[:optional_id])
   end
 
   def new_component
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
   end
 
   def set_data
-    @user = User.friendly.find(params[:id])
+    @user = User.find_by(optional_id: params[:optional_id])
     components = Component.where(user_id: @user.id).includes(:user, :taggings)
     expressions = Expression.where(user_id: @user.id)
     @components = arrange_com(components)
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
   def refuse_test_user
     # 本番環境でテストユーザに情報更新をさせない
     if Rails.env.production?
-      tester = User.friendly.find('testtester')
+      tester = User.find_by(optional_id: 'testtester')
       if @user == tester
         redirect_to root_path, alert: "その操作は許可されていません！"
       end
