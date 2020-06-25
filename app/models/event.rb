@@ -52,8 +52,8 @@ class Event < ApplicationRecord
   end
 
   def end_time_cannot_be_in_the_past_than_start_time
-    if end_time.present? && end_time < start_time
-      errors.add(:end_time, "は開始時間より過去の日付は使えません")
+    if start_time.present? && end_time.present? && end_time < start_time
+      errors.add(:end_time, "に開始時間より過去の日付は使えません")
     end
   end
 end

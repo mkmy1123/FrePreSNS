@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Around users", type: :feature do
+RSpec.feature "Around user functions", type: :feature do
   include Devise::Test::IntegrationHelpers
   background do
     @user = create(:example_user)

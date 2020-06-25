@@ -4,6 +4,11 @@ FactoryBot.define do
     association :user
     association :argument
 
+    factory :negative_expression do
+      statement { "プログラミングつまんない！" }
+      position_of { 2 }
+    end
+
     factory :positive_expression do
       statement { "プログラミング楽しい！" }
       position_of { 1 }
