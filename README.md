@@ -5,7 +5,8 @@
 
 
 ご覧いただきありがとうございます。  
-こちらはポートフォリオとして作成したSNS WEBアプリケーションです。  
+こちらはポートフォリオとして作成したSNS WEBアプリケーションです。   
+カリキュラム終了後、３ヶ月以降で手直しを行っている[ブランチはこちら](https://github.com/mkmy1123/FrePreSNS/tree/AFTER-CURRICULM)です。  
 ![twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fmkmy1123%2FFrePreSNS)
 
 
