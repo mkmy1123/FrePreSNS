@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   post '/guest_sign_in' => 'home#guest'
 
   get 'users/trust' => 'users#trust_user', as: :trust_user
-  get 'users/:id/quit' => 'users#quit', as: :quit
-  put 'users/:id/invalid' => 'users#invalid', as: :invalid
+  get 'users/:optional_id/quit' => 'users#quit', param: :optional_id, as: :quit
+  put 'users/:optional_id/invalid' => 'users#invalid', param: :optional_id, as: :invalid
   get 'checks' => 'checks#index', as: :checks
-  put 'notifications/look', as: :look
+  put 'notifications/look', as: :looks
 
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, param: :optional_id, only: [:index, :show, :edit, :update]
   resources :components, only: [:index, :update, :create, :destroy, :edit]
   resources :expressions, except: [:new]
   resources :reviews, only: [:create, :update]
