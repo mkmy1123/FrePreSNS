@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   end
 
   def guest
-    user = User.friendly.find('testtester')
+    user = User.find_by(optional_id: 'testtester')
     sign_in user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end

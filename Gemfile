@@ -84,8 +84,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
-# IDに任意の文字列を採用する
-gem 'friendly_id'
+
 # ページネーション
 gem 'kaminari'
 # アイコンの引用

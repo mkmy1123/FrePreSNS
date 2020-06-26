@@ -8,7 +8,7 @@
     h1 NOTIFICATIONS
     - if notifications.exists?
       p \ あなた宛の通知です、確認済みを押すと表示されなくなります。 /
-      = link_to "確認済み", look_path, method: :put, class: 'btn'
+      = link_to "確認済み", looks_path, method: :put, class: 'btn'
       .content-box.notification-box
         = render notifications
         = paginate notifications

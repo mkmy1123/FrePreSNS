@@ -147,8 +147,6 @@ GEM
     font-awesome-sass (5.4.1)
       sassc (>= 1.11)
     formatador (0.2.5)
-    friendly_id (5.3.0)
-      activerecord (>= 4.0.0)
     fullcalendar-rails (3.9.0.0)
       jquery-rails (>= 4.0.5, < 5.0.0)
       jquery-ui-rails (>= 5.0.2)
@@ -409,7 +407,6 @@ DEPENDENCIES
   faker
   fog-aws
   font-awesome-sass (~> 5.4.1)
-  friendly_id
   fullcalendar-rails
   jbuilder (~> 2.5)
   jquery-rails
