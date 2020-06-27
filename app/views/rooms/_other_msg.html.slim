@@ -1,0 +1,9 @@
+.content-box
+  .msg-wrap-right
+    .msgbox.right
+      i.fas.fa-comment
+      = link_to " By #{msg.user.optional_id}", user_path(msg.user)
+      p = simple_format(msg.content)
+      p = msg.created_at.to_s(:datetime_jp)
+    .msg-avatar
+      = half_avatar?(msg.user)
