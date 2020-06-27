@@ -3,9 +3,9 @@
   h1 Direct Message
   p 相手を傷つけるような発言には十分留意して利用しましょう！
   .field
-    = form_for @message do |f|
+    = form_with model: @message do |f|
       .block
-        = f.text_area :content, placeholder: "メッセージを入力して下さい", class: 'big'
+        = f.text_area :content, placeholder: "メッセージを入力して下さい", class: 'big', id: "dm_form"
         = f.hidden_field :room_id, value: @room.id
       .block
         = f.submit "送信", class: 'btn'
@@ -13,19 +13,7 @@
   - if @messages.present?
     .center
       = paginate @messages
-    - @messages.each do |m|
-      .content-box
-        - if m.user == current_user
-          .msg-wrap
-            .msg-avatar
-              = half_avatar?(m.user)
-            .msgbox.left
-              = render "rooms/msg", msg: m
-        - else
-          .msg-wrap-right
-            .msgbox.right
-              = render "rooms/msg", msg: m
-            .msg-avatar
-              = half_avatar?(m.user)
+    #message_area
+      = render 'msg_area', messages: @messages
   - else
     h3 メッセージはまだありません
