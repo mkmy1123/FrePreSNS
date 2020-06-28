@@ -37,24 +37,24 @@
     h4 << 肯定的 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @positive_expressions, style: "positive"
+      = render "expression", expressions: @positive_expressions, position: "positive"
     - else
-      = render "moreexpression", expressions: @positive_expressions, style: "positive"
+      = render "moreexpression", expressions: @positive_expressions, position: "positive"
 
   .expression-box.neutral-box.center
     h3.label.neutral NEUTRAL EXPRESSION
     h4 << 中立 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @neutral_expressions, style: "neutral"
+      = render "expression", expressions: @neutral_expressions, position: "neutral"
     - else
-      = render "moreexpression", expressions: @neutral_expressions, style: "neutral"
+      = render "moreexpression", expressions: @neutral_expressions, position: "neutral"
 
   .expression-box.negative-box.center
     h3.label.negative NEGATIVE EXPRESSION
     h4 << 否定的 >>
     br
     - if params[:argument_id]
-      = render "expression", expressions: @negative_expressions, style: "negative"
+      = render "expression", expressions: @negative_expressions, position: "negative"
     - else
-      = render "moreexpression", expressions: @negative_expressions, style: "negative"
+      = render "moreexpression", expressions: @negative_expressions, position: "negative"

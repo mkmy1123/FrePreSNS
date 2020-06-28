@@ -50,10 +50,10 @@ Q: 備忘録としてのコメントを見直しましょう。
 A: 
 
 
-- [ ] NO.8  
+- [x] NO.8  
 【css/style】  
 Q: styleはcssにまとめましょう  
-A: 
+A: ご指摘の箇所はviews/expressions/index.html.slimだったのですが、こちらはkaminariのpaginationにパラメータに送るための変数をstyleと定義していたことによるご指摘でした。これはDB設計の時から問題を起こした言葉選びで、予約語を命名に使用しないことを強く意識していこうと思います。
 
 
 - [x] NO.9  
