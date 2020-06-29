@@ -1,6 +1,6 @@
 class ComponentsController < ApplicationController
   before_action :set_component, only: [:edit, :update, :destroy]
-  before_action :reject_other_user, only: [:edit]
+  before_action :reject_other_user, only: [:edit, :update]
 
   def index
     # view側からの絞り込みに対応してインスタンス変数化
