@@ -1,17 +1,19 @@
 require 'rails_helper'
 
-RSpec.feature "Expressions", type: :feature do
+RSpec.feature "Around expression functions", type: :feature do
   include Devise::Test::IntegrationHelpers
 
   background do
     @user = create(:user)
     @argument = create(:tag_argument)
     @expression = create(:positive_expression)
-    sign_in @user
   end
 
-  describe "Flow around create" do
-    scenario "Signed_in_user create expresssion" do
+  describe "#create by Signed_in_user " do
+    before do
+      sign_in @user
+    end
+    scenario "User create expresssion" do
       visit argument_path(@argument)
       fill_in "簡単にいうと(要点) :", with: "初めての投稿"
       click_button "みんなに伝える"
@@ -19,7 +21,7 @@ RSpec.feature "Expressions", type: :feature do
       expect(page).to have_content "初めての投稿"
     end
 
-    scenario "Signed_in_user create not enogh expresssion" do
+    scenario "User cannot create enough info" do
       visit argument_path(@argument)
       fill_in "簡単にいうと(要点) :", with: ""
       click_button "みんなに伝える"
@@ -29,7 +31,7 @@ RSpec.feature "Expressions", type: :feature do
       expect(page).to have_content "要点は5文字以上で入力してください"
     end
 
-    scenario "Signed_in_user create negative expresssion" do
+    scenario "User create negative expresssion" do
       visit argument_path(@argument)
       find_by_id("expression_position_of").select "否定的"
       fill_in "簡単にいうと(要点) :", with: "否定の表現を投稿"
@@ -38,7 +40,7 @@ RSpec.feature "Expressions", type: :feature do
       expect(page).to have_content "否定"
     end
 
-    scenario "Signed_in_user create positive expresssion" do
+    scenario "User create positive expresssion" do
       visit argument_path(@argument)
       find_by_id("expression_position_of").select "肯定的"
       fill_in "簡単にいうと(要点) :", with: "肯定の表現を投稿"
@@ -48,8 +50,10 @@ RSpec.feature "Expressions", type: :feature do
     end
   end
 
-  describe "Flow around index" do
+  describe "#index" do
     let!(:expression) { create(:expression) }
+    let!(:negative_exp) { create(:negative_expression) }
+
 
     scenario "The user confirm expresssions page" do
       visit expressions_path
@@ -62,6 +66,13 @@ RSpec.feature "Expressions", type: :feature do
       expect(page).to have_selector '.positive-box', text: 'プログラミング楽しい'
       expect(page).not_to have_selector '.negative-box', text: 'プログラミング楽しい'
       expect(page).not_to have_selector '.neutral-box', text: 'プログラミング楽しい'
+    end
+
+    scenario "Negative expression is only in negative box" do
+      visit expressions_path
+      expect(page).not_to have_selector '.positive-box', text: negative_exp.statement
+      expect(page).to have_selector '.negative-box', text: negative_exp.statement
+      expect(page).not_to have_selector '.neutral-box', text: negative_exp.statement
     end
 
     scenario "Neutaral expression is only in neutral box" do
@@ -94,10 +105,9 @@ RSpec.feature "Expressions", type: :feature do
       expect(page).not_to have_content expression.statement
     end
 
-    scenario "The user create expression's review" do
+    scenario "The review count increases" do
       visit expressions_path
       expect(page).to have_content 'NO YET REVIEW'
-      click_link @expression.statement
       @expression.reviews.create(user_id: @user.id, rate: 5)
       visit expressions_path
       expect(page).to have_content 'REVIEW 平均 ★5'

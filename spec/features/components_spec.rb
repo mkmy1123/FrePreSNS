@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Around components", type: :feature do
+RSpec.feature "Around component functions", type: :feature do
   include Devise::Test::IntegrationHelpers
 
   describe "#index" do

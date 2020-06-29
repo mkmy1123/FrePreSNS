@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "relationships", type: :feature do
+RSpec.feature "Around relationship functions", type: :feature do
   include Devise::Test::IntegrationHelpers
 
   before do

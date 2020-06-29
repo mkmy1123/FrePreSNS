@@ -48,6 +48,8 @@ group :development, :test do
   # Test用
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  # カバレッジ取得
+  gem "simplecov"
   # Deploy用
   gem 'capistrano'
   gem 'capistrano-rails'

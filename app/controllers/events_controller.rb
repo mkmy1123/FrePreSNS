@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update]
+  before_action :reject_other_user, only: [:edit, :update]
 
   def index
     @events = Event.where(is_valid: true)
@@ -52,5 +53,11 @@ class EventsController < ApplicationController
 
   def arrangement(event_comments)
     event_comments.page(params[:page]).per(15)
+  end
+
+  def reject_other_user
+    unless @event.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 end

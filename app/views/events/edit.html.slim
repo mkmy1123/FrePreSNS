@@ -2,6 +2,7 @@
 .hr-container.center
   h1 EDIT EVENT
   .short-margin-box
+    = render "layouts/errors", obj: @event
     = render "events/event_form", event: @event, argument: @event.argument
 
   h1 DELETE EVENT

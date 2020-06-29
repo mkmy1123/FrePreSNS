@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "session", type: :feature do
+RSpec.feature "Login function", type: :feature do
   include Devise::Test::IntegrationHelpers
   background do
     @user = create(:user)
@@ -39,14 +39,15 @@ RSpec.feature "session", type: :feature do
       expect(page).to have_content "ログアウトしました"
     end
 
-    scenario "Log out user, top page hasnot the user's optional_id" do
+    context "By log out user"
+    scenario "top page doesn't have the user's optional_id" do
       sign_in @user
       visit root_path
       click_link "LOG OUT"
       expect(page).not_to have_content "Login now : #{@user.optional_id}"
     end
 
-    scenario "Log out user, page don't has logout link" do
+    scenario "page doesn't have logout link" do
       sign_in @user
       visit root_path
       expect(page).to have_link "LOG OUT"

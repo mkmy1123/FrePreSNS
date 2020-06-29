@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Around arguments", type: :feature do
+RSpec.feature "Around argument functions", type: :feature do
   include Devise::Test::IntegrationHelpers
 
   background do
