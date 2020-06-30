@@ -1,6 +1,5 @@
-#ajax-dm
-  - messages.each do |m|
-    - if m.user == current_user
-      = render 'own_msg', msg: m
-    - else
-      = render 'other_msg', msg: m
+- messages.each do |m|
+  - if m.user == current_user
+    = render 'own_msg', msg: m
+  - else
+    = render 'other_msg', msg: m

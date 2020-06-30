@@ -3,34 +3,29 @@
   .center
     h1 USER INFOMATION
     .user-id-info
-      / パーシャル化すると余計にわからなくなったのでそのままにしてます
-      / 論理削除済みのユーザーをまず外す
+      / 論理削除済みのユーザーを外す
       - if @user.is_valid == false
         p 退会済みのユーザーです。近々削除されてしまいます...
       - else
-        / その中でユーザが自分自身かどうか判別
         - if current_user == @user
           h3 = "ID : #{@user.optional_id} yourself!"
           p 他人にも見られるページです。編集して自分らしさを表現しましょう！
         - else
           h3 = "ID : #{@user.optional_id}"
-        / ここから新たにDMに関する分岐
-        - if user_signed_in?
-          / サインイン済ユーザーの中で自分自身でないことを確認
-          - unless @user.id == current_user.id
-            / 相互トラスト関係が成り立っていて、すでにDMのやりとりがある場合
-            - if @user.trusting?(current_user) && current_user.trusting?(@user) && @is_room
+          - if @user.each_trusting?(current_user)
+            / 以前DM経験があればその部屋に誘導する
+            - if @room_id.present?
               = link_to "DMを確認", room_path(@room_id),class: 'btn'
-            / 相互トラスト関係にあり、まだDMのやりとりがない場合
-            - elsif @user.trusting?(current_user) && current_user.trusting?(@user)
+            / なければルームを作成する
+            - else
               p 相互にトラスト関係が結ばれたので、DMができるようになりました！
               = form_for @room do |f| 
                 = fields_for @entry do |e|
                   = e.hidden_field :user_id, value: @user.id
                 = f.submit 'DMを送る', class: 'btn'
-            / それ以外はDM不可
-            - else
-              p 相互にトラスト関係が結ばれると、DMができるようになります！
+          / それ以外はDM不能
+          - else
+            p 相互にトラスト関係が結ばれると、DMができるようになります！
   .min-container
     / サイドバー
     .sidebar
