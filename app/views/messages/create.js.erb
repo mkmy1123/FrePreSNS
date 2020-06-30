@@ -1,2 +1,3 @@
-$('#ajax-dm').prepend("<%= j(render 'rooms/own_msg',{ msg: @message }) %>");
-$('#dm_form').val('')
+$('#message_area').prepend("<%= j(render 'rooms/own_msg',{ msg: @message }) %>");
+$('#no_message').empty();
+$('#dm_form').val('');

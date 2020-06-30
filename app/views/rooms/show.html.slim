@@ -10,10 +10,10 @@
       .block
         = f.submit "送信", class: 'btn'
 
-  - if @messages.present?
-    .center
-      = paginate @messages
-    #message_area
-      = render 'msg_area', messages: @messages
-  - else
-    h3 メッセージはまだありません
+  #message_area
+    - if @messages.present?
+      .center
+        = paginate @messages
+        = render 'msg_area', messages: @messages
+    - else
+      h3#no_message メッセージはまだありません

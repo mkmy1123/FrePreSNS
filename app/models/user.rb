@@ -94,4 +94,9 @@ class User < ApplicationRecord
   def participated?(event)
     participations.exists?(event_id: event.id)
   end
+
+  # DM機能に関するメソッド
+  def each_trusting?(other_user)
+    self.trusting?(other_user) && other_user.trusting?(self)
+  end
 end
