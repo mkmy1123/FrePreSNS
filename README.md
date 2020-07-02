@@ -71,5 +71,8 @@ A:
 - [ ] NO.11  
 【Rspec】  
 Q: テストの精度を気にするのであればカバレッジにこだわってみてください。  
-A: メンターの方にsimplecovというgemを教わり、全体網羅できるように別ブランチで鋭意テスト追加中です！
+[All GREEN:traffic_light:](https://github.com/mkmy1123/FrePreSNS/tree/AFTER-CURRICULM/spec)  
+A: メンターの方にsimplecovというgemを教わり、全体網羅できるように別ブランチで鋭意テスト追加中です！  
+
+
 
