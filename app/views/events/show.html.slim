@@ -81,7 +81,6 @@
               = f.text_area :body
               - if user_signed_in?
                 .block
-                  = f.hidden_field :user_id, value: current_user.id
                   = f.submit '送信', class: 'btn'
               - else
                 p = link_to "ログイン後に使える機能です", new_user_session_path

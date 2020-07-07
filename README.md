@@ -64,16 +64,17 @@ Q: pathとして記載した方がよりRailsらしいのではないでしょ�
 A: 中間テーブルが連なっているDM機能なので相対パスをurlでベタ書きで表記すると理解しやすいなと安易に考えておりましたが、`@message.room`と簡単に書き換えられることにご指摘で気がつきました、非同期通信化によりその表記自体を削除してしまいましたが、今後コードを書いていく上で他の書き方を常に探っていくべきと教えていただきました。  
 
 
-- [ ] NO.10  
+- [x] NO.10  
 【EventCommentsController】  
-Q: createアクションとストロングパラメータを見直しましょう。  
-A: 
+Q: createアクションとストロングパラメータを見直しましょう。また保存できる場合とできない場合があります、確認してください。  
+A: ご指摘を受けるまで危険性に気がついていませんでしたが、実装を急ぐあまり`hidden_field`を多用しており、簡単に悪用されるような作りになっていました。またバリデーションをかけているのにエラーメッセージを表示させておらず、ユーザへの気遣いが足りませんでした、今回はバリデーションを緩めることで解消しました！  
+[pullrequest:rocket:](https://github.com/mkmy1123/FrePreSNS/pull/98) : 編集時のプルリクはこちら  
 
 
 - [ ] NO.11  
 【Rspec】  
 Q: テストの精度を気にするのであればカバレッジにこだわってみてください。  
 A: メンターの方にsimplecovというgemを教わり、全体網羅できるように別ブランチで鋭意テスト追加中です！  
-[AllGreen:traffic_light:](https://github.com/mkmy1123/FrePreSNS/tree/AFTER-CURRICULM/spec)　: 最新のテスト(カバレッジ60％超)　　
+[AllGreen:traffic_light:](https://github.com/mkmy1123/FrePreSNS/tree/AFTER-CURRICULM/spec) : 最新のテスト(カバレッジ60％超)  
 
 
