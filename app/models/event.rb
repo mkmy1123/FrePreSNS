@@ -21,7 +21,7 @@ class Event < ApplicationRecord
       save_notification_comment!(current_user, event_comment_id, part_id['user_id'])
     end
     # 参加者0の場合、イベント作成者に通知
-    save_notification_comment!(current_user, event_comment_id, user_id) if temp_ids.blank?
+    save_notification_comment!(current_user, event_comment_id, user_id) if part_ids.blank?
   end
 
   # イベントコメント通知作成メソッド
