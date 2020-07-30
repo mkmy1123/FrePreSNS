@@ -1,16 +1,16 @@
 // サイト全体に動きをつけるため、全ページ共通の箱にアニメーションをつけている
-$(document).ready(function () {
-  var EffectTime = 700;
-  var DelayTime = 500;
+$(function () {
+  let effectTime = 700;
+  let delayTime = 500;
   $(".content-box").css({ opacity: 0 });
   $(window).on("scroll load", function () {
-    var scMiddle = $(this).scrollTop() + $(this).height();
-    var listPos = $(".content-box").offset().top;
+    let scMiddle = $(this).scrollTop() + $(this).height();
+    let listPos = $(".content-box").offset().top;
     if (listPos < scMiddle) {
       $(".content-box").each(function (index) {
         $(this)
-          .delay(DelayTime * index)
-          .animate({ opacity: 1 }, EffectTime);
+          .delay(delayTime * index)
+          .animate({ opacity: 1 }, effectTime);
       });
     }
   });
