@@ -8,11 +8,14 @@ class HomeController < ApplicationController
 
   def top
     # newsAPIを使用
-    # 今回はエラー対応していないが理解が追いついたらすべき
-    uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=' + ENV['NEWS_API_KEY'])
-    json = Net::HTTP.get(uri)
-    moments = JSON.parse(json)
-    @moments = moments['articles']
+    begin
+      uri = URI.parse('https://newsapi.org/v2/top-headlines?country=jp&apiKey=' + ENV['NEWS_API_KEY'])
+      json = Net::HTTP.get(uri)
+      moments = JSON.parse(json)
+      @moments = moments['articles']
+    rescue
+      @moments = ""
+    end
   end
 
   def guest

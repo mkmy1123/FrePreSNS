@@ -97,3 +97,6 @@
             i.fas.fa-pen-fancy
             = link_to moment['url'] do
               span.newsbody = " #{moment['title']}"
+    - else
+      .center
+        p.label.negative ニュースが見つかりませんでした。再読み込みを行ってください。
